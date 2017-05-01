@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
 var Path = require('path');
 var crudEnsumo = require('./crudEnsumo.js')  
+var crudFinancas = require('./crudFinancas.js') 
 
 var Inert = require('inert');
 
