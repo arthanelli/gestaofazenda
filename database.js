@@ -13,5 +13,5 @@ const config = {
 const client = new pg.Client(config);
 client.connect();
 const query = client.query(
-  'CREATE TABLE insumos(id SERIAL PRIMARY KEY, nome VARCHAR(200), preco decimal, fornecedor VARCHAR(100), descricao VARCHAR(40), quantidade int, dataDeValidade VARCHAR(10))');
+  'CREATE TABLE analiseLeite(id SERIAL PRIMARY KEY, nome VARCHAR(200), dataTeste VARCHAR(10), responsavel VARCHAR(100), loteAmostra VARCHAR(40), especificacao VARCHAR(200), resultado VARCHAR(100))');
 query.on('end', () => { client.end(); });
