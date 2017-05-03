@@ -15,9 +15,10 @@ Para atualizar seu projeto com o que está na nuvem: git pull origin master<br>
 Sempre que começar a programar rode esse comando.<br>
 
 ### ----PROJETO----
-Você precisa ter o node instalado na maquina.<br>
-E o git bash.<br>
-e o postgresl.<br>
+Você precisa ter instalado na maquina os seguintes programas.<br>
+Node<br>
+Git bash<br>
+Postgresl<br>
 
 Primeiro comando é o npm install para instalar todas as dependecias do projeto.<br>
 logo após instale o modulo nodemon para verificar as mudanças do codigo e atualizar o servidor, comando: npm install -g nodemon<br>
