@@ -17,3 +17,4 @@ E o git bash.
 
 Primeiro comando é o npm install para instalar todas as dependecias do projeto.
 logo após instale o modulo nodemon para verificar as mudanças do codigo e atualizar o servidor, comando: npm install -g nodemon
+para rodar o projeto rode o comando: npm start
