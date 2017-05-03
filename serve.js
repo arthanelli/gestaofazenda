@@ -1,9 +1,9 @@
 var Hapi = require('hapi');
 var Path = require('path');
-var crudEnsumo = require('./crudInsumo.js')  
-var crudFinancas = require('./crudFinancas.js') 
-var crudAnaliseLeite = require('./crudAnaliseLeite.js')
-var crudTerreno = require('./crudTerreno.js')
+var crudInsumo = require('./model/crudInsumo.js')  
+var crudFinancas = require('./model/crudFinancas.js') 
+var crudAnaliseLeite = require('./model/crudAnaliseLeite.js')
+var crudTerreno = require('./model/crudTerreno.js')
 
 var Inert = require('inert');
 
@@ -49,7 +49,7 @@ server.register(require('inert'), (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-    			crudEnsumo.insert(request.payload);
+    			crudFinancas.insert(request.payload);
     		}
     	}
 	});
@@ -60,7 +60,7 @@ server.register(require('inert'), (err) => {
     	config: {
     		handler: function(request, reply){
     			var resultados = [];
-    			crudEnsumo.read(function(vetor){
+    			crudInsumo.read(function(vetor){
     				resultados = vetor;
     			});
     		}
@@ -76,7 +76,7 @@ server.register(require('inert'), (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-    			crudEnsumo.del(request.payload);
+    			crudInsumo.del(request.payload);
     			reply("ooooo");
     		}
     	}
