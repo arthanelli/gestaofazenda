@@ -69,12 +69,8 @@ module.exports = {
             });
         });
     },
-    change : function(id_change) {
+    returnChange : function(id, callback) {
         var results = [];
-        // Grab data from the URL parameters
-        var id = id_change;
-        // Grab data from http request
-        var data = {produto: arrayData.produto, endereco: arrayData.endereco, valor: arrayData.valor, troco: arrayData.troco, obs: arrayData.obs, data: arrayData.data};
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -83,11 +79,47 @@ module.exports = {
                 console.log(err);
                 //return res.status(500).json({success: false, data: err});
             }
-            // SQL Query > Update Data
-            client.query('UPDATE items SET produto=($1), endereco=($2), valor=($3), troco=($4), obs=($5), data=($6) WHERE id=($7)',
-            [data.produto, data.endereco, data.valor, data.troco, data.obs, data.data, id]);
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM items ORDER BY id ASC");
+            var query = client.query('SELECT * FROM analiseLeite WHERE id = "$1"', [id]);
+            
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
+    change : function(arrayData) {
+        var results = [];
+        // Grab data from the URL parameters
+        var data = {
+            id : arrayData.id,
+            nome: arrayData.nome, 
+            dataTeste: arrayData.dataTeste, 
+            responsavel: arrayData.responsavel, 
+            loteAmostra: arrayData.loteAmostra, 
+            especificacao: arrayData.especificacao, 
+            resultado: arrayData.resultado
+        };        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            // SQL Query > Update Data
+            client.query('UPDATE analiseLeite SET nome=($1), dataTeste=($2), responsavel=($3), loteAmostra=($4), especificacao=($5), resultado=($6) WHERE id=($7)',
+            [data.nome, data.dataTeste, data.responsavel, data.loteAmostra, data.especificacao, data.resultado, data.id]);
+            // SQL Query > Select Data
+            var query = client.query("SELECT * FROM analiseLeite ORDER BY id ASC");
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);

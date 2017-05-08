@@ -49,7 +49,18 @@ server.register(require('inert'), (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-    			crudFinancas.insert(request.payload);
+				var urlRequest = request.info.referrer.split('/');
+				var fileRequest = urlRequest[urlRequest.length - 1];		
+
+				if(fileRequest == 'incluirAnaliseLeite.html') {
+					crudAnaliseLeite.insert(request.payload);
+				} else if (fileRequest == 'incluirFinancas.html') {
+					crudFinancas.insert(request.payload);
+				} else if (fileRequest == 'incluirInsumos.html') {
+					crudInsumo.insert(request.payload);
+				} else if (fileRequest == 'incluirTerreno.html') {
+					crudTerreno.insert(request.payload);
+				}
     		}
     	}
 	});
@@ -60,12 +71,83 @@ server.register(require('inert'), (err) => {
     	config: {
     		handler: function(request, reply){
     			var resultados = [];
-    			crudInsumo.read(function(vetor){
-    				resultados = vetor;
-    			});
+				var nameCrud = request.payload.nameCrud;	
+
+				if(nameCrud == 'analiseLeite') {
+					crudAnaliseLeite.read(function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'financas') {
+					crudFinancas.read(function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'insumos.html') {
+					crudInsumo.read(function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'terreno.html') {
+					crudTerreno.read(function(vetor){
+						resultados = vetor;
+					});
+				}
+
+    			
     		}
     	}
     });
+
+	server.route({
+    	method: 'GET',
+    	path: '/returnChange',
+    	config: {
+    		handler: function(request, reply){
+    			var resultados = [];
+				var nameCrud = request.payload.nameCrud;	
+
+				if(nameCrud == 'analiseLeite') {
+					crudAnaliseLeite.returnChange(request.payload, function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'financas') {
+					crudFinancas.returnChange(request.payload, function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'insumos.html') {
+					crudInsumo.returnChange(request.payload, function(vetor){
+						resultados = vetor;
+					});
+				} else if (nameCrud == 'terreno.html') {
+					crudTerreno.returnChange(request.payload, function(vetor){
+						resultados = vetor;
+					});
+				}
+    		}
+    	}
+    });
+
+	server.route({
+    	method: 'POST',
+    	path: '/change',
+    	config: {
+    		payload: {
+    			output: 'data',
+    			parse: true
+    		},
+    		handler: function(request, reply){
+				var nameCrud = request.payload.nameCrud;	
+
+				if(nameCrud == 'analiseLeite') {
+					crudAnaliseLeite.change(request.payload);
+				} else if (nameCrud == 'financas') {
+					crudFinancas.change(request.payload);
+				} else if (nameCrud == 'insumos.html') {
+					crudInsumo.change(request.payload);
+				} else if (nameCrud == 'terreno.html') {
+					crudTerreno.change(request.payload);
+				}
+    		}
+    	}
+	});
 
     server.route({
     	method: 'POST',
@@ -76,14 +158,22 @@ server.register(require('inert'), (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-    			crudInsumo.del(request.payload);
-    			reply("ooooo");
+				var nameCrud = request.payload.nameCrud;	
+
+				if(nameCrud == 'analiseLeite') {
+					crudAnaliseLeite.del(request.payload);
+				} else if (nameCrud == 'financas') {
+					crudFinancas.del(request.payload);
+				} else if (nameCrud == 'insumos.html') {
+					crudInsumo.del(request.payload);
+				} else if (nameCrud == 'terreno.html') {
+					crudTerreno.del(request.payload);
+				}
     		}
     	}
 	});
 
 });
-
 
 server.start((err) => {
     if (err) {
