@@ -4,6 +4,7 @@ var crudInsumo = require('./model/crudInsumo.js')
 var crudFinancas = require('./model/crudFinancas.js') 
 var crudAnaliseLeite = require('./model/crudAnaliseLeite.js')
 var crudTerreno = require('./model/crudTerreno.js')
+var crudVacinacao = require('./model/crudVacinacao.js')
 
 var Inert = require('inert');
 
@@ -49,7 +50,7 @@ server.register(require('inert'), (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-    			crudFinancas.insert(request.payload);
+    			crudVacinacao.insert(request.payload);
     		}
     	}
 	});
@@ -77,7 +78,7 @@ server.register(require('inert'), (err) => {
     		},
     		handler: function(request, reply){
     			crudInsumo.del(request.payload);
-    			reply("ooooo");
+    			reply("ooooooso");
     		}
     	}
 	});
