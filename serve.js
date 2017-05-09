@@ -21,7 +21,6 @@ server.connection({
 	port: 3000
 });
 
-
 server.register(require('inert'), (err) => {
 
     if (err) {
@@ -89,9 +88,7 @@ server.register(require('inert'), (err) => {
 					crudTerreno.read(function(vetor){
 						resultados = vetor;
 					});
-				}
-
-    			
+				}	
     		}
     	}
     });
