@@ -4,6 +4,7 @@ var crudInsumo = require('./model/crudInsumo.js')
 var crudFinancas = require('./model/crudFinancas.js') 
 var crudAnaliseLeite = require('./model/crudAnaliseLeite.js')
 var crudTerreno = require('./model/crudTerreno.js')
+var crudVacinacao = require('./model/crudVacinacao.js')
 
 var Inert = require('inert');
 
