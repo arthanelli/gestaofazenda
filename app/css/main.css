@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+body {
+	background-color: #ccc;
+}
+
 .menu-itens {
 	position: absolute;
 	height: 100%;
@@ -36,4 +40,38 @@
 	font-size: 12spx;
 	color: #b8c7ce;
 	text-decoration: none;
+}
+
+.menu-top {
+	width: 100%;
+	float: right;
+	height: 60px;
+	background-color: #ffffff;
+}
+
+.menu-top .options {
+	float: right;
+}
+
+.menu-top .options .box-logoff {
+	width: 200px;
+	position: absolute;
+	top: 70px;
+	background-color: #fff;
+	display: none;
+}
+
+.menu-top .options .box-logoff ul li{
+	font-family: 'Tahoma';
+	font-size: 12spx;
+	color: #000;
+	text-decoration: none;
+	list-style: none;
+	height: 30px;
+}
+
+.container {
+	float: right;
+	width: 85%;
+	padding: 2.5%
 }
