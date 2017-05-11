@@ -1,0 +1,39 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.menu-itens {
+	position: absolute;
+	height: 100%;
+	width: 15%;
+	background-color: #2f3b4c;
+	padding: 2%;
+}
+
+.menu-itens .user {
+	margin-bottom: 30px;
+}
+
+.menu-itens .user .info-user {
+	font-family: 'Tahoma';
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.menu-itens hr {
+	border: solid 1px #b8c7ce;
+}
+
+.menu-itens ul li{
+	list-style: none;
+	height: 30px;
+}
+
+.menu-itens ul li a{
+	font-family: 'Tahoma';
+	font-size: 12spx;
+	color: #b8c7ce;
+	text-decoration: none;
+}
