@@ -1,0 +1,25 @@
+{{!< layout/default}}
+<h1 class="title-section">Vacinação</h1>
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertVacina" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label class="form-label">Noma da vacina *</label>
+			<input type="text" class="form-text" name="nomeVacina" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Descrição *</label> 
+			<input type="text" class="form-text" name="descricaoVacina" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Prescrição *</label>
+			<input type="text" class="form-text" name="prescricaoVacinacao" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Periodicidade *</label>
+			<input type="text" class="form-text" name="periodicidade" >
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
