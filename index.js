@@ -77,27 +77,31 @@ server.register([require('vision'), Inert], (err) => {
 
 	server.route({
 		method: 'POST',
-		path: '/insert',
+		path: '/insertVacina',
 		config: {
 			payload: {
 				output: 'data',
 				parse: true
 			},
 			handler: function(request, reply){
-			var urlRequest = request.info.referrer.split('/');
-			var fileRequest = urlRequest[urlRequest.length - 1];		
+				crudVacinacao.insert(request.payload);
 
-			if(fileRequest == 'incluirAnaliseLeite.html') {
-				crudAnaliseLeite.insert(request.payload);
-			} else if (fileRequest == 'incluirFinancas.html') {
-				crudFinancas.insert(request.payload);
-			} else if (fileRequest == 'incluirInsumos.html') {
-				crudInsumo.insert(request.payload);
-			} else if (fileRequest == 'incluirTerreno.html') {
-				crudTerreno.insert(request.payload);
-			}
+				reply('/cadastrovacina');
 			}
 		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/cadastrovacina',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Vacina',
+				};
+
+				return reply.view('index', data);
+			}
 	});
 
     server.route({
