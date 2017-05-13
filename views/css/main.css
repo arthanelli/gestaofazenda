@@ -1,0 +1,78 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #F7F7F7;
+}
+
+.menu-itens {
+	position: absolute;
+	height: 100%;
+	width: 12%;
+	background-color: #2A3F54;
+	padding: 1%;
+}
+
+.menu-itens .user {
+	margin-bottom: 30px;
+}
+
+.menu-itens .user .info-user {
+	font-family: 'Tahoma';
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.menu-itens hr {
+	border: solid 1px #b8c7ce;
+}
+
+.menu-itens ul li{
+	list-style: none;
+	height: 30px;
+}
+
+.menu-itens ul li a{
+	font-family: 'Tahoma';
+	font-size: 12spx;
+	color: #b8c7ce;
+	text-decoration: none;
+}
+
+.menu-top {
+	width: 100%;
+	float: right;
+	height: 60px;
+	background-color: #EDEDED;
+	border-bottom: 1px solid #D9DEE4;
+}
+
+.menu-top .options {
+	float: right;
+}
+
+.menu-top .options .box-logoff {
+	width: 114px;
+	position: absolute;
+	top: 60px;
+	background-color: #fff;
+	display: none;
+}
+
+.menu-top .options .box-logoff ul li{
+	font-family: 'Tahoma';
+	font-size: 12px;
+	color: #000;
+	text-decoration: none;
+	list-style: none;
+	height: 30px;
+}
+
+.container {
+	float: right;
+	width: 87%;
+	padding: 2.5%
+}
