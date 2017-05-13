@@ -100,7 +100,65 @@ server.register([require('vision'), Inert], (err) => {
 						title: 'Vacina',
 				};
 
-				return reply.view('index', data);
+				return reply.view('cadastrarVacina', data);
+			}
+	});
+
+		server.route({
+		method: 'POST',
+		path: '/insertAnaliseLeite',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				crudAnaliseLeite.insert(request.payload);
+
+				reply('/cadastroAnaliseLeite');
+			}
+		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/cadastroAnaliseLeite',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Analise do Leite',
+				};
+
+				return reply.view('cadastrarAnaliseLeite', data);
+			}
+	});
+
+		server.route({
+		method: 'POST',
+		path: '/insertInsumo',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				crudInsumo.insert(request.payload);
+
+				reply('/cadastroInsumo');
+			}
+		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/cadastroInsumo',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Insumo',
+				};
+
+				return reply.view('cadastrarInsumo', data);
 			}
 	});
 

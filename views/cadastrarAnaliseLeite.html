@@ -1,0 +1,33 @@
+{{!< layout/default}}
+<h1 class="title-section">Analise de leite</h1>
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertAnaliseLeite" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label class="form-label">Titulo *</label>
+			<input type="text" class="form-text" name="nome" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Data do teste *</label> 
+			<input type="text" class="form-text" name="dataTeste" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Responsavel *</label>
+			<input type="text" class="form-text" name="responsavel" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Lote da amostra *</label>
+			<input type="text" class="form-text" name="loteAmostra" >
+		</div>
+        <div class="forms-campo">
+			<label class="form-label">Especificacao *</label>
+			<input type="text" class="form-text" name="especificacao" >
+		</div>
+        <div class="forms-campo">
+			<label class="form-label">Resultado *</label>
+			<input type="text" class="form-text" name="resultado" >
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
