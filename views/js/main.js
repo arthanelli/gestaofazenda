@@ -11,4 +11,5 @@ $(document).ready(function () {
 			openConfig = true;
 		}
 	})
+
 });

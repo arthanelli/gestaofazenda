@@ -69,7 +69,7 @@ server.register([require('vision'), Inert], (err) => {
 
 				var data = {
 						title: 'Home',
-						script: '../js/consultarVacina.js'
+						script: '../js/main.js'
 				};
 
 				return reply.view('index', data);
@@ -127,7 +127,7 @@ server.register([require('vision'), Inert], (err) => {
 			handler: function(request, reply) {
 
 				var data = {
-						title: 'Analise do Leite',
+						title: 'Analise do Leite'
 				};
 
 				return reply.view('cadastrarAnaliseLeite', data);
