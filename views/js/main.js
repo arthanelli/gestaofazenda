@@ -1,6 +1,6 @@
 
-window.onload = function(){
-	var openConfig = false;
+$(document).ready(function () {
+		var openConfig = false;
 
 	$('.logoff').on('click', function(){
 		if(openConfig == true) {
@@ -11,4 +11,4 @@ window.onload = function(){
 			openConfig = true;
 		}
 	})
-}
+});

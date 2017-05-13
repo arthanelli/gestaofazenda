@@ -24,7 +24,7 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO insumos(nome, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6)',
+            client.query(INSERT INTO insumos(nome, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6)',
             [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM insumos ORDER BY id ASC');

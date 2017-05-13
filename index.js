@@ -69,6 +69,7 @@ server.register([require('vision'), Inert], (err) => {
 
 				var data = {
 						title: 'Home',
+						script: '../js/consultarVacina.js'
 				};
 
 				return reply.view('index', data);
@@ -162,31 +163,43 @@ server.register([require('vision'), Inert], (err) => {
 			}
 	});
 
+
+	server.route({
+		method: 'POST',
+		path: '/insertFinanceiro',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				crudFinancas.insert(request.payload);
+
+				reply('/cadastroFinanceiro');
+			}
+		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/cadastroFinanceiro',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Financeiro',
+				};
+
+				return reply.view('cadastroFinanceiro', data);
+			}
+	});
+
     server.route({
     	method: 'GET',
     	path: '/read',
     	config: {
     		handler: function(request, reply){
     			var resultados = [];
-				var nameCrud = request.payload.nameCrud;	
-
-				if(nameCrud == 'analiseLeite') {
-					crudAnaliseLeite.read(function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'financas') {
-					crudFinancas.read(function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'insumos.html') {
-					crudInsumo.read(function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'terreno.html') {
-					crudTerreno.read(function(vetor){
-						resultados = vetor;
-					});
-				}	
+				
     		}
     	}
     });
@@ -197,25 +210,7 @@ server.register([require('vision'), Inert], (err) => {
     	config: {
     		handler: function(request, reply){
     			var resultados = [];
-				var nameCrud = request.payload.nameCrud;	
-
-				if(nameCrud == 'analiseLeite') {
-					crudAnaliseLeite.returnChange(request.payload, function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'financas') {
-					crudFinancas.returnChange(request.payload, function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'insumos.html') {
-					crudInsumo.returnChange(request.payload, function(vetor){
-						resultados = vetor;
-					});
-				} else if (nameCrud == 'terreno.html') {
-					crudTerreno.returnChange(request.payload, function(vetor){
-						resultados = vetor;
-					});
-				}
+				
     		}
     	}
     });
@@ -229,18 +224,7 @@ server.register([require('vision'), Inert], (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-				var nameCrud = request.payload.nameCrud;	
-
-				if(nameCrud == 'analiseLeite') {
-					crudAnaliseLeite.change(request.payload);
-				} else if (nameCrud == 'financas') {
-					crudFinancas.change(request.payload);
-				} else if (nameCrud == 'insumos.html') {
-					crudInsumo.change(request.payload);
-				} else if (nameCrud == 'terreno.html') {
-					crudTerreno.change(request.payload);
 				}
-    		}
     	}
 	});
 
@@ -253,17 +237,7 @@ server.register([require('vision'), Inert], (err) => {
     			parse: true
     		},
     		handler: function(request, reply){
-				var nameCrud = request.payload.nameCrud;	
-
-				if(nameCrud == 'analiseLeite') {
-					crudAnaliseLeite.del(request.payload);
-				} else if (nameCrud == 'financas') {
-					crudFinancas.del(request.payload);
-				} else if (nameCrud == 'insumos.html') {
-					crudInsumo.del(request.payload);
-				} else if (nameCrud == 'terreno.html') {
-					crudTerreno.del(request.payload);
-				}
+				
     		}
     	}
 	});

@@ -9,12 +9,14 @@ module.exports = {
         // Grab data from http request
         var data = {
         	nomeVacina: arrayData.nomeVacina, 
-            descricaoVacina: arrayData.descricaoVacinaa,
+            descricaoVacina: arrayData.descricaoVacina,
         	prescricaoVacinacao: arrayData.prescricaoVacinacao, 
         	periodicidade: arrayData.periodicidade, 
-        	gadosVacinados: arrayData.gadosVacinados, 
-        	gadosNaoVacinados: arrayData.gadosNaoVacinados 
+        	gadosVacinados: '', 
+        	gadosNaoVacinados: ''
         };
+
+        console.log(data)
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -24,7 +26,7 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO vacinacao(nomeVacina,  descricaoVacina, prescricaoVacinacao, periodicidade, gadosVacinados, gadosNaoVacinados) values($1, $2, $3, $4, $5, $6)',
+            client.query('INSERT INTO vacinacao(nomeVacina,  descricaovacina, prescricaovacinacao, periodicidade, gadosVacinados, gadosNaoVacinados) values($1, $2, $3, $4, $5, $6)',
             [data.nomeVacina, data.descricaoVacina, data.prescricaoVacinacao, data.periodicidade, data.gadosVacinados, data.gadosNaoVacinados]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM vacinacao ORDER BY id ASC');

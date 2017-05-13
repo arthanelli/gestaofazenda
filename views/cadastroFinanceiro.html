@@ -1,0 +1,25 @@
+{{!< layout/default}}
+<h1 class="title-section">Financeiro</h1>
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertFinanceiro" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label class="form-label">Valor *</label>
+			<input type="text" class="form-text" name="valor" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Descrição *</label> 
+			<input type="text" class="form-text" name="tipo" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Tipo *</label>
+			<input type="text" class="form-text" name="descricao" >
+		</div>
+		<div class="forms-campo">
+			<label class="form-label">Data *</label>
+			<input type="text" class="form-text" name="dataConta" >
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
