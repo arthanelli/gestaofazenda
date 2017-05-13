@@ -15,6 +15,6 @@ const client = new pg.Client(acessos.config);
 
 client.connect();
 
-const query = client.query(createTables);
+const query = client.query(createTables );
 
 query.on('end', () => { client.end(); });
