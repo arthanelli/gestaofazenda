@@ -5,6 +5,7 @@ var crudFinancas = require('./model/crudFinancas.js')
 var crudAnaliseLeite = require('./model/crudAnaliseLeite.js')
 var crudTerreno = require('./model/crudTerreno.js')
 var crudVacinacao = require('./model/crudVacinacao.js')
+var crudGado = require('./model/crudGado.js')
 
 var Inert = require('inert');
 
@@ -191,7 +192,6 @@ server.register([require('vision'), Inert], (err) => {
 			}
 	});
 
-
 	server.route({
 		method: 'POST',
 		path: '/insertFinanceiro',
@@ -220,6 +220,37 @@ server.register([require('vision'), Inert], (err) => {
 				return reply.view('cadastroFinanceiro', data);
 			}
 	});
+
+
+	server.route({
+		method: 'POST',
+		path: '/insertGado',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				crudGado.insert(request.payload);
+
+				reply('/cadastroGado');
+			}
+		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/cadastroGado',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Gado',
+				};
+
+				return reply.view('cadastroGado', data);
+			}
+	});
+
 
     server.route({
     	method: 'GET',
