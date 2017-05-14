@@ -1,0 +1,28 @@
+{{!< layout/consultar}}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Data Teste</th>
+      <th>Responsavel</th>
+      <th>Lote Amostra</th>
+      <th>Especificação</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{nome}}</td>
+      <td>{{dataTeste}}</td>
+      <td>{{responsavel}}</td>
+      <td>{{loteAmostra}}</td>
+      <td>{{especificacao}}</td>
+      <td>{{resultado}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

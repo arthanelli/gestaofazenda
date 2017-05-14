@@ -86,8 +86,7 @@ server.register([require('vision'), Inert], (err) => {
 			},
 			handler: function(request, reply){
 				crudVacinacao.insert(request.payload);
-
-				reply('/cadastrovacina');
+				reply.redirect('cadastrovacina');
 			}
 		}
 	});
@@ -105,6 +104,21 @@ server.register([require('vision'), Inert], (err) => {
 			}
 	});
 
+	server.route({
+		method: 'GET',
+			path: '/consultarvacina',
+			handler: function(request, reply) {
+				crudVacinacao.read(function(array){
+					var data = {
+						titlePage: 'Consultar Vacina',
+						title: 'Vacina',
+						dados: array
+					};
+					return reply.view('consultarVacina', data, { layout: 'consultar' });
+				});
+			}
+	});
+
 		server.route({
 		method: 'POST',
 		path: '/insertAnaliseLeite',
@@ -115,7 +129,6 @@ server.register([require('vision'), Inert], (err) => {
 			},
 			handler: function(request, reply){
 				crudAnaliseLeite.insert(request.payload);
-
 				reply('/cadastroAnaliseLeite');
 			}
 		}
@@ -131,6 +144,21 @@ server.register([require('vision'), Inert], (err) => {
 				};
 
 				return reply.view('cadastrarAnaliseLeite', data);
+			}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/consultarAnaliseLeite',
+			handler: function(request, reply) {
+				crudAnaliseLeite.read(function(array){
+					var data = {
+						titlePage: 'Consultar Analise Leite',
+						title: 'Analise do Leite',
+						dados: array
+					};
+					return reply.view('consultarAnaliseLeite', data, { layout: 'consultar' });
+				});
 			}
 	});
 
@@ -199,7 +227,7 @@ server.register([require('vision'), Inert], (err) => {
     	config: {
     		handler: function(request, reply){
     			var resultados = [];
-				
+					
     		}
     	}
     });

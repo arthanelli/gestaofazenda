@@ -1,0 +1,28 @@
+{{!< layout/consultar}}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Cod Gado</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Prescrição</th>
+      <th>Gados vacinados</th>
+      <th>Gados não vacinados</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{codgado}}</td>
+      <td>{{nomevacina}}</td>
+      <td>{{descricaovacina}}</td>
+      <td>{{prescricaovacinacao}}</td>
+      <td>{{gadosvacinados}}</td>
+      <td>{{gadosnaovacinados}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

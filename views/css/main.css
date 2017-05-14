@@ -13,6 +13,7 @@ h3 {
 body {
 	background-color: #F7F7F7;
 	color: #73879C;
+	font-family: 'robotoregular'
 }
 
 .menu-itens {
@@ -41,65 +42,41 @@ body {
 	list-style: none;
 }
 
-
-
-/* reset our lists to remove bullet points and padding */
 .mainmenu, .submenu {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* make ALL links (main and submenu) have padding and background color */
-.mainmenu a {
+.mainmenu a {	
+	box-shadow: 0 4px 2px -2px gray;
+  color: #FFF;
   display: block;
-  text-decoration: none;
-  padding: 10px;
-  color: #000;
+	font-size: 14px;
+	text-decoration: none;
+  padding: 8px;
 }
 
-/* add hover behaviour */
 .mainmenu a:hover {
+	border-left: 2px solid #FFF;
 }
-
-
-/* when hovering over a .mainmenu item,
-  display the submenu inside it.
-  we're changing the submenu's max-height from 0 to 200px;
-*/
 
 .mainmenu li:hover .submenu {
   display: block;
   max-height: 200px;
 }
 
-/*
-  we now overwrite the background-color for .submenu links only.
-  CSS reads down the page, so code at the bottom will overwrite the code at the top.
-*/
-
 .submenu a {
 }
 
-/* hover behaviour for links inside .submenu */
 .submenu a:hover {
 }
 
-/* this is the initial state of all submenus.
-  we set it to max-height: 0, and hide the overflowed content.
-*/
 .submenu {
   overflow: hidden;
   max-height: 0;
   -webkit-transition: all 0.5s ease-out;
 }
-
-/*.menu-itens ul li a{
-	font-family: 'Tahoma';
-	font-size: 12spx;
-	color: #b8c7ce;
-	text-decoration: none;
-}*/
 
 .menu-top {
 	width: 100%;
@@ -214,4 +191,34 @@ body {
 	color: #fff;
   background-color: #5cb85c;
   border-color: #4cae4c;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+		border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+th {
+    text-align: left;
 }
