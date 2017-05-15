@@ -115,7 +115,7 @@ server.register([require('vision'), Inert], (err) => {
 						title: 'Vacina',
 						dados: array
 					};
-					return reply.view('consultarVacina', data, { layout: 'consultar' });
+					return reply.view('consultarVacina', data);
 				});
 			}
 	});
@@ -130,7 +130,7 @@ server.register([require('vision'), Inert], (err) => {
 			},
 			handler: function(request, reply){
 				crudAnaliseLeite.insert(request.payload);
-				reply('/cadastroAnaliseLeite');
+				reply.redirect('cadastroAnaliseLeite');
 			}
 		}
 	});
@@ -158,7 +158,7 @@ server.register([require('vision'), Inert], (err) => {
 						title: 'Analise do Leite',
 						dados: array
 					};
-					return reply.view('consultarAnaliseLeite', data, { layout: 'consultar' });
+					return reply.view('consultarAnaliseLeite', data);
 				});
 			}
 	});
@@ -174,7 +174,7 @@ server.register([require('vision'), Inert], (err) => {
 			handler: function(request, reply){
 				crudInsumo.insert(request.payload);
 
-				reply('/cadastroInsumo');
+				reply.redirect('cadastroInsumo');
 			}
 		}
 	});
@@ -189,6 +189,21 @@ server.register([require('vision'), Inert], (err) => {
 				};
 
 				return reply.view('cadastrarInsumo', data);
+			}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/consultarInsumo',
+			handler: function(request, reply) {
+				crudInsumo.read(function(array){
+					var data = {
+						titlePage: 'Consultar Insumos',
+						title: 'Insumos',
+						dados: array
+					};
+					return reply.view('consultarInsumo', data);
+				});
 			}
 	});
 

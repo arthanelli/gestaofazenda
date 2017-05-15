@@ -15,6 +15,7 @@ module.exports = {
         	especificacao: arrayData.especificacao, 
         	resultado: arrayData.resultado
         };
+
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
