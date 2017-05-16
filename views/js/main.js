@@ -1,6 +1,10 @@
 
 $(document).ready(function () {
-		var openConfig = false;
+	var width = $(document).height(); 
+
+	$('.content').css('width', width);
+	
+	var openConfig = false;
 
 	$('.logoff').on('click', function(){
 		if(openConfig == true) {

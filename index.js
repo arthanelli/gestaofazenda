@@ -51,6 +51,16 @@ server.register([require('vision'), Inert], (err) => {
 		}
 	});
 
+	server.route({  
+		method: 'GET',
+		path: '/fonts/{file*}',
+		handler: {
+			directory: { 
+				path: './fonts/'
+			}
+		}
+	});
+
 	server.views({  
 		engines: {
 				html: require('handlebars')
@@ -76,6 +86,8 @@ server.register([require('vision'), Inert], (err) => {
 				return reply.view('index', data);
 			}
 	});
+
+	
 
 	server.route({
 		method: 'POST',

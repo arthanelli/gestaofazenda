@@ -16,10 +16,12 @@ body {
 	font-family: 'robotoregular'
 }
 
+
+
 .menu-itens {
 	position: absolute;
 	height: 100%;
-	width: 12%;
+	width: 230px;
 	background-color: #2A3F54;
 	padding: 1%;
 }
@@ -80,10 +82,17 @@ body {
 
 .menu-top {
 	width: 100%;
-	float: right;
 	height: 60px;
 	background-color: #EDEDED;
 	border-bottom: 1px solid #D9DEE4;
+}
+
+.menu-top .toggle {
+	margin-left: 230px;
+}
+
+.menu-top .toggle i{
+	font-size: 55px
 }
 
 .menu-top .options {
@@ -108,9 +117,8 @@ body {
 }
 
 .container {
-	float: right;
-	width: 87%;
-	padding: 2.5%
+	margin-left: 230px;
+	padding: 90px 2.5% 0 2.5%;
 }
 
 .container-form {
