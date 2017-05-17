@@ -16,8 +16,6 @@ body {
 	font-family: 'robotoregular'
 }
 
-
-
 .menu-itens {
 	position: absolute;
 	height: 100%;
@@ -77,22 +75,22 @@ body {
 }
 
 .mainmenu li a i {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    opacity: .99;
+	display: inline-block;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	opacity: .99;
 	width: 26px;
 }
 
 .mainmenu li a span.fa {
-    color: #C4CFDA;
+  color: #C4CFDA;
 	float: right;
-    font-size: 10px;
-    min-width: inherit;
-    margin-top: 5px;
-    text-align: center;
+	font-size: 10px;
+	min-width: inherit;
+	margin-top: 5px;
+	text-align: center;
 }
 
 .submenu a {
@@ -115,15 +113,18 @@ body {
 }
 
 .menu-top .toggle {
-	margin-left: 230px;
+	margin-left: 240px;
+	padding-top: 18px
 }
 
 .menu-top .toggle i{
-	font-size: 55px
+	font-size: 25px
 }
 
 .menu-top .options {
 	float: right;
+	 position: relative;
+  top: -24px;
 }
 
 .menu-top .options .box-logoff {
@@ -145,7 +146,7 @@ body {
 
 .container {
 	margin-left: 230px;
-	padding: 90px 2.5% 0 2.5%;
+	padding: 18px 2.5% 0 2.5%;
 }
 
 .container-form {
