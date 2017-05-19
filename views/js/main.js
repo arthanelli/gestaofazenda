@@ -17,4 +17,20 @@ $(document).ready(function () {
 			openConfig = true;
 		}
 	});
+
+	var aberturaMenu = false;
+	var subMenu = $('.mainmenu li .submenu');
+
+	$('.mainmenu li').on('click', function(){
+
+		if(aberturaMenu == false){
+			$(this).find('ul').addClass('activate');
+			aberturaMenu = true;
+		}
+		else if(aberturaMenu == true){
+			subMenu.removeClass('activate');
+			aberturaMenu = false;
+		}
+	});
+
 });

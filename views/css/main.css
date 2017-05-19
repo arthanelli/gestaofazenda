@@ -50,6 +50,7 @@ body {
 
 .mainmenu a {	
 	box-shadow: 0 1px 1px -2px #fff;
+	cursor: pointer;
   	color: #FFF;
   	display: block;
 	font-size: 13px;
@@ -65,9 +66,9 @@ body {
     border-right: 5px solid #1ABB9C;
 }
 
-.mainmenu li:hover .submenu {
-	display: block;
-	max-height: 200px;
+.activate {
+	display: block !important;
+	overflow: hidden;
 }
 
 .mainmenu li:hover .submenu li{
@@ -85,7 +86,7 @@ body {
 }
 
 .mainmenu li a span.fa {
-  color: #C4CFDA;
+  	color: #C4CFDA;
 	float: right;
 	font-size: 10px;
 	min-width: inherit;
@@ -100,9 +101,8 @@ body {
 }
 
 .submenu {
+	display: none;
 	overflow: hidden;
-	max-height: 0;
-	-webkit-transition: all 0.5s ease-out;
 }
 
 .menu-top {

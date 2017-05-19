@@ -219,6 +219,34 @@ server.register([require('vision'), Inert], (err) => {
 			}
 	});
 
+		server.route({
+		method: 'POST',
+		path: '/alterAnaliseLeite',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				crudAnaliseLeite.change(request.payload);
+				reply.redirect('alterarAnaliseLeite');
+			}
+		}
+	});
+
+	server.route({
+		method: 'GET',
+			path: '/alterarAnaliseLeite',
+			handler: function(request, reply) {
+
+				var data = {
+						title: 'Analise do Leite'
+				};
+
+				return reply.view('alterarAnaliseLeite', data);
+			}
+	});
+
 	server.route({
 		method: 'POST',
 		path: '/insertFinanceiro',
