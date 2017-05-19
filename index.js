@@ -87,6 +87,21 @@ server.register([require('vision'), Inert], (err) => {
 			}
 	});
 
+	server.route({
+		method: 'POST',
+		path: '/consultarAnalise/{user?}',
+		handler: function (request, reply) {
+				const id = request.params.user ? encodeURIComponent(request.params.user) : 'stranger';
+				crudAnaliseLeite.returnChange(id, function(array){
+					var data = {
+						titlePage: 'Consultar Analise Leite',
+						title: 'Analise do Leite',
+						dados: array
+					};
+					return reply.view('alterarAnaliseLeite', data);
+				});
+		}
+	});
 	
 
 	server.route({

@@ -81,7 +81,7 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM analiseLeite WHERE id = "$1"', [id]);
+            var query = client.query('SELECT * FROM analiseLeite WHERE id = $1', [id]);
             
             // Stream results back one row at a time
             query.on('row', (row) => {

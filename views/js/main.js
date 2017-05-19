@@ -18,19 +18,24 @@ $(document).ready(function () {
 		}
 	});
 
-	var aberturaMenu = false;
+	var menuAberto = false;
 	var subMenu = $('.mainmenu li .submenu');
 
 	$('.mainmenu li').on('click', function(){
-
-		if(aberturaMenu == false){
-			$(this).find('ul').addClass('activate');
-			aberturaMenu = true;
-		}
-		else if(aberturaMenu == true){
+		if($(this).find('ul').hasClass('activate')){
 			subMenu.removeClass('activate');
-			aberturaMenu = false;
+		} else {
+			subMenu.removeClass('activate');s
+			$(this).find('ul').addClass('activate');
 		}
 	});
 
+	var id;
+	// $('tbody tr').on('click', function(){
+  //   id = $(this).find('.id').attr('data-id');
+	// 	$.ajax({
+  //       type: 'post',
+  //       url: '/consultarAnalise/' + id,
+  //   });
+  // });
 });

@@ -51,11 +51,11 @@ body {
 .mainmenu a {	
 	box-shadow: 0 1px 1px -2px #fff;
 	cursor: pointer;
-  	color: #FFF;
-  	display: block;
+  color: #FFF;
+  display: block;
 	font-size: 13px;
 	text-decoration: none;
-  	padding: 8px;
+  padding: 8px;
 }
 
 .mainmenu li a:hover {
@@ -118,12 +118,13 @@ body {
 }
 
 .menu-top .toggle i{
-	font-size: 25px
+	font-size: 25px;
+	cursor: pointer
 }
 
 .menu-top .options {
 	float: right;
-	 position: relative;
+ position: relative;
   top: -24px;
 }
 
