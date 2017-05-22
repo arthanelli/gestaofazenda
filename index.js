@@ -88,10 +88,10 @@ server.register([require('vision'), Inert], (err) => {
 	});
 
 	server.route({
-		method: 'POST',
-		path: '/consultarAnalise/{user?}',
+		method: 'GET',
+		path: '/consultarAnalise/{id}',
 		handler: function (request, reply) {
-				const id = request.params.user ? encodeURIComponent(request.params.user) : 'stranger';
+				const id = request.params.user;
 				crudAnaliseLeite.returnChange(id, function(array){
 					var data = {
 						titlePage: 'Consultar Analise Leite',
@@ -99,7 +99,7 @@ server.register([require('vision'), Inert], (err) => {
 						dados: array
 					};
 					return reply.view('alterarAnaliseLeite', data);
-				});
+				});			
 		}
 	});
 	

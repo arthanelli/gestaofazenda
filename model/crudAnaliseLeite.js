@@ -90,7 +90,7 @@ module.exports = {
             // After all data is returned, close connection and return results
             query.on('end', () => {
                 done();
-                //console.log(results);
+                console.log(results);
                 if(callback != null) {
                     callback(results);
                 }
