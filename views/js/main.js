@@ -25,17 +25,13 @@ $(document).ready(function () {
 		if($(this).find('ul').hasClass('activate')){
 			subMenu.removeClass('activate');
 		} else {
-			subMenu.removeClass('activate');s
+			subMenu.removeClass('activate');
 			$(this).find('ul').addClass('activate');
 		}
 	});
 
-	var id;
-	// $('tbody tr').on('click', function(){
-  //   id = $(this).find('.id').attr('data-id');
-	// 	$.ajax({
-  //       type: 'post',
-  //       url: '/consultarAnalise/' + id,
-  //   });
-  // });
+	$('tbody tr').on('click', function(){
+    var pathEdit = $(this).attr('data-id');
+		location.href = pathEdit;
+  });
 });
