@@ -4,7 +4,7 @@ module.exports = [
 	//ROTAS QUE CHAMAM TELAS
   {
 		method: 'GET',
-		path: '/consultarAnalise/{id}',
+		path: '/alterarAnalise/{id}',
 		handler: function (request, reply) {
 				crudAnaliseLeite.returnChange(request.params.id, function(array){
 					var data = {
@@ -74,7 +74,7 @@ module.exports = [
 			handler: function(request, reply){
 				crudAnaliseLeite.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('consultarAnalise/' + request.payload.id);
+						reply.redirect('alterarAnalise/' + request.payload.id);
 					}
 				});
 			}
