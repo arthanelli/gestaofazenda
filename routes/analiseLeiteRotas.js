@@ -40,7 +40,7 @@ module.exports = [
 				});
 			}
 	},
-	//ROTAS QUE FAZEM AÇÃO
+	//ROTAS QUE FAZEM AÇÕES
 	{
 		method: 'GET',
 		path: '/deletarAnaliseLeite/{id}',

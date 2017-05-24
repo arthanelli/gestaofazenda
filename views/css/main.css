@@ -259,3 +259,11 @@ thead {
 th {
     text-align: left;
 }
+
+.item-edit {
+	cursor: pointer;
+}
+
+.item-edit:hover{
+	background-color: #eceeef
+}
