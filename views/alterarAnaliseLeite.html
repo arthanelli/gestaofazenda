@@ -1,11 +1,13 @@
 {{!< layout/default}}
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<a data-path="../deletarAnaliseLeite" id="button-deletar" class="button sucess">Deletar</a>
+
 	<form action="/mudarDadosAnaliseLeite" method="POST" class="form-style">
 	{{#each dados}}
 	<div class="forms-campo">
-			<label class="form-label">Id *</label>
-			<input type="text" class="form-text" name="id" value={{id}}>
+		<label class="form-label">Id *</label>
+			<input type="text" class="form-text" name="id" id="id" value={{id}}>
 		</div>
 		<div class="forms-campo">
 			<label class="form-label">Titulo *</label>
@@ -28,7 +30,7 @@
 			<label class="form-label">Especificacao *</label>
 			<input type="text" class="form-text" name="especificacao" value={{especificacao}}>
 		</div>
-        <div class="forms-campo">
+		<div class="forms-campo">
 			<label class="form-label">Resultado *</label>
 			<select type="text" class="form-text" name="resultado" value={{resultado}}>
 				<option value="Aprovado">Aprovado</option>

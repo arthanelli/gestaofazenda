@@ -34,4 +34,10 @@ $(document).ready(function () {
     var pathEdit = $(this).attr('data-id');
 		location.href = pathEdit;
   });
+
+	$('#button-deletar').on('click', function(){
+		var pathEdit = $(this).attr('data-path');
+		var id = $('#id').val();
+		location.href = pathEdit+'/'+id;
+	});
 });

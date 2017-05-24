@@ -103,6 +103,15 @@ server.register([require('vision'), Inert], (err) => {
 	});
 
 	server.route({
+		method: 'GET',
+		path: '/deletarAnaliseLeite/{id}',
+		handler: function(request, reply){
+			crudAnaliseLeite.del(request.params.id);
+			reply.redirect('../consultarAnaliseLeite');
+		}
+	});
+
+	server.route({
 		method: 'POST',
 		path: '/insertAnaliseLeite',
 		config: {
@@ -214,7 +223,6 @@ server.register([require('vision'), Inert], (err) => {
 			},
 			handler: function(request, reply){
 				crudInsumo.insert(request.payload);
-
 				reply.redirect('cadastroInsumo');
 			}
 		}
@@ -224,11 +232,9 @@ server.register([require('vision'), Inert], (err) => {
 		method: 'GET',
 			path: '/cadastroInsumo',
 			handler: function(request, reply) {
-
 				var data = {
 						title: 'Insumo',
 				};
-
 				return reply.view('cadastrarInsumo', data);
 			}
 	});
@@ -307,57 +313,6 @@ server.register([require('vision'), Inert], (err) => {
 				return reply.view('cadastroGado', data);
 			}
 	});
-
-
-    server.route({
-    	method: 'GET',
-    	path: '/read',
-    	config: {
-    		handler: function(request, reply){
-    			var resultados = [];
-					
-    		}
-    	}
-    });
-
-	server.route({
-    	method: 'GET',
-    	path: '/returnChange',
-    	config: {
-    		handler: function(request, reply){
-    			var resultados = [];
-				
-    		}
-    	}
-    });
-
-	server.route({
-    	method: 'POST',
-    	path: '/change',
-    	config: {
-    		payload: {
-    			output: 'data',
-    			parse: true
-    		},
-    		handler: function(request, reply){
-				}
-    	}
-	});
-
-    server.route({
-    	method: 'POST',
-    	path: '/deletar',
-    	config: {
-    		payload: {
-    			output: 'data',
-    			parse: true
-    		},
-    		handler: function(request, reply){
-				
-    		}
-    	}
-	});
-
 });
 
 server.start((err) => {

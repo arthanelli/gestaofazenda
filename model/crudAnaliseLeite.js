@@ -139,7 +139,7 @@ module.exports = {
             });
         });
     },
-    del : function(arrayData) {
+    del : function(id) {
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool
@@ -151,7 +151,7 @@ module.exports = {
                // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM analiseLeite WHERE id=($1)', [arrayData.id]);
+            client.query('DELETE FROM analiseLeite WHERE id=($1)', [id]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM analiseLeite ORDER BY id ASC');
             // Stream results back one row at a time
