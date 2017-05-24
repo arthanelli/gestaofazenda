@@ -8,6 +8,7 @@ module.exports = [
 		handler: function (request, reply) {
 				crudAnaliseLeite.returnChange(request.params.id, function(array){
 					var data = {
+						pageName : 'alterarAnaliseLeite',
 						titlePage: 'Consultar Analise Leite',
 						title: 'Analise do Leite',
 						dados: array

@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "handlebars": "^4.0.8",
+    "handlebars-extend-block": "^1.0.0",
     "hapi": "^16.1.1",
     "inert": "^4.2.0",
     "pg": "^6.1.5",

@@ -2,11 +2,9 @@ var Hapi = require('hapi');
 var Path = require('path');
 var Inert = require('inert');
 const handlebars = require('handlebars');
+var extend = require('handlebars-extend-block');
 const helpers = require('./helpers')(handlebars);
 const routes = require('./routes');
-
-
-
 
 var server = new Hapi.Server({
 	connections: {
@@ -62,7 +60,7 @@ server.register([require('vision'), Inert], (err) => {
 
 	server.views({  
 		engines: {
-				html: handlebars
+        html: extend(handlebars)
 		},
 		path: 'views',
 		layoutPath: 'views/layout',

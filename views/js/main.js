@@ -1,5 +1,4 @@
-
-$(document).ready(function () {
+$( document ).ready(function() {
 	var width = $(document).height(); 
 	var height = $(document).height();
 
