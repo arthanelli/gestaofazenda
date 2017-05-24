@@ -6,33 +6,33 @@
 	<form action="/mudarDadosAnaliseLeite" method="POST" class="form-style">
 	{{#each dados}}
 	<div class="forms-campo">
-		<label class="form-label">Id *</label>
-			<input type="text" class="form-text" name="id" id="id" value="{{id}}">
+		<label for="id" class="form-label">Id *</label>
+			<input type="text" class="form-text" name="id" id="id" value="{{id}}" readonly>
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Titulo *</label>
-			<input type="text" class="form-text" name="nome" value="{{nome}}">
+			<label for="nome" class="form-label">Titulo *</label>
+			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Data do teste *</label> 
-			<input type="text" class="form-text" name="dataTeste" value="{{datateste}}">
+			<label for="dataTeste" class="form-label">Data do teste *</label> 
+			<input type="text" class="form-text" id="dataTeste" name="dataTeste" value="{{datateste}}">
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Responsavel *</label>
-			<input type="text" class="form-text" name="responsavel" value="{{responsavel}}">
+			<label for="responsavel" class="form-label">Responsavel *</label>
+			<input type="text" class="form-text" id="responsavel" name="responsavel" value="{{responsavel}}">
 		</div>
 		
 		<div class="forms-campo">
-			<label class="form-label">Lote da amostra *</label>
-			<input type="text" class="form-text" name="loteAmostra" value="{{loteamostra}}">
+			<label for="loteAmostra" class="form-label">Lote da amostra *</label>
+			<input type="text" class="form-text" id="loteAmostra" name="loteAmostra" value="{{loteamostra}}">
 		</div>
         <div class="forms-campo">
-			<label class="form-label">Especificacao *</label>
-			<input type="text" class="form-text" name="especificacao" value="{{especificacao}}">
+			<label for="especificacao" class="form-label">Especificacao *</label>
+			<input type="text" class="form-text" id="especificacao" name="especificacao" value="{{especificacao}}">
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Resultado *</label>
-			<select type="text" class="form-text" name="resultado" value="">
+			<label for="resultado" class="form-label">Resultado *</label>
+			<select type="text" class="form-text" id="resultado" name="resultado" value="">
 				<option value="Aprovado" {{#if_eq resultado 'Aprovado'}} selected="seleted" {{/if_eq}}>Aprovado</option>
 				<option value="Reprovado" {{#if_eq resultado 'Reprovado'}} selected="seleted" {{/if_eq}}>Reprovado</option>
 			</select>
@@ -45,6 +45,8 @@
 
 {{#extend "js"}}
 	<script>
-		
-	</script>  
+	$(document).ready(function () {
+			$("#dataTeste").mask("99/99/9999");
+	});
+</script>
 {{/extend}}
