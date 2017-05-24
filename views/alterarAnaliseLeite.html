@@ -32,9 +32,9 @@
 		</div>
 		<div class="forms-campo">
 			<label class="form-label">Resultado *</label>
-			<select type="text" class="form-text" name="resultado" value="{{resultado}}">
-				<option value="Aprovado">Aprovado</option>
-				<option value="Reprovado">Reprovado</option>
+			<select type="text" class="form-text" name="resultado" value="">
+				<option value="Aprovado" {{#if_eq resultado 'Aprovado'}} selected="seleted" {{/if_eq}}>Aprovado</option>
+				<option value="Reprovado" {{#if_eq resultado 'Reprovado'}} selected="seleted" {{/if_eq}}>Reprovado</option>
 			</select>
 		</div>
 		{{/each}}
