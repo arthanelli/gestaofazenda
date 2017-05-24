@@ -1,34 +1,41 @@
 {{!< layout/default}}
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
-	<form action="/insertAnaliseLeite" method="POST" class="form-style">
+	<form action="/mudarDadosAnaliseLeite" method="POST" class="form-style">
+	{{#each dados}}
+	<div class="forms-campo">
+			<label class="form-label">Id *</label>
+			<input type="text" class="form-text" name="id" value={{id}}>
+		</div>
 		<div class="forms-campo">
 			<label class="form-label">Titulo *</label>
-			<input type="text" class="form-text" name="nome" value={{dados.nome}}>
+			<input type="text" class="form-text" name="nome" value={{nome}}>
 		</div>
 		<div class="forms-campo">
 			<label class="form-label">Data do teste *</label> 
-			<input type="text" class="form-text" name="dataTeste" value={{dados.datateste}}>
+			<input type="text" class="form-text" name="dataTeste" value={{datateste}}>
 		</div>
 		<div class="forms-campo">
 			<label class="form-label">Responsavel *</label>
-			<input type="text" class="form-text" name="responsavel" value={{dados.responsavel}}>
+			<input type="text" class="form-text" name="responsavel" value={{responsavel}}>
 		</div>
+		
 		<div class="forms-campo">
 			<label class="form-label">Lote da amostra *</label>
-			<input type="text" class="form-text" name="loteAmostra" value={{dados.loteamostra}}>
+			<input type="text" class="form-text" name="loteAmostra" value={{loteamostra}}>
 		</div>
         <div class="forms-campo">
 			<label class="form-label">Especificacao *</label>
-			<input type="text" class="form-text" name="especificacao" value={{dados.especificacao}}>
+			<input type="text" class="form-text" name="especificacao" value={{especificacao}}>
 		</div>
         <div class="forms-campo">
 			<label class="form-label">Resultado *</label>
-			<select type="text" class="form-text" name="resultado" >
+			<select type="text" class="form-text" name="resultado" value={{resultado}}>
 				<option value="Aprovado">Aprovado</option>
 				<option value="Reprovado">Reprovado</option>
 			</select>
 		</div>
+		{{/each}}
 		<hr>
 		<input type="submit" value="Cadastrar" class="button sucess">
 	</form>

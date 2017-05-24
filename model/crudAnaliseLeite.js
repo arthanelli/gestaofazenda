@@ -72,6 +72,9 @@ module.exports = {
     },
     returnChange : function(id, callback) {
         var results = [];
+        data = {
+            id : id
+        }
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -80,17 +83,19 @@ module.exports = {
                 console.log(err);
                 //return res.status(500).json({success: false, data: err});
             }
+            
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM analiseLeite WHERE id = $1', [id]);
+            var query = client.query('SELECT * FROM analiseLeite WHERE id = $1', [data.id]);
             
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
             });
+            
             // After all data is returned, close connection and return results
             query.on('end', () => {
                 done();
-                console.log(results);
+                //console.log(results);
                 if(callback != null) {
                     callback(results);
                 }
@@ -100,6 +105,7 @@ module.exports = {
     change : function(arrayData) {
         var results = [];
         // Grab data from the URL parameters
+        
         var data = {
             id : arrayData.id,
             nome: arrayData.nome, 
@@ -109,6 +115,7 @@ module.exports = {
             especificacao: arrayData.especificacao, 
             resultado: arrayData.resultado
         };        // Get a Postgres client from the connection pool
+        //console.log(data)
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
             if(err) {
