@@ -3,28 +3,28 @@
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
 	<form action="/insertAnaliseLeite" method="POST" class="form-style">
 		<div class="forms-campo">
-			<label class="form-label">Titulo *</label>
-			<input type="text" class="form-text" name="nome" >
+			<label for="nome" class="form-label">Nome *</label>
+			<input type="text" class="form-text" id="nome" name="nome" >
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Data do teste *</label> 
-			<input type="text" class="form-text" name="dataTeste" >
+			<label for="dataTeste" class="form-label">Data do teste *</label> 
+			<input type="text" class="form-text" id="dataTeste" name="dataTeste" >
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Responsavel *</label>
-			<input type="text" class="form-text" name="responsavel" >
+			<label for="responsavel" class="form-label">Responsavel *</label>
+			<input type="text" class="form-text" id="responsavel" name="responsavel" >
 		</div>
 		<div class="forms-campo">
-			<label class="form-label">Lote da amostra *</label>
-			<input type="text" class="form-text" name="loteAmostra" >
+			<label for="loteAmostra" class="form-label">Lote da amostra *</label>
+			<input type="text" class="form-text" id="loteAmostra" name="loteAmostra" >
 		</div>
         <div class="forms-campo">
-			<label class="form-label">Especificacao *</label>
-			<input type="text" class="form-text" name="especificacao" >
+			<label for="especificacao" class="form-label">Especificacao *</label>
+			<input type="text" class="form-text" id="especificacao" name="especificacao" >
 		</div>
         <div class="forms-campo">
-			<label class="form-label">Resultado *</label>
-			<select type="text" class="form-text" name="resultado" >
+			<label for="resultado" class="form-label">Resultado *</label>
+			<select type="text" class="form-text" id="resultado" name="resultado" >
 				<option value="Aprovado">Aprovado</option>
 				<option value="Reprovado">Reprovado</option>
 			</select>
@@ -33,3 +33,9 @@
 		<input type="submit" value="Cadastrar" class="button sucess">
 	</form>
 </div>
+
+<script>
+	$(document).ready(function () {
+			$("#dataTeste").mask("99/99/9999");
+	});
+</script>
