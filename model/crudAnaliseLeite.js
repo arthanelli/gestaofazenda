@@ -102,8 +102,9 @@ module.exports = {
             });
         });
     },
-    change : function(arrayData) {
+    change : function(arrayData, callback) {
         var results = [];
+        var erro = false;
         // Grab data from the URL parameters
         
         var data = {
@@ -122,6 +123,9 @@ module.exports = {
                 done();
                 console.log(err);
                 //return res.status(500).json({success: false, data: err});
+                if(callback != null) {
+                    callback(erro);
+                }
             }
             // SQL Query > Update Data
             client.query('UPDATE analiseLeite SET nome=($1), dataTeste=($2), responsavel=($3), loteAmostra=($4), especificacao=($5), resultado=($6) WHERE id=($7)',
@@ -135,6 +139,10 @@ module.exports = {
             // After all data is returned, close connection and return results
             query.on('end', function() {
                 done();
+
+                if(callback != null) {
+                    callback(erro);
+                }
                 //return res.json(results);
             });
         });

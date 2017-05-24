@@ -230,6 +230,12 @@ body {
   border-color: #4cae4c;
 }
 
+.danger {
+	color: #fff;
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
 .table {
     width: 100%;
     max-width: 100%;

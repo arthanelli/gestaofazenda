@@ -72,8 +72,11 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
-				crudAnaliseLeite.change(request.payload);
-				reply.redirect('consultarAnalise/' + request.payload.id);
+				crudAnaliseLeite.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('consultarAnalise/' + request.payload.id);
+					}
+				});
 			}
 		}
 	}

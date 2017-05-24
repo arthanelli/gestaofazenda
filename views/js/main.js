@@ -35,9 +35,14 @@ $(document).ready(function () {
 		location.href = pathEdit;
   });
 
-	$('#button-deletar').on('click', function(){
-		var pathEdit = $(this).attr('data-path');
-		var id = $('#id').val();
-		location.href = pathEdit+'/'+id;
-	});
+	$("#button-deletar").click( function(event) {
+		var apagar = confirm('Deseja realmente excluir este registro?');
+		if (apagar){
+			var pathEdit = $(this).attr('data-path');
+			var id = $('#id').val();
+			location.href = pathEdit+'/'+id;
+		}else{
+			event.preventDefault();
+		}	
+   });
 });
