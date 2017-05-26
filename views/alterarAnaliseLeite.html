@@ -7,7 +7,7 @@
 	{{#each dados}}
 	<div class="forms-campo">
 		<label for="id" class="form-label">Id *</label>
-			<input type="text" class="form-text" name="id" id="id" value="{{id}}" readonly>
+			<input type="text" class="form-text campo-bloqueado" name="id" id="id" value="{{id}}" readonly>
 		</div>
 		<div class="forms-campo">
 			<label for="nome" class="form-label">Titulo *</label>
@@ -39,7 +39,7 @@
 		</div>
 		{{/each}}
 		<hr>
-		<input type="submit" value="Cadastrar" class="button sucess">
+		<input type="submit" value="Alterar" class="button sucess">
 	</form>
 </div>
 

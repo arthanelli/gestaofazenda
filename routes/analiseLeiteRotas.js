@@ -1,7 +1,8 @@
 var crudAnaliseLeite = require('../model/crudAnaliseLeite.js');
 
 module.exports = [
-	//ROTAS QUE CHAMAM TELAS
+
+  //ROTAS QUE CHAMAM AS TELAS
   {
 		method: 'GET',
 		path: '/alterarAnalise/{id}',
@@ -43,14 +44,6 @@ module.exports = [
 	},
 	//ROTAS QUE FAZEM AÇÕES
 	{
-		method: 'GET',
-		path: '/deletarAnaliseLeite/{id}',
-		handler: function(request, reply){
-			crudAnaliseLeite.del(request.params.id);
-			reply.redirect('../consultarAnaliseLeite');
-		}
-	},
-	{
 		method: 'POST',
 		path: '/insertAnaliseLeite',
 		config: {
@@ -80,5 +73,13 @@ module.exports = [
 				});
 			}
 		}
-	}
+	},
+	{
+		method: 'GET',
+		path: '/deletarAnaliseLeite/{id}',
+		handler: function(request, reply){
+			crudAnaliseLeite.del(request.params.id);
+			reply.redirect('../consultarAnaliseLeite');
+		}
+	},
 ];

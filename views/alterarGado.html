@@ -2,10 +2,13 @@
 <h1 class="title-section">Gado</h1>
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
-	<form action="/insertGado" method="POST" class="form-style">
+    <a data-path="../deletarGado" id="button-deletar" class="button danger">Deletar</a>
+
+	<form action="/alterarDadosGado" method="POST" class="form-style">
+    {{#each dados}}
 		<div class="forms-campo">
 			<label for="brinco" class="form-label">Brinco *</label>
-			<input type="text" class="form-text" id="brinco" name="brinco" required>
+			<input type="text" class="form-text" id="brinco" name="brinco" required readonly>
 		</div>
 		<div class="forms-campo">
 			<label for="nome" class="form-label">Nome *</label> 
@@ -67,8 +70,9 @@
 			<label for="observacoes" class="form-label">Observações </label>
 			<input type="text" class="form-text" id="observacoes" name="observacoes" >
 		</div>
+        {{/each}}
 		<hr>
-		<input type="submit" value="Cadastrar" class="button sucess">
+		<input type="submit" value="Alterar" class="button sucess">
 	</form>
 </div>
 
