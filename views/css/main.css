@@ -236,6 +236,24 @@ body {
   border-color: #d9534f;
 }
 
+.warning {
+	color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.basic {
+	color: #000;
+  background-color: #cccccc;
+  border-color: #cccccc;
+}
+
 .table {
     width: 100%;
     max-width: 100%;
@@ -272,4 +290,13 @@ th {
 
 .item-edit:hover{
 	background-color: #eceeef
+}
+
+.detail-top h1{
+	display: inline-block;
+}
+
+.detail-top a{
+	float: right;
+	margin: 3px 5px ;
 }

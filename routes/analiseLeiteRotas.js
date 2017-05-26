@@ -10,7 +10,7 @@ module.exports = [
 					var data = {
 						pageName : 'alterarAnaliseLeite',
 						titlePage: 'Consultar Analise Leite',
-						title: 'Analise do Leite',
+						titleAlterar: 'Analise do Leite',
 						dados: array
 					};
 					return reply.view('alterarAnaliseLeite', data);
