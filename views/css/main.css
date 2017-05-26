@@ -226,14 +226,18 @@ body {
 
 .sucess {
 	color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  	background-color: #5cb85c;
+  	border-color: #4cae4c;
 }
 
 .danger {
 	color: #fff;
-  background-color: #d9534f;
-  border-color: #d9534f;
+  	background-color: #d9534f;
+  	border-color: #d9534f;
+}
+
+.campo-bloqueado {
+	background-color: #e0e0e0;
 }
 
 .warning {
@@ -258,7 +262,7 @@ body {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
-		border-spacing: 0;
+	border-spacing: 0;
     border-collapse: collapse;
 }
 

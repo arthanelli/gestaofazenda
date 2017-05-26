@@ -1,0 +1,39 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Brinco</th>
+      <th>Nome</th>
+      <th>Raça</th>
+      <th>Idade</th>
+      <th>Sexo</th>
+      <th>Data de nascimento</th>
+      <th>Vacinas</th>
+      <th>Peso</th>
+      <th>Pai</th>
+      <th>Mãe</th>
+      <th>Lote</th>
+      <th>Status</th>
+      <th>Observações</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarGado/{{brinco}}" class="item-edit">
+      <td>{{brinco}}</td>
+      <td>{{nome}}</td>
+      <td>{{raca}}</td>
+      <td>{{idade}}</td>
+      <td>{{sexo}}</td>
+      <td>{{datanascimento}}</td>
+      <td>{{vacinas}}</td>
+      <td>{{peso}}</td>
+      <td>{{pai}}</td>
+      <td>{{mae}}</td>
+      <td>{{loteanimal}}</td>
+      <td>{{status}}</td>
+      <td>{{observacoes}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

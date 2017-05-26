@@ -9,7 +9,7 @@ const createTables = 'CREATE TABLE terreno(id SERIAL PRIMARY KEY, latidude decim
                      'CREATE TABLE analiseLeite(id SERIAL PRIMARY KEY, nome VARCHAR(100), dataTeste VARCHAR(10), responsavel VARCHAR(50), loteAmostra VARCHAR(200), especificacao VARCHAR(200), resultado VARCHAR(200));' +  
                      'CREATE TABLE insumos(id SERIAL PRIMARY KEY, nome VARCHAR(100), preco decimal, fornecedor VARCHAR(100), descricao VARCHAR(200), quantidade integer, dataDeValidade VARCHAR(10));' +
                      'CREATE TABLE vacinacao(id SERIAL PRIMARY KEY, codGado VARCHAR(100), nomeVacina VARCHAR(100),  descricaoVacina VARCHAR(200), prescricaoVacinacao VARCHAR(200), periodicidade VARCHAR(100), gadosVacinados VARCHAR(200), gadosNaoVacinados VARCHAR(120));' +
-                     'CREATE TABLE gado(id SERIAL PRIMARY KEY, brinco int, nome VARCHAR(200), raca VARCHAR(100), idade int, status VARCHAR(200), cicloProdutivo VARCHAR(100), lactacao VARCHAR(200), vacinas VARCHAR(120), alimentacao VARCHAR(120));';
+                     'CREATE TABLE gado(brinco SERIAL PRIMARY KEY, nome VARCHAR(200), raca VARCHAR(100), idade int, sexo VARCHAR(100), dataNascimento date, vacinas VARCHAR(200), peso real,  pai VARCHAR(200), mae VARCHAR(200), loteanimal VARCHAR(120), status VARCHAR(100), observacoes VARCHAR(500));';
                    
 const client = new pg.Client(acessos.config);
 
@@ -18,3 +18,6 @@ client.connect();
 const query = client.query(createTables );
 
 query.on('end', () => { client.end(); });
+
+//  Comando para colocar as datas no formato Dia, Mês e Ano no PostGreSQL.
+//  ALTER DATABASE gestaofazenda set dateStyle TO ISO, DMY;
