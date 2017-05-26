@@ -154,7 +154,8 @@ body {
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid #E6E9ED;
-	padding: 20px 20px 9px 20px;
+	padding: 20px 20px 9px 20p
+	flox;
 }
 
 .title-section {
@@ -182,13 +183,15 @@ body {
 .container-form  .form-style .form-label {
 	font-size: 13px;
 	font-family: 'robotoregular';
-	display: inline-block;
+	display: block;
 	vertical-align: middle;
 	font-weight: bold;
 }
 
 .container-form  .form-style  .forms-campo {
 	margin: 10px auto;
+	display: inline-block;
+	width: 100%;
 }
 
 .container-form  .form-style .form-text {
@@ -303,4 +306,35 @@ th {
 .detail-top a{
 	float: right;
 	margin: 3px 5px ;
+}
+
+.col-10 {
+	width: 10% !important;
+}
+.col-20 {
+	width: 19% !important;
+}
+.col-30 {
+	width: 29% !important;
+}
+.col-40 {
+	width: 39% !important;
+}
+.col-50 {
+	width: 49% !important;
+}
+.col-60 {
+	width: 59% !important;
+}
+.col-70 {
+	width: 70% !important;
+}
+.col-80 {
+	width: 79% !important;
+}
+.col-90 {
+	width: 89% !important;
+}
+.col-100 {
+	width: 100% !important;
 }
