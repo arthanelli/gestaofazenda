@@ -8,12 +8,10 @@ module.exports = {
         var results = [];
         // Grab data from http request
         var data = {
-        	nomeVacina: arrayData.nomeVacina, 
-            descricaoVacina: arrayData.descricaoVacina,
-        	prescricaoVacinacao: arrayData.prescricaoVacinacao, 
-        	periodicidade: arrayData.periodicidade, 
-        	gadosVacinados: '', 
-        	gadosNaoVacinados: ''
+        	descricao: arrayData.descricao, 
+            diaCarencia: arrayData.diaCarencia,
+        	unidMedida: arrayData.unidMedida, 
+        	modoDeUso: arrayData.modoDeUso, 
         };
 
         console.log(data)
@@ -26,8 +24,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO vacinacao(nomeVacina,  descricaovacina, prescricaovacinacao, periodicidade, gadosVacinados, gadosNaoVacinados) values($1, $2, $3, $4, $5, $6)',
-            [data.nomeVacina, data.descricaoVacina, data.prescricaoVacinacao, data.periodicidade, data.gadosVacinados, data.gadosNaoVacinados]);
+            client.query('INSERT INTO vacinacao(descricao,  diaCarencia, unidMedida, modoDeUso) values($1, $2, $3, $4)',
+            [data.descricao, data.diaCarencia, data.unidMedida, data.modoDeUso]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM vacinacao ORDER BY id ASC');
             // Stream results back one row at a time

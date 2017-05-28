@@ -37,6 +37,7 @@ module.exports = [
 						title: 'Vacina',
 						dados: array
 					};
+					console.log(data.dados);
 					return reply.view('consultarVacina', data);
 				});
 			}
