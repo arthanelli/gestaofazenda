@@ -12,15 +12,15 @@
   </thead>
   <tbody>
     {{#each dados}}
-    <tr>
-      <td>{{id}}</td>
-      <td>{{nome}}</td>
-      <td>{{preco}}</td>
-      <td>{{fornecedor}}</td>
-      <td>{{descricao}}</td>
-      <td>{{quantidade}}</td>
-      <td>{{datadevalidade}}</td>
-    </tr>
+      <tr data-id="/detalheInsumos/{{id}}" class="item-edit">
+        <td>{{id}}</td>
+        <td>{{nome}}</td>
+        <td>{{preco}}</td>
+        <td>{{fornecedor}}</td>
+        <td>{{descricao}}</td>
+        <td>{{quantidade}}</td>
+        <td>{{datadevalidade}}</td>
+      </tr>
     {{/each}}
   </tbody>
 </table>

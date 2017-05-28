@@ -1,6 +1,22 @@
 var crudInsumo = require('../model/crudInsumo.js')  
 
 module.exports = [
+	//ROTAS QUE CHAMAM AS TELAS
+  {
+		method: 'GET',
+		path: '/detalheInsumos/{id}',
+		handler: function (request, reply) {
+				crudInsumo.returnChange(request.params.id, function(array){
+					var data = {
+						pageName : 'detalheInsumos',
+						titlePage: 'Consultar Insumos',
+						titleAlterar: 'Insumos',
+						dados: array
+					};
+					return reply.view('detalheInsumo', data);
+				});			
+		}
+	},
 	{
 		method: 'POST',
 		path: '/insertInsumo',
@@ -26,6 +42,24 @@ module.exports = [
 			}
 	},
 	{
+		method: 'POST',
+		path: '/alterarInsumos',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				console.log(request.payload)
+				crudInsumo.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('detalheInsumos/' + request.payload.id);
+					}
+				});
+			}
+		}
+	},
+	{
 		method: 'GET',
 			path: '/consultarInsumo',
 			handler: function(request, reply) {
@@ -38,5 +72,14 @@ module.exports = [
 					return reply.view('consultarInsumo', data);
 				});
 			}
+	},
+	{
+		method: 'GET',
+		path: '/deletarInsumos/{id}',
+		handler: function(request, reply){
+			console.log(request.params.id)
+			crudInsumo.del(request.params.id);
+			reply.redirect('../consultarInsumo');
+		}
 	}
 ]

@@ -69,12 +69,11 @@ module.exports = {
             });
         });
     },
-    change : function(id_change) {
+    returnChange : function(id, callback) {
         var results = [];
-        // Grab data from the URL parameters
-        var id = id_change;
-        // Grab data from http request
-        var data = {produto: arrayData.produto, endereco: arrayData.endereco, valor: arrayData.valor, troco: arrayData.troco, obs: arrayData.obs, data: arrayData.data};
+        data = {
+            id : id
+        }
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -83,11 +82,54 @@ module.exports = {
                 console.log(err);
                 //return res.status(500).json({success: false, data: err});
             }
-            // SQL Query > Update Data
-            client.query('UPDATE items SET produto=($1), endereco=($2), valor=($3), troco=($4), obs=($5), data=($6) WHERE id=($7)',
-            [data.produto, data.endereco, data.valor, data.troco, data.obs, data.data, id]);
+            
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM items ORDER BY id ASC");
+            var query = client.query('SELECT * FROM insumos WHERE id = $1', [data.id]);
+            
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
+    change : function(arrayData, callback) {
+        var results = [];
+        var erro = false;
+        // Grab data from http request
+        var data = {
+            id: arrayData.id,
+        	nome: arrayData.nome, 
+        	preco: arrayData.preco, 
+        	fornecedor: arrayData.fornecedor, 
+        	descricao: arrayData.descricao, 
+        	quantidade: arrayData.quantidade, 
+        	dataDeValidade: arrayData.dataDeValidade
+        };        
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+
+                if(callback != null) {
+                    callback(erro);
+                }
+                //return res.status(500).json({success: false, data: err});
+            }
+            // SQL Query > Update Data
+            client.query('UPDATE insumos SET nome=($1), preco=($2), fornecedor=($3), descricao=($4), quantidade=($5), dataDeValidade=($6) WHERE id=($7)',
+            [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.id]);
+            // SQL Query > Select Data
+            var query = client.query("SELECT * FROM insumos ORDER BY id ASC");
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
@@ -95,11 +137,15 @@ module.exports = {
             // After all data is returned, close connection and return results
             query.on('end', function() {
                 done();
+
+                if(callback != null) {
+                    callback(erro);
+                }
                 //return res.json(results);
             });
         });
     },
-    del : function(arrayData) {
+    del : function(id) {
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool
@@ -111,7 +157,7 @@ module.exports = {
                // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM insumos WHERE id=($1)', [arrayData.id]);
+            client.query('DELETE FROM insumos WHERE id=($1)', [id]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM insumos ORDER BY id ASC');
             // Stream results back one row at a time
