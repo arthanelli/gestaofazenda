@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Valor</th>
+      <th>Tipo de Lançamento</th>
+      <th>Categoria</th>
+      <th>Data de Vencimento</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+      <tr data-id="/alterarLancamento/{{codlancamento}}" class="item-edit">
+        <td>{{codlancamento}}</td>
+        <td>R$ {{valor}}</td>
+        <td>{{tipo}}</td>
+        <td>{{categoria}}</td>
+        <td>{{datavencimento}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

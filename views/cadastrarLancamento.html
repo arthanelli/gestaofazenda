@@ -1,0 +1,54 @@
+{{!< layout/default}}
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertFinanceiro" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label class="form-label" for"valor">Valor *</label>
+			<input type="text" class="form-text" name="valor" id="valor" required>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="dataVencimento">Data de vencimento *</label> 
+			<input type="text" class="form-text" name="dataVencimento" id="dataVencimento" required>
+		</div>
+        <div class="forms-campo">
+			<label for="tipo" class="form-label">Tipo *</label>
+				<div class="radio">
+					<label><input type="radio" id="tipo" name="tipo" value="Receita" checked> Receita</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="tipo" name="tipo" value="Despesa"> Despesa</label>
+				</div>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="descricao">Descrição *</label>
+			<textarea type="text" class="campo-textarea" name="descricao" id="descricao"></textarea>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="categoria">Categoria *</label>
+			<input type="text" class="form-text" name="categoria" id="categoria" required>
+		</div>
+        <div class="forms-campo">
+			<label for="parcelamento" class="form-label">Parcelado? *</label>
+				<div class="radio">
+					<label><input type="radio" id="parcelamento" name="parcelamento" value="Sim" checked> Sim</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="parcelamento" name="parcelamento" value="Não"> Não</label>
+				</div>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="quantParcelas">Quantidade de parcelas *</label>
+			<input type="number" class="form-text" name="quantParcelas" id="quantParcelas">
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataVencimento").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}

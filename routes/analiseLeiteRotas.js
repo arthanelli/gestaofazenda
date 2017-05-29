@@ -10,7 +10,7 @@ module.exports = [
 				crudAnaliseLeite.returnChange(request.params.id, function(array){
 					var data = {
 						pageName : 'alterarAnaliseLeite',
-						titlePage: 'Consultar Analise Leite',
+						titlePage: 'Alterar Analise Leite',
 						titleAlterar: 'Analise do Leite',
 						dados: array
 					};

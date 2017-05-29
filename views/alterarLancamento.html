@@ -1,0 +1,64 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{codlancamento}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+	<a data-path="../deletarLancamento" id="button-deletar" class="button danger">Deletar</a>
+	<a id="button-alterar" class="button info">Alterar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosLancamento" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label class="form-label" for"codLancamento">Código do lançamento *</label>
+			<input type="text" class="form-text campo-bloqueado" value="{{codLancamento}}" name="codLancamento" id="codLancamento" required>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for"valor">Valor *</label>
+			<input type="text" class="form-text" name="valor" id="valor" required>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="dataVencimento">Data de vencimento *</label> 
+			<input type="text" class="form-text" value="{{datavencimento}}" name="dataVencimento" id="dataVencimento" required>
+		</div>
+        <div class="forms-campo">
+			<label for="tipo" class="form-label">Tipo *</label>
+				<div class="radio">
+					<label><input type="radio" id="tipo" name="tipo" value="Receita" {{#if_eq tipo 'Receita'}} checked {{/if_eq}}> Receita</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="tipo" name="tipo" value="Despesa" {{#if_eq tipo 'Despesa'}} checked {{/if_eq}}> Despesa</label>
+				</div>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="descricao">Descrição *</label>
+			<textarea type="text" class="campo-textarea" value="{{descricao}}" name="descricao" id="descricao"></textarea>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="categoria">Categoria *</label>
+			<input type="text" class="form-text" value="{{categoria}}" name="categoria" id="categoria" required>
+		</div>
+        <div class="forms-campo">
+			<label for="parcelamento" class="form-label">Parcelado? *</label>
+				<div class="radio">
+					<label><input type="radio" id="parcelamento" name="parcelamento" value="Sim" {{#if_eq parcelamento 'Sim'}} checked {{/if_eq}}> Sim</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="parcelamento" name="parcelamento" value="Não" {{#if_eq parcelamento 'Não'}} checked {{/if_eq}}> Não</label>
+				</div>
+		</div>
+		<div class="forms-campo">
+			<label class="form-label" for="quantParcelas">Quantidade de parcelas *</label>
+			<input type="number" class="form-text" value="{{quantparcelas}}" name="quantParcelas" id="quantParcelas">
+		</div>
+		<hr>
+		<input type="submit" value="Alterar" class="button sucess">
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataVencimento").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}

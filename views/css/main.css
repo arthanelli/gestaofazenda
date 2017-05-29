@@ -243,6 +243,16 @@ body {
 	background-color: #e0e0e0;
 }
 
+.campo-textarea {
+    display: inline-block;
+    font-family: 'robotoregular';
+    font-size: 14px;
+	height: 120px;
+    padding: 6px 12px;
+    vertical-align: middle;
+	width: 100%;
+}
+
 .warning {
 	color: #fff;
   background-color: #f0ad4e;
