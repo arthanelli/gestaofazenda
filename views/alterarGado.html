@@ -1,26 +1,29 @@
-{{!< layout/default}}
-<h1 class="title-section">Gado</h1>
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{brinco}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+    <a data-path="../deletarGado" id="button-deletar-gado" class="button danger">Deletar</a>
+	<a id="button-alterar" class="button info">Alterar</a>
+</div>
+
+
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
-    <a data-path="../deletarGado" id="button-deletar" class="button danger">Deletar</a>
-
 	<form action="/alterarDadosGado" method="POST" class="form-style">
-    {{#each dados}}
 		<div class="forms-campo">
 			<label for="brinco" class="form-label">Brinco *</label>
-			<input type="text" class="form-text" id="brinco" name="brinco" required readonly>
+			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
 		</div>
 		<div class="forms-campo">
 			<label for="nome" class="form-label">Nome *</label> 
-			<input type="text" class="form-text" id="nome" name="nome" required>
+			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}" required>
 		</div>
 		<div class="forms-campo">
 			<label for="idade" class="form-label">Idade *</label>
-			<input type="number" class="form-text" id="idade" name="idade" required>
+			<input type="number" class="form-text" id="idade" name="idade" value="{{idade}}" required>
 		</div>
         <div class="forms-campo">
 			<label for="raca" class="form-label">Raça *</label>
-			<select type="text" class="form-text" id="raca" name="raca" required>
+			<select type="text" class="form-text" id="raca" name="raca" value="{{raca}}" required>
 				<option value="Raça 1">Raça 1</option>
 				<option value="Raça 2">Raça 2</option>
 				<option value="Raça 3">Raça 3</option>
@@ -28,51 +31,52 @@
 		</div>
         <div class="forms-campo">
 			<label for="sexo" class="form-label">Sexo *</label>
-			<select type="text" class="form-text" id="sexo" name="sexo" required>
+			<select type="text" class="form-text" id="sexo" name="sexo" value="{{sexo}}" required>
 				<option value="Macho">Macho</option>
 				<option value="Fêmea">Fêmea</option>
 			</select>
 		</div>
         <div class="forms-campo">
 			<label for="peso" class="form-label">Peso *</label>
-			<input type="text" class="form-text" id="peso" name="peso" required>
+			<input type="text" class="form-text" id="peso" name="peso" value="{{peso}}" required>
 		</div>
         <div class="forms-campo">
 			<label for="dataNascimento" class="form-label">Data de nascimento *</label>
-			<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" required>
+			<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" value="{{datanascimento}}" required>
 		</div>
         <div class="forms-campo">
 			<label for="vacinas" class="form-label">Vacinas *</label>
-			<input type="text" class="form-text" id="vacinas" name="vacinas" >
+			<input type="text" class="form-text" id="vacinas" name="vacinas" value="{{vacinas}}">
 		</div>
         <div class="forms-campo">
 			<label for="paiGado" class="form-label">Pai </label>
-			<input type="text" class="form-text" id="paiGado" name="paiGado" >
+			<input type="text" class="form-text" id="paiGado" name="paiGado" value="{{pai}}">
 		</div>
         <div class="forms-campo">
 			<label for="maeGado" class="form-label">Mãe </label>
-			<input type="text" class="form-text" id="maeGado" name="maeGado" >
+			<input type="text" class="form-text" id="maeGado" name="maeGado" value="{{mae}}">
 		</div>
         <div class="forms-campo">
 			<label for="loteAnimal" class="form-label">Lote do animal *</label>
-			<input type="text" class="form-text" id="loteAnimal" name="loteAnimal" required>
+			<input type="text" class="form-text" id="loteAnimal" name="loteAnimal" value="{{loteanimal}}" required>
 		</div>
         <div class="forms-campo">
 			<label for="status" class="form-label">Status *</label>
 				<div class="radio">
-					<label><input type="radio" id="status" name="status">Ativo</label>
+					<label><input type="radio" id="status" name="status" value="Ativo" {{#if_eq status 'Ativo'}} checked {{/if_eq}}> Ativo</label>
 				</div>
 				<div class="radio">
-					<label><input type="radio" id="status" name="status">Inativo</label>
+					<label><input type="radio" id="status" name="status" value="Inativo" {{#if_eq status 'Inativo'}} checked {{/if_eq}}> Inativo</label>
 				</div>
 		</div>
         <div class="forms-campo">
 			<label for="observacoes" class="form-label">Observações </label>
-			<input type="text" class="form-text" id="observacoes" name="observacoes" >
+			<input type="text" class="form-text" id="observacoes" name="observacoes" value="{{observacoes}}">
 		</div>
         {{/each}}
 		<hr>
-		<input type="submit" value="Alterar" class="button sucess">
+		<input type="submit" value="Salvar" class="button sucess">
+		<a class="button danger">Cancelar</a>
 	</form>
 </div>
 
@@ -81,5 +85,16 @@
 		$(document).ready(function () {
 				$("#dataNascimento").mask("99/99/9999");
 		});
+
+		$("#button-deletar-gado").click( function(event) {
+			var apagar = confirm('Deseja realmente excluir este registro?');
+			if (apagar){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#brinco').val();
+				location.href = pathEdit+'/'+id;
+			}else{
+				event.preventDefault();
+			}	
+	   });
 	</script>
 {{/extend}}

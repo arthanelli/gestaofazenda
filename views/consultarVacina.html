@@ -2,24 +2,20 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Cod Gado</th>
-      <th>Nome</th>
       <th>Descrição</th>
-      <th>Prescrição</th>
-      <th>Gados vacinados</th>
-      <th>Gados não vacinados</th>
+      <th>Dias de Carencia</th>
+      <th>Unidade de medida</th>
+      <th>Modo de uso</th>
     </tr>
   </thead>
   <tbody>
     {{#each dados}}
     <tr>
       <td>{{id}}</td>
-      <td>{{codgado}}</td>
-      <td>{{nomevacina}}</td>
-      <td>{{descricaovacina}}</td>
-      <td>{{prescricaovacinacao}}</td>
-      <td>{{gadosvacinados}}</td>
-      <td>{{gadosnaovacinados}}</td>
+      <td>{{descricao}}</td>
+      <td>{{diacarencia}}</td>
+      <td>{{unidmedida}}</td>
+      <td>{{mododeuso}}</td>
     </tr>
     {{/each}}
   </tbody>

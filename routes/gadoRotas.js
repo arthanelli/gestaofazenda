@@ -66,6 +66,7 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
+				console.log(request.payload);
 				crudGado.change(request.payload, function(erro){
 					if(!erro){
 						reply.redirect('alterarGado/' + request.payload.brinco);
@@ -76,9 +77,10 @@ module.exports = [
 	},
 	{
 		method: 'GET',
-		path: '/deletarGado/{brinco}',
+		path: '/deletarGado/{id}',
 		handler: function(request, reply){
-			crudGado.del(request.params.brinco);
+			console.log(request.params.id);
+			crudGado.del(request.params.id);
 			reply.redirect('../consultarGado');
 		}
 	},

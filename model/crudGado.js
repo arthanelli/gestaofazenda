@@ -108,11 +108,12 @@ module.exports = {
             });
         });
     },
-    change : function(brinco_change) {
+    change : function(arrayData, callback) {
         var results = [];
 
         // Grab data from the URL parameters
-        var brinco = brinco_change;
+        var brinco = arrayData.brinco;
+        console.log(brinco);
         var erro = false;
 
         // Grab data from the URL parameters
@@ -143,7 +144,7 @@ module.exports = {
             }
             // SQL Query > Update Data
             client.query('UPDATE gado SET nome=($1), raca=($2), idade=($3), sexo=($4), datanascimento=($5), vacinas=($6), peso=($7), pai=($8), mae=($9), loteanimal=($10), status=($11), observacoes=($12) WHERE brinco=($13)',
-            [data.nome, data.idade, data.raca, data.sexo, data.peso, data.dataNascimento, data.vacinas, data.paiGado, data.maeGado, data.loteAnimal, data.status, data.observacoes, data.brinco]);
+            [data.nome, data.raca, data.idade, data.sexo, data.dataNascimento, data.vacinas, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes, brinco]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM gado ORDER BY brinco ASC");
             // Stream results back one row at a time
@@ -161,7 +162,7 @@ module.exports = {
             });
         });
     },
-    del : function(arrayData) {
+    del : function(brinco) {
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool
@@ -173,7 +174,7 @@ module.exports = {
                // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM gado WHERE brinco=($1)', [arrayData.id]);
+            client.query('DELETE FROM gado WHERE brinco=($1)', [brinco]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM gado ORDER BY brinco ASC');
             // Stream results back one row at a time
