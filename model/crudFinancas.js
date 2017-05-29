@@ -8,10 +8,13 @@ module.exports = {
         var results = [];
         // Grab data from http request
         var data = {
-        	valor: arrayData.valor, 
+        	valor: arrayData.valor,
+        	dataVencimento: arrayData.dataVencimento, 
         	tipo: arrayData.tipo, 
-        	descricao: arrayData.descricao, 
-        	dataConta: arrayData.dataConta 
+        	descricao: arrayData.descricao,
+            categoria: arrayData.categoria,
+            parcelamento: arrayData.parcelamento,
+            quantParcelas: arrayData.quantParcelas 
         };
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
@@ -22,8 +25,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO financas(valor, tipo, descricao, dataConta) values($1, $2, $3, $4)',
-            [data.valor, data.tipo, data.descricao, data.dataConta]);
+            client.query('INSERT INTO financas(valor, dataVencimento, tipo, descricao, categoria, parcelamento, quantParcelas) values($1, $2, $3, $4, $5, $6, $7)',
+            [data.valor, data.dataVencimento, data.tipo, data.descricao, data.categoria, data.parcelamento, data.quantParcelas]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM financas ORDER BY id ASC');
             // Stream results back one row at a time
@@ -67,12 +70,53 @@ module.exports = {
             });
         });
     },
-    change : function(id_change) {
+    returnChange : function(id, callback) {
         var results = [];
+        data = {
+            id : id
+        }
+        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            
+            // SQL Query > Select Data
+            var query = client.query('SELECT * FROM financas WHERE codLancamento = $1', [data.id]);
+            
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
+    change : function(arrayData, callback) {
+        var results = [];
+        var erro = false;
         // Grab data from the URL parameters
-        var id = id_change;
-        // Grab data from http request
-        var data = {produto: arrayData.produto, endereco: arrayData.endereco, valor: arrayData.valor, troco: arrayData.troco, obs: arrayData.obs, data: arrayData.data};
+
+        var data = {
+            codLancamento: arrayData.codLancamento,
+            valor: arrayData.valor,
+        	dataVencimento: arrayData.dataVencimento, 
+        	tipo: arrayData.tipo, 
+        	descricao: arrayData.descricao,
+            categoria: arrayData.categoria,
+            parcelamento: arrayData.parcelamento,
+            quantParcelas: arrayData.quantParcelas
+        };
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -82,10 +126,10 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE items SET produto=($1), endereco=($2), valor=($3), troco=($4), obs=($5), data=($6) WHERE id=($7)',
-            [data.produto, data.endereco, data.valor, data.troco, data.obs, data.data, id]);
+            client.query('UPDATE financas SET valor=($1), dataVencimento=($2), tipo=($3), descricao=($4), categoria=($5), parcelamento=($6), quantParcelamento=($7) WHERE codLancamento=($8)',
+            [data.valor, data.dataVencimento, data.tipo, data.descricao, data.categoria, data.parcelamento, data.quantParcelas, data.codLancamento]);
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM items ORDER BY id ASC");
+            var query = client.query("SELECT * FROM financas ORDER BY codLancamento ASC");
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
@@ -97,7 +141,7 @@ module.exports = {
             });
         });
     },
-    del : function(arrayData) {
+    del : function(codLancamento) {
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool
@@ -109,9 +153,9 @@ module.exports = {
                // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM financas WHERE id=($1)', [arrayData.id]);
+            client.query('DELETE FROM financas WHERE codLancamento=($1)', [arrayData.codLancamento]);
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM financas ORDER BY id ASC');
+            var query = client.query('SELECT * FROM financas ORDER BY codLancamente ASC');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
