@@ -40,6 +40,7 @@ module.exports = [
 							titleAlterar: 'Finanças',
 							dados: array
 						};
+
 						return reply.view('alterarLancamento', data);
 					});			
 			}
