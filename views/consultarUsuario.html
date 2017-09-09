@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Sexo</th>
+      <th>Data de nascimento</th>
+      <th>Endereço</th>
+      <th>Nível de permissão</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarUsuario/{{codusuario}}" class="item-edit">
+      <td>{{codusuario}}</td>
+      <td>{{nome}}</td>
+      <td>{{idade}}</td>
+      <td>{{sexo}}</td>
+      <td>{{datanascimento}}</td>
+      <td>{{endereco}}</td>
+      <td>{{nivelpermissao}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
