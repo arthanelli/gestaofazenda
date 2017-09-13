@@ -19,6 +19,6 @@ services:
     volumes:
       - ./storage/db:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: araujo123
+      POSTGRES_PASSWORD: 1mudar123
     ports:
       - "5432:5432"
