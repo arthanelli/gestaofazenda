@@ -1,0 +1,72 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{codusuario}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+    <a data-path="../deletarUsuario" id="button-deletar-usuario" class="button danger">Deletar</a>
+	<a id="button-alterar" class="button info">Alterar</a>
+</div>
+
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosUsuario" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="codUsuario" class="form-label">ID *</label>
+			<input type="text" class="form-text campo-bloqueado" id="codUsuario" name="codUsuario" value="{{codusuario}}" required readonly>
+		</div>
+		<div class="forms-campo">
+			<label for="nome" class="form-label">Nome *</label> 
+			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="idade" class="form-label">Idade *</label>
+			<input type="number" class="form-text" id="idade" name="idade" value="{{idade}}" required>
+		</div>
+        <div class="forms-campo">
+			<label for="sexo" class="form-label">Sexo *</label>
+			<select type="text" class="form-text" id="sexo" name="sexo" value="{{sexo}}" required>
+				<option value="Masculino">Masculino</option>
+				<option value="Feminino">Feminino</option>
+			</select>
+		</div>
+        <div class="forms-campo">
+			<label for="dataNascimento" class="form-label">Data de nascimento *</label>
+			<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" value="{{datanascimento}}" required>
+		</div>
+        <div class="forms-campo">
+			<label for="endereco" class="form-label">Endereço *</label>
+			<input type="text" class="form-text" id="endereco" name="endereco" value="{{endereco}}" required>
+		</div>
+        <div class="forms-campo">
+			<label for="nivelPermissao" class="form-label">Nível de permissão *</label>
+				<div class="radio">
+					<label><input type="radio" id="nivelPermissao" name="nivelPermissao" value="Administrador" {{#if_eq nivelpermissao 'Administrador'}} checked {{/if_eq}}> Administrador</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="nivelPermissao" name="nivelPermissao" value="Colaborador" {{#if_eq nivelpermissao 'Colaborador'}} checked {{/if_eq}}> Colaborador</label>
+				</div>
+		</div>
+        {{/each}}
+		<hr>
+		<input type="submit" value="Salvar" class="button sucess">
+		<a class="button danger">Cancelar</a>
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataNascimento").mask("99/99/9999");
+		});
+
+		$("#button-deletar-usuario").click( function(event) {
+			var apagar = confirm('Deseja realmente excluir este usuário?');
+			if (apagar){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#codUsuario').val();
+				location.href = pathEdit+'/'+id;
+			}else{
+				event.preventDefault();
+			}	
+	   });
+	</script>
+{{/extend}}

@@ -1,0 +1,53 @@
+{{!< layout/default}}
+<h1 class="title-section">Usuários</h1>
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+    <form action="/cadastrarUsuario" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="codUsuario" class="form-label">ID *</label> 
+			<input type="text" class="form-text" id="codUsuario" name="codUsuario" required>
+		</div>
+		<div class="forms-campo">
+			<label for="nome" class="form-label">Nome *</label> 
+			<input type="text" class="form-text" id="nome" name="nome" required>
+		</div>
+		<div class="forms-campo">
+			<label for="idade" class="form-label">Idade *</label>
+			<input type="number" class="form-text" id="idade" name="idade" required>
+		</div>
+        <div class="forms-campo">
+			<label for="sexo" class="form-label">Sexo *</label>
+			<select type="text" class="form-text" id="sexo" name="sexo" required>
+				<option value="Masculino">Masculino</option>
+				<option value="Feminino">Feminino</option>
+			</select>
+		</div>
+        <div class="forms-campo">
+			<label for="dataNascimento" class="form-label">Data de nascimento *</label>
+			<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" required>
+		</div>
+        <div class="forms-campo">
+			<label for="endereco" class="form-label">Endereço *</label>
+			<input type="text" class="form-text" id="endereco" name="endereco" required>
+		</div>
+        <div class="forms-campo">
+			<label for="nivelPermissao" class="form-label">Nível de permissão *</label>
+				<div class="radio">
+					<label><input type="radio" id="nivelPermissao" name="nivelPermissao" value="Administrador" checked>Administrador</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" id="nivelPermissao" name="nivelPermissao" value="Colaborador">Colaborador</label>
+				</div>
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataNascimento").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}
