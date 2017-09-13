@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="img/png" href="/favicon.png"/>
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/ionicons.min.css">
 		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../css/blue.css">
     <link rel="stylesheet" href="../css/main.css">
 		<link rel="stylesheet" href="../css/fonts/fonts.css">
+		<!-- Google Font -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">		
 
     <title>{{title}}</title>
 </head>
@@ -20,8 +26,19 @@
 	</div>
 
 	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/icheck.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-maskedinput.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
+	<script>
+		$(function () {
+			$('input').iCheck({
+				checkboxClass: 'icheckbox_square-blue',
+				radioClass: 'iradio_square-blue',
+				increaseArea: '20%' // optional
+			});
+		});
+	</script>
 	{{{block "js"}}}
 </body>
 </html>
