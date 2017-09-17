@@ -1,7 +1,7 @@
-var crudGado = require('../model/crudGado.js')
+const crudGado = require('../model/crudGado.js');	
+const ordenha = require('../model/ordenha.js');
 
 module.exports = [
-
 	//ROTAS QUE CHAMAM AS TELAS
 	{
 		method: 'GET',
@@ -40,6 +40,25 @@ module.exports = [
 					};
 					return reply.view('consultarGado', data);
 				});
+			}
+	},
+	{
+		method: 'GET',
+		path: '/readGado',		
+		handler: function(request, reply) {
+			crudGado.read(function(array){
+				return reply(array);
+			});
+		}
+	},
+	{
+		method: 'GET',
+			path: '/cadastrarOrdenha',
+			handler: function(request, reply) {
+				var data = {
+						title: 'Ordenha Gado',
+				};
+				return reply.view('cadastrarOrdenha', data);
 			}
 	},
 	//ROTAS QUE FAZEM AÇÕES
@@ -82,6 +101,21 @@ module.exports = [
 			console.log(request.params.id);
 			crudGado.del(request.params.id);
 			reply.redirect('../consultarGado');
+		}
+	},
+	//ROTAS DA ORDENHA
+	{
+		method: 'POST',
+		path: '/insertOrdenha',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				ordenha.insert(request.payload);
+				reply.redirect('home');
+			}
 		}
 	},
 ];
