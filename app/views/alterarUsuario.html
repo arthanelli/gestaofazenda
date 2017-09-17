@@ -37,6 +37,14 @@
 			<input type="text" class="form-text" id="endereco" name="endereco" value="{{endereco}}" required>
 		</div>
         <div class="forms-campo">
+			<label for="usuario" class="form-label">Usuário *</label>
+			<input type="text" class="form-text" id="usuario" name="usuario" value="{{usuario}}" required>
+		</div>
+        <div class="forms-campo">
+			<label for="senha" class="form-label">Senha *</label>
+			<input type="text" class="form-text" id="senha" name="senha" value="{{senha}}" required>
+		</div>
+        <div class="forms-campo">
 			<label for="nivelPermissao" class="form-label">Nível de permissão *</label>
 				<div class="radio">
 					<label><input type="radio" id="nivelPermissao" name="nivelPermissao" value="Administrador" {{#if_eq nivelpermissao 'Administrador'}} checked {{/if_eq}}> Administrador</label>
