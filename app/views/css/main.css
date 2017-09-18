@@ -16,6 +16,16 @@ body {
 	font-family: 'robotoregular'
 }
 
+.conteudo-principal {
+	min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
 .menu-itens {
 	position: absolute;
 	height: 100%;
@@ -154,8 +164,7 @@ body {
 	width: 100%;
 	background-color: #fff;
 	border: 1px solid #E6E9ED;
-	padding: 20px 20px 9px 20p
-	flox;
+	padding: 5px 20px 20px 20px;
 }
 
 .title-section {
@@ -166,11 +175,12 @@ body {
 }
 
 .container-form .title-form {
-	font-family: 'robotoregular';
-  display: block;
-	font-size: 17px;
 	border-bottom: 2px solid #E6E9ED;
-  padding: 0px 0px 9px 0px;
+	display: block;
+	font-family: 'robotoregular';
+	font-size: 17px;
+	margin-top: 6px;
+  	padding: 0px 0px 9px 0px;
 }
 
 .container-form  .form-style {
