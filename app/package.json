@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gulp",
-    "database": "node ./node_modules/gulp/bin/gulp.js"
+    "start": "node ./node_modules/gulp/bin/gulp.js",
+    "create": "node ./database/createTables.js",
+    "drop": "node ./database/dropTables.js"
   },
   "author": "",
   "license": "ISC",
