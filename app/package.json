@@ -5,19 +5,21 @@
   "main": "index.js",
   "scripts": {
     "start": "gulp",
-    "database": "node ./database/database.js"
+    "database": "node ./node_modules/gulp/bin/gulp.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "browser-sync": "^2.18.13",
-    "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1",
     "handlebars": "^4.0.8",
     "handlebars-extend-block": "^1.0.0",
     "hapi": "^16.1.1",
     "inert": "^4.2.0",
     "pg": "^6.1.5",
     "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1"
   }
 }
