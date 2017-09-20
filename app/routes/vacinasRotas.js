@@ -17,7 +17,7 @@ module.exports = [
 	},
 	{
 		method: 'GET',
-			path: '/cadastrovacina',
+			path: '/cadastroVacina',
 			handler: function(request, reply) {
 
 				var data = {
@@ -29,7 +29,7 @@ module.exports = [
 	},
 	{
 		method: 'GET',
-			path: '/consultarvacina',
+			path: '/consultarVacina',
 			handler: function(request, reply) {
 				crudVacinacao.read(function(array){
 					var data = {

@@ -1,59 +1,115 @@
-<div class="menu-itens">
-  <h1>MILMA</h1>
-  <div class="user">
-    <div class="image-user">
-      <img src="" class="userimage"/>
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar" style="height: auto;">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+
     </div>
-    <div class="info-user">
-      <h3 class="username">username</h3>
-      <h4 class="profile">admin</h4>
-    </div>
-  </div>
-  <nav class="navigation">
-    <ul class="mainmenu">
-      <li><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-      <li><a><i class="fa fa-user" aria-hidden="true"></i> Usuário <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastroUsuario">Cadastrar Usuário</a></li>
-          <li><a href="/consultarUsuario">Consultar Usuário</a></li>
+    <!-- search form -->
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Procurar...">
+        <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+      </div>
+    </form>
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">Menu de navegação</li>
+      <li class="active treeview menu-open">
+        <a href="/home">
+          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-user-o"></i>
+          <span>Usuário</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="/cadastroUsuario"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+          <li><a href="/consultarUsuario"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-github-alt" aria-hidden="true"></i> Gado <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastroGado">Cadastrar Gado</a></li>
-          <li><a href="/consultarGado">Consultar Gado</a></li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-github-alt"></i>
+          <span>Gado</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="/cadastroGado"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+          <li><a href="/consultarGado"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-cart-arrow-down" aria-hidden="true"></i> Estoque de Insumos <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastroInsumo">Cadastrar Insumos</a></li>
-          <li><a href="/consultarInsumo">Consultar Insumos</a></li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-list-alt"></i>
+          <span>Estoque de insumos</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="/cadastroInsumo"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+          <li><a href="/consultarInsumo"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
         </ul>
       </li>
-      <li><a><i class="fa fa-search" aria-hidden="true"></i> Analise de Leite <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastroAnaliseLeite">Cadastrar análise</a></li>
-          <li><a href="/consultarAnaliseLeite">Consultar análise</a></li>
-        </ul>
+      <li>
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-search"></i>
+                <span>Análise de leite</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/cadastroAnaliseLeite"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+                <li><a href="/consultarAnaliseLeite"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
+              </ul>
+            </li>
       </li>
-      <li><a><i class="fa fa-heartbeat" aria-hidden="true"></i> Vacinaçao <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastrovacina">Cadastrar Vacinaçao</a></li>
-          <li><a href="/consultarvacina">Consultar Vacinaçao</a></li>
-        </ul>
+      <li>
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-eyedropper"></i>
+                <span>Vacinação</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/cadastroVacina"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+                <li><a href="/consultarVacina"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
+              </ul>
+          </li>
       </li>
-      <li><a><i class="fa fa-area-chart" aria-hidden="true"></i> Terreno <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastrovacina">Cadastrar Terreno</a></li>
-          <li><a href="/consultarvacina">Consultar Terreno</a></li>
-        </ul>
-      </li>
-      <li><a><i class="fa fa-heartbeat" aria-hidden="true"></i> Financeiro <span class="fa fa-chevron-down"></span></a>
-        <ul class="submenu">
-          <li><a href="/cadastrarLancamento">Cadastrar Lançamento</a></li>
-          <li><a href="/consultarLancamento">Consultar Lançamento</a></li>
-        </ul>
+      <li>
+          <li class="treeview">
+              <a href="#">
+                <i class="fa fa-bar-chart"></i>
+                <span>Financeiro</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="/cadastrarLancamento"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
+                <li><a href="/consultarLancamento"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
+              </ul>
+          </li>
       </li>
     </ul>
-  </nav>
-</div>
+  </section>
+  <!-- /.sidebar -->
+</aside>
