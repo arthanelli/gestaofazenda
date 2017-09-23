@@ -1,2 +1,4 @@
 database/acessos.js
 node_modules
+dockerfile
+docker-compose.yml
