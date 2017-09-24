@@ -118,4 +118,19 @@ module.exports = [
 			}
 		}
 	},
+	{
+		method: 'GET',
+			path: '/consultarOrdenha',
+			handler: function(request, reply) {
+				ordenha.read(function(array){
+					var data = {
+						titlePage: 'Consultar Ordenha',
+						title: 'Consultar Ordenha',
+						dados: array
+					};
+					return reply.view('consultarOrdenha', data);
+				});
+			}
+	},
+
 ];
