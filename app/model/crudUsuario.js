@@ -13,7 +13,9 @@ module.exports = {
         	idade: arrayData.idade, 
             sexo: arrayData.sexo,
             dataNascimento: arrayData.dataNascimento,
-        	endereco: arrayData.endereco, 
+            endereco: arrayData.endereco,
+            usuario: arrayData.usuario,
+            senha: arrayData.senha, 
             nivelPermissao: arrayData.nivelPermissao
         };
         // Get a Postgres client from the connection pool

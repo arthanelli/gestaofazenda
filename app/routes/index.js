@@ -4,6 +4,7 @@ var insumos = require('./insumosRotas');
 var financas = require('./financeiroRotas');
 var gado = require('./gadoRotas');
 var usuarios = require('./usuariosRotas');
+var login = require('./login');
 var index = require('./paginaInicialRotas');
 
-module.exports = [].concat(analisaLeite, vacinas, insumos, financas, gado, usuarios, index);
+module.exports = [].concat(analisaLeite, vacinas, insumos, financas, gado, usuarios, login, index);
