@@ -23,7 +23,7 @@ Se for a primeira vez que roda o projeto, crie o banco de dados no `postgres` ch
 
 Ajuste os acessos na pasta `app/database/acessos.js` e rode o comando dentro da pasta database para criar as tabelas
 ```
-$ node database
+$ node run create
 ```
 
 ### Docker

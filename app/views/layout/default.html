@@ -9,24 +9,32 @@
 		<link rel="stylesheet" href="../css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/AdminLTE.min.css">
 		<link rel="stylesheet" href="../css/blue.css">
-    <link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/main.css">
+		<link rel="stylesheet" href="../css/_all-skins.min.css">
 		<link rel="stylesheet" href="../css/fonts/fonts.css">
 		<!-- Google Font -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">		
 
     <title>{{title}}</title>
 </head>
-<body>
-	{{> menuLeft}}
-	{{> menuTop}}
+<body class="sidebar-mini skin-blue" style="height: auto; min-height: 100%;">
+	<div class="wrapper" style="height: auto; min-height: 100%;">
+		{{> menuTop}}			
+		{{> menuLeft}}
 
-	<div class="container">
-		<h1 class="title-section">{{title}}</h1>
-    {{{content}}}
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>{{title}}</h1>
+			</section>
+			<section class="conteudo-principal">
+				{{{content}}}
+			</section>		
+		</div>
 	</div>
 
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/adminlte.min.js"></script>	
 	<script type="text/javascript" src="../js/icheck.min.js"></script>
 	<script type="text/javascript" src="../js/jquery-maskedinput.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
