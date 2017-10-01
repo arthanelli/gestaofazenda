@@ -1,0 +1,52 @@
+{{!< layout/default}}
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertComprador" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="form-group">
+				<label>Razao social *</label>
+				<input type="text" class="form-control" name="razaoSocial">
+			</div>
+			<div class="form-group">
+				<label>Nome fantasia *</label>
+				<input type="text" class="form-control" name="nomeFantasia">
+			</div>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input type="radio" name="tipo" value="Pessoa Jurídica" checked>
+						Pessoa Jurídica
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="tipo" value="Pessoa Física">
+						Pessoa Física
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>CNPJ / CPF *</label>
+				<input type="text" class="form-control" name="cadastroNacional">
+			</div>
+			<div class="form-group">
+				<label>Endereço</label>
+				<input type="text" class="form-control" name="endereco">
+			</div>
+			<div class="form-group">
+				<label>Responsavel legal</label>
+				<input type="text" class="form-control" name="responsavelLegal">
+			</div>
+			<div class="form-group">
+				<label>Telefone</label>
+				<input type="text" class="form-control" name="telefone">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email">
+			</div>
+			<hr>
+			<input type="submit" name="Cadastrar" class="button sucess">
+		</div>
+	</form>
+</div>

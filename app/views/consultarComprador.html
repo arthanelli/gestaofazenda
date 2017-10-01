@@ -1,0 +1,30 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Razao Social</th>
+      <th>Nome Fantasia</th>
+      <th>Tipo</th>
+      <th>Cadastro Nacional</th>
+      <th>Endereço</th>
+      <th>Responsavel Legal</th>
+      <th>Telefone</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarComprador/{{Id}}" class="item-edit">
+      <td>{{id}}</td>
+      <td>{{razaosocial}}</td>
+      <td>{{nomefantasia}}</td>
+      <td>{{tipo}}</td>
+      <td>{{cadastronacional}}</td>
+      <td>{{endereco}}</td>
+      <td>{{responsavellegal}}</td>
+      <td>{{telefone}}</td>
+      <td>{{email}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

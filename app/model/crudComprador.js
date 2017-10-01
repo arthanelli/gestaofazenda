@@ -1,39 +1,35 @@
 const pg = require('pg');
 const path = require('path');
-const acessos = require('../database/acessos.js')
-
+const acessos = require('../database/acessos.js');
 const config = acessos.config;
 
 module.exports = {
-  insert: arrayData => {
+  insert: data => {
     pg.connect(config, (err, client, done) => {
       if(err) {
         done();
         console.log(err);
       }
-      client.query('INSERT INTO ordenha(brinco, litrosleite, data) values($1, $2, $3)',
-      [arrayData.brinco, arrayData.litrosleite, arrayData.data]);
-
+      const query = client.query('INSERT INTO comprador(razaoSocial, nomeFantasia, tipo, cadastroNacional, endereco, responsavelLegal, telefone, email) values($1, $2, $3, $4, $5, $6, $7, $8)',      
+      [data.razaoSocial, data.nomeFantasia, data.tipo, data.cadastroNacional, data.endereco, data.responsavelLegal, data.telefone, data.email]);
       query.on('end', () => {
           done();
       });
     });      
   },
-  read: (callback) =>  {
+  read: callback => {
     let results = [];
     pg.connect(config, (err, client, done) => {
         if(err) {
             done();
             console.log(err);
         }
-        var query = client.query('Select ord.id, ord.brinco, gad.nome, ord.litrosleite, ord.data from ordenha ord join gado gad on ord.brinco = gad.brinco;');
+        var query = client.query('SELECT * FROM comprador ORDER BY id ASC;');
         query.on('row', (row) => {
             results.push(row);
         });
-        // After all data is returned, close connection and return results
         query.on('end', () => {
             done();
-            //console.log(results);
             if(callback != null) {
                 callback(results);
             }

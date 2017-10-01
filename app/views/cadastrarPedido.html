@@ -1,0 +1,104 @@
+{{!< layout/default}}
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertPedido" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="form-group">	
+				<label>Data *</label>					
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datepicker" name="data">
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Comprador</label>
+				<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codigoComprador" id="select-comprador">
+				</select>
+			</div>
+			<div class="form-group">
+				<label>Quantidade de litros de leite *</label>
+				<input type="text" class="form-control" name="quantidadeLitros">
+			</div>
+			<div class="form-group">
+				<label>Valor *</label>
+				<input type="text" class="form-control" name="valor">
+			</div>
+			<div class="form-group">	
+				<label>Data Vencimento*</label>					
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datepicker" name="dataVencimento">
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Descrição</label>
+				<textarea class="form-control" rows="3" placeholder="Escreva ..." name="descricao"></textarea>
+			</div>
+			<div class="form-group">
+				<label>Parcelamento</label>
+				<div class="radio">
+					<label>
+						<input type="radio" name="parcelamento" id="parcelamentoOption" value="FALSE" checked="">
+						Não
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" class="parcelamentoOptionTrue" name="parcelamento" id="parcelamentoOption" value="TRUE">
+						Sim
+					</label>
+				</div>
+			</div>
+			<div class="form-group" id="quantparcelamento" style="display:none">
+				<label>Quantidade de parcelamento</label>
+				<select class="form-control" name="quantparcelamento">
+					<option name="quantparcelamento" value="1">1x</option>
+					<option name="quantparcelamento" value="2">2x</option>
+					<option name="quantparcelamento" value="3">3x</option>					
+				</select>
+			</div>
+			<hr>
+			<input type="submit" name="Cadastrar" class="button sucess">
+		</div>
+	</form>
+</div>
+{{#extend "js"}}
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
+<script>
+	$(document).ready(function () {
+		if ($("#quantparcelamento").is(':checked')){
+			$("#quantparcelamento").css('display', 'block')
+		}
+		else {
+			$("#quantparcelamento").css('display', 'none')
+		}
+
+		$('input[type="radio"]').click(function(){
+			if ($(this).val() === 'TRUE'){
+				$("#quantparcelamento").css('display', 'block')
+			}
+			else {
+				$("#quantparcelamento").css('display', 'none')
+			}
+		});
+
+		$.get("/readComprador", data => {
+			let option = []
+			data.forEach(comprador => {
+				option.push(`<option name="codigoComprador" value="${comprador.id}">${comprador.responsavellegal} - ${comprador.id}</option>"`)
+			});
+			$("#select-comprador").append(option)
+		});
+	})
+</script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
+{{/extend}}
