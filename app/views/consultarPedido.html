@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nome Comprador</th>
+      <th>Quantidade de litros de Leite</th>
+      <th>Data</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarPedido/{{Id}}" class="item-edit">
+      <td>{{id}}</td>
+      <td>{{responsavellegal}}</td>
+      <td>{{quantidadelitros}}</td>
+      <td>{{data}}</td>
+      <td>{{valor}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

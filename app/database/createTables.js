@@ -10,7 +10,11 @@ const createTables = 'CREATE TABLE terreno(id SERIAL PRIMARY KEY, latidude decim
                      'CREATE TABLE insumos(id SERIAL PRIMARY KEY, nome VARCHAR(100), preco decimal, fornecedor VARCHAR(100), descricao VARCHAR(200), quantidade integer, dataDeValidade VARCHAR(10));' +
                      'CREATE TABLE vacinacao(id SERIAL PRIMARY KEY, descricao VARCHAR(100), diaCarencia VARCHAR(100),  unidMedida VARCHAR(200), modoDeUso VARCHAR(200));' +
                      'CREATE TABLE usuarios(codUsuario SERIAL PRIMARY KEY, nome VARCHAR(200), idade int, sexo VARCHAR(100), dataNascimento VARCHAR(10), endereco  VARCHAR(200), usuario VARCHAR(200), senha VARCHAR(200), nivelPermissao VARCHAR(20));' +
-                     'CREATE TABLE gado(brinco SERIAL PRIMARY KEY, nome VARCHAR(200), raca VARCHAR(100), idade int, sexo VARCHAR(100), dataNascimento VARCHAR(10), vacinas VARCHAR(200), peso real,  pai VARCHAR(200), mae VARCHAR(200), loteanimal VARCHAR(120), status VARCHAR(100), observacoes VARCHAR(500));';                   
+                     'CREATE TABLE gado(brinco SERIAL PRIMARY KEY, nome VARCHAR(200), raca VARCHAR(100), idade int, sexo VARCHAR(100), dataNascimento VARCHAR(10), vacinas VARCHAR(200), peso real,  pai VARCHAR(200), mae VARCHAR(200), loteanimal VARCHAR(120), status VARCHAR(100), observacoes VARCHAR(500));' +
+                     'CREATE TABLE ordenha(id SERIAL PRIMARY KEY, brinco integer REFERENCES gado (brinco), litrosLeite decimal, data VARCHAR(10));' + 
+                     'CREATE TABLE pedido(id SERIAL PRIMARY KEY, codigoComprador integer REFERENCES comprador (id), quantidadeLitros decimal, data VARCHAR(10), valor decimal, dataVencimento VARCHAR(10), descricao VARCHAR(200), parcelamento boolean, quantParcelamento integer);'
+                     'CREATE TABLE transacoes(id SERIAL PRIMARY KEY, valor decimal, tipo VARCHAR(10), descricao VARCHAR(100), data VARCHAR(25));' + 
+                     'CREATE TABLE comprador(id SERIAL PRIMARY KEY, razaoSocial VARCHAR(100), nomeFantasia VARCHAR(100), tipo VARCHAR(25), cadastroNacional VARCHAR(25), endereco VARCHAR(100), responsavelLegal VARCHAR(100), telefone VARCHAR(20), email VARCHAR(100));';
 const client = new pg.Client(acessos.config);
 
 client.connect();

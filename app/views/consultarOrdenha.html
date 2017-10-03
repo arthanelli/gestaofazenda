@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Brinco</th>
+      <th>Nome</th>
+      <th>Litros de leite</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarOrdenha/{{Id}}" class="item-edit">
+      <td>{{id}}</td>
+      <td>{{brinco}}</td>
+      <td>{{nome}}</td>
+      <td>{{litrosleite}}</td>
+      <td>{{data}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
