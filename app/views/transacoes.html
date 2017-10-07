@@ -1,0 +1,129 @@
+<h1 style="margin-bottom: 20px; margin-top:0">Financeiro</h1>
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-profit">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">LUCRO</span>
+        <span class="info-box-number" id="profit"></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-inputMoney">
+      <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">RECEITAS</span>
+        <span class="info-box-number" id="inputMoney"></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-outputMoney">
+      <span class="info-box-icon bg-red"><i class="fa fa-shopping-cart"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">DESPESAS</span>
+        <span class="info-box-number" id="outputMoney"></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="form-group">	
+      <div class="input-group date">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <input type="text" class="form-control pull-right" id="datepicker" name="data">
+      </div>
+      <label></label>      
+      <div class="input-group date">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <input type="text" class="form-control pull-right" id="datepicker" name="data">
+      </div>
+    </div>
+  </div>
+</div>
+<h3 id="tipo">
+  Todos dados
+</h3>
+<div class="row">
+  <div class="col-sm-12">
+    <table class="table table-bordered table-hover dataTable">
+      <thead class="sorting">
+        <tr>
+          <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >#</th>
+          <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >Valor</th>
+          <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >Tipo</th>
+          <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >Descrição</th>
+          <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >Data</th>
+        </tr>
+      </thead>
+      <tbody id="tableTransacoes">
+      </tbody>
+    </table>
+  </div>
+</div>
+{{#extend "js"}}
+<script>
+  function htmlInsert(profit, input, output) {
+    $("#profit").html('R$ ' + profit);
+    $("#inputMoney").html('R$ ' + input);
+    $("#outputMoney").html('R$ ' + output);
+  };
+
+  function setTable(table) {
+    $("#tableTransacoes").html('');
+    $("#tableTransacoes").append(table);
+  };
+
+  $(document).ready(function () {
+    $.get("/transactions", data => {
+      let inputMoney = 0;
+      let outputMoney = 0;
+      let table = [];
+
+      data.forEach(elem => {
+        if (elem.tipo === 'RECEITA') inputMoney += parseFloat(elem.valor);
+        if (elem.tipo === 'DESPESAS') outputMoney += parseFloat(elem.valor);
+        table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+      }); 
+      const profit = inputMoney - outputMoney;
+      htmlInsert(profit, inputMoney, outputMoney);
+      setTable(table);
+    });
+    
+    $('#box-profit').on('click', () =>{
+      let table = [];
+      $.get("/transactions", data => {
+        data.forEach(elem => {
+          table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+        });
+        setTable(table);
+      });
+    });
+
+    $('#box-inputMoney').on('click', () =>{
+      let table = [];
+      $.get("/transactions", data => {
+        data.forEach(elem => {
+          console.log
+          if (elem.tipo === 'RECEITA') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+        });
+        setTable(table);
+      });
+    });
+
+    $('#box-outputMoney').on('click', () =>{
+      let table = [];
+      $.get("/transactions", data => {
+        data.forEach(elem => {
+          if (elem.tipo === 'DESPESA') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+        });
+        setTable(table);
+      });
+    });
+  });
+</script>
+{{/extend}}
