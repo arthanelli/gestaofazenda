@@ -1,0 +1,38 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+	<a data-path="../deletarVacina" id="button-deletar" class="button danger">Deletar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/vacinarGado" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="brinco" class="form-label">Brinco do gado *</label>
+			<input type="text" class="form-text" id="brinco" name="brinco" value="{{brinco}}">
+		</div>
+		<div class="forms-campo">
+			<label for="nome" class="form-label">Nome*</label> 
+			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
+        </div>
+		<div class="forms-campo">
+			<label for="vacina" class="form-label">Vacina*</label> 
+			<input type="text" class="form-text" id="vacina" name="vacina" value="{{vacina}}">
+        </div>
+        <div class="forms-campo">
+			<label for="dataDeVacina" class="form-label">Data de vacina *</label>
+			<input type="text" class="form-text" id="dataDeVacina" name="dataDeVacina" value="{{dataDeVacina}}">
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
+{{/each}}
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataDeVacina").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}

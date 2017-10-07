@@ -1,0 +1,49 @@
+{{!< layout/default}}
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertVacinaGado" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="form-group">
+                <div class="forms-campo">
+                   <label for="brinco" class="form-label">Brinco do gado*</label>                   
+                   <input type="text" class="form-text" id="brinco" name="brinco" value="{{brinco}}">
+                </div>
+                <div class="forms-campo">                        
+                    <label for="nome" class="form-label">Nome do Gado*</label> 
+                    <input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
+                </div>
+                <div class="forms-campo">                            
+                    <label for="nomevacina" class="form-label">Vacina*</label> 
+					<select class="form-control" name="nomevacina" id="select-vacina"></select>
+                </div>
+				<label>Data de vacinação*</label>					
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datepicker" name="data">
+				</div>
+			</div>
+			<hr>
+			<input type="submit" name="Cadastrar" class="button sucess">
+		</div>
+	</form>
+</div>
+{{#extend "js"}}
+<script>
+		$(document).ready(function () {
+			$.get("/readGado", data => {
+				let option = []
+				data.forEach(vacina => {
+					option.push(`<option name="nomevacina" value="${vacina.nome}">${vacina.nome}</option>"`)
+				});
+				$("#select-vacina").append(option)
+				console.log(option)
+			})
+			const select = document.querySelector("#select-vacina");
+			select.addEventListener('click', (e) => {
+				
+			})
+		})
+</script>
+{{/extend}}
