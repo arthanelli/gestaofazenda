@@ -7,4 +7,4 @@ ADD ./app  /app
 WORKDIR /app
 
 # CMD ["nodemon", "-L", "index.js"]
-# CMD ["npm", "start"]
+# CMD ["node", "index"]

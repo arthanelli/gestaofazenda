@@ -17,7 +17,7 @@ services:
   db:
     image: postgres
     volumes:
-      - ./storage/db:/var/lib/postgresql/data
+      - /Users/imarx/projetos/storage/db:/var/lib/postgresql/data:z
     environment:
       POSTGRES_PASSWORD: 1mudar123
     ports:
