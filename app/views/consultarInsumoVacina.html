@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nome</th>
+      <th>Fornecedor</th>
+      <th>Descrição</th>
+      <th>Quantidade</th>
+      <th>Data de Validade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+      <tr data-id="/detalheInsumoVacina/{{id}}" class="item-edit">
+        <td>{{id}}</td>
+        <td>{{nome}}</td>
+        <td>{{fornecedor}}</td>
+        <td>{{descricao}}</td>
+        <td>{{quantidade}}</td>
+        <td>{{datadevalidade}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

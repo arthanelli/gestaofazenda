@@ -2,7 +2,7 @@
 	<h1>{{titleAlterar}} {{#each dados}}#{{brinco}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
     <a data-path="../deletarGado" id="button-deletar-gado" class="button danger">Deletar</a>
-	<a id="button-alterar" class="button info">Alterar</a>
+	<a data-path="../vacinarGado" id="button-vacinar" class="button info">Vacinar</a>
 </div>
 
 
@@ -95,6 +95,11 @@
 			}else{
 				event.preventDefault();
 			}	
+	   });
+
+	   $("#button-vacinar").click( function(event) {
+			var pathEdit = $(this).attr('data-path');
+			location.href = pathEdit;
 	   });
 	</script>
 {{/extend}}

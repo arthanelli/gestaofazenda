@@ -1,0 +1,60 @@
+{{!< layout/default}}
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertInsumoVacina" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="nome" class="form-label">Nome *</label>
+			<input type="text" class="form-text" id="nome" name="nome" >
+		</div>
+		<div class="forms-campo">
+			<label for="preco" class="form-label">Valor da unidade *</label> 
+			<input type="text" class="form-text" id="preco" name="preco" >
+		</div>
+		<div class="forms-campo">
+			<label for="fornecedor" class="form-label">Fornecedor *</label>
+			<input type="text" class="form-text" id="fornecedor" name="fornecedor" >
+		</div>
+		<div class="forms-campo">
+			<label for="descricao" class="form-label">Descricao *</label>
+			<input type="text" class="form-text" id="descricao" name="descricao" >
+		</div>
+        <div class="forms-campo">
+			<label for="quantidade" class="form-label">Quantidade *</label>
+			<input type="number" class="form-text" id="quantidade" name="quantidade" >
+		</div>
+        <div class="forms-campo">
+			<label for="dataDeValidade" class="form-label">Data de validade *</label>
+			<input type="text" class="form-text" id="dataDeValidade" name="dataDeValidade" >
+		</div>
+		<div class="forms-campo">
+			<label for="indicacao" class="form-label">Indicação *</label>
+			<input type="text" class="form-text" id="indicacao" name="indicacao" >
+		</div>
+		<div class="forms-campo">
+			<label for="prescricao" class="form-label">Prescrição *</label>
+			<input type="text" class="form-text" id="prescricao" name="prescricao" >
+		</div>
+		<div class="forms-campo">
+			<label for="diasDeCarencia">Dias de carencia *</label> 
+			<input type="number" class="form-text" id="diasDeCarencia" name="diasDeCarencia" >
+		</div>
+		<div class="forms-campo">
+			<label for="unidadeMedida">Unidade de medida *</label>
+			<input type="text" class="form-text" id="unidadeMedida" name="unidadeMedida" >
+		</div>
+		<div class="forms-campo">
+			<label for="modoDeUso">Modo de uso *</label>
+			<input type="text" class="form-text" id="modoDeUso" name="modoDeUso" >
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataDeValidade").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}

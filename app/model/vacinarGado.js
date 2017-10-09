@@ -11,7 +11,7 @@ module.exports = {
         done();
         console.log(err);
       }
-      client.query('INSERT INTO vacinas(brinco, nomegado, nomevacina, datadevacinacao,) values($1, $2, $3, $4)',
+      client.query('INSERT INTO vacinasrealizadas(brinco, nomegado, nomevacina, datadevacinacao,) values($1, $2, $3, $4)',
       [arrayData.brinco, arrayData.nomegado, arrayData.vacina, arrayData.datadevacinacao]);
 
       query.on('end', () => {
@@ -26,20 +26,12 @@ module.exports = {
             done();
             console.log(err);
         }
-        const query = client.query('Select * from insumos');
 
+        var query = client.query('Select gado.brinco, gado.nome, estoquevacinas.nome, vacinasrealizadas.datadevacina from vacinasrealizadas join gado on(vacinasrealizadas.codgado = gado.brinco) join estoquevacinas on(vacinasrealizadas.codVacina = estoquevacinas.id);');
         query.on('row', (row) => {
             results.push(row);
         });
 
-        const vacinas = results.filter((elem) => {
-            if (elem.tipo === 'vacina') {
-                return elem;
-            }
-        });
-        // var query = client.query('Select gado.brinco, gado.nome, insumo.nome, datadevacinacao from vacinas vacina join gado gado on vacina.brinco = gado.brinco;');
-
-        console.log(results)
         // After all data is returned, close connection and return results
         query.on('end', () => {
             done();

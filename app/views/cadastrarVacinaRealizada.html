@@ -21,7 +21,7 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<input type="text" class="form-control pull-right" id="datepicker" name="data">
+					<input type="text" class="form-control pull-right" id="dataDeVacina" name="dataDeVacina">
 				</div>
 			</div>
 			<hr>
@@ -32,7 +32,11 @@
 {{#extend "js"}}
 <script>
 		$(document).ready(function () {
-			$.get("/readGado", data => {
+				$("#dataDeVacina").mask("99/99/9999");
+		});
+
+		$(document).ready(function () {
+			$.get("/dadosVacina", data => {
 				let option = []
 				data.forEach(vacina => {
 					option.push(`<option name="nomevacina" value="${vacina.nome}">${vacina.nome}</option>"`)
