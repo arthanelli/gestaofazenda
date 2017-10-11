@@ -16,21 +16,30 @@ module.exports = [
 		method: 'GET',
 			path: '/consultarPedido',
 			handler: function(request, reply) {
-				pedido.read(function(array){
+				ordemPedido.read(function(array){
 					var data = {
-						titlePage: 'Consultar Pedidos',
-						title: 'Consultar Pedidos',
+						titlePage: 'Consultar Pedido',
+						title: 'Pedido',
 						dados: array
 					};
 					return reply.view('consultarPedido', data);
 				});
 			}
-  },
-  {
+	},
+	{
+		method: 'GET',
+		path: '/readPedidos',		
+		handler: function(request, reply) {
+			ordemPedido.read(function(array){
+				return reply(array);
+			});
+		}
+	},
+  	{
 		method: 'GET',
 		path: '/alterarPedido/{id}',
 		handler: function (request, reply) {
-				pedido.returnChange(request.params.id, function(array){
+				ordemPedido.returnChange(request.params.id, function(array){
 					var data = {
 						pageName : 'alterarPedido',
 						titlePage: 'Alterar dados do Pedido',
@@ -58,19 +67,28 @@ module.exports = [
 	},
 	{
 		method: 'POST',
-		path: '/alterarPedido',
+		path: '/alterarDadosPedido',
 		config: {
 			payload: {
 				output: 'data',
 				parse: true
 			},
 			handler: function(request, reply){
-				pedido.change(request.payload, function(erro){
+				ordemPedido.change(request.payload, function(erro){
 					if(!erro){
 						reply.redirect('alterarPedido/' + request.payload.id);
 					}
 				});
-			}
 		}
-  }
+	}
+  },
+  {
+		method: 'GET',
+		path: '/deletarPedido/{id}',
+		handler: function(request, reply){
+			console.log(request.params.id);
+			ordemPedido.del(request.params.id);
+			reply.redirect('../consultarPedido');
+		}
+	},
 ];
