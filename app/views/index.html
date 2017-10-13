@@ -1,31 +1,31 @@
 <div class="row">
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
-    <div class="small-box bg-aqua">
+    <div class="small-box bg-green">
       <div class="inner">
-        <h3>150</h3>
+        <h3 id="quantidadeGado"></h3>
 
-        <p>Leite produzido</p>
+        <p>Quantidade cabeças de gado</p>
       </div>
       <div class="icon">
-        <i class="ion ion-pie-graph"></i>
+        <i class="fa fa-paw"></i>
       </div>
-      <a href="/consultarOrdenha" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/consultarGado" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
-    <div class="small-box bg-green">
+    <div class="small-box bg-red">
       <div class="inner">
-        <h3>53<sup style="font-size: 20px">%</sup></h3>
+        <h3 id="statusGado"></h3>
 
-        <p>Bounce Rate</p>
+        <p>Cabeças de gado inativas</p>
       </div>
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/consultarGado" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -46,23 +46,49 @@
   <!-- ./col -->
   <div class="col-lg-3 col-xs-6">
     <!-- small box -->
-    <div class="small-box bg-red">
+    <div class="small-box bg-aqua" id="box-profit">
       <div class="inner">
-        <h3>65</h3>
-
-        <p>Unique Visitors</p>
+        <h3 id="outputMoney"></h3>
+        <p>Lucro em caixa</p>
       </div>
       <div class="icon">
-        <i class="ion ion-pie-graph"></i>
+        <i class="fa fa-money"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/transacoes" class="small-box-footer">Mais informações <i class="fa fa-arrow-circle-right"></i></a>
     </div>
-  </div>-
+  </div>
   <!-- ./col -->
 </div>
 
 {{#extend "js"}}
 <script>
-  
+  $(document).ready(() => {
+    $.get("/readGado", data => {
+      $('#quantidadeGado').html(data.length);
+      const inativo = data.filter(elem => {
+        if (elem.status === 'inativo') {
+          return elem
+        };
+      });
+      $('#statusGado').html(inativo.length);
+    });
+
+    $.get("/transactions", data => {
+      let inputMoney = 0;
+      let outputMoney = 0;
+
+      data.forEach(elem => {
+        if (elem.tipo === 'RECEITA') inputMoney += parseFloat(elem.valor);
+        if (elem.tipo === 'DESPESAS') outputMoney += parseFloat(elem.valor);
+      });
+      const profit = inputMoney - outputMoney;
+      $("#outputMoney").html('R$ ' + profit);
+      if (profit < 0) {
+        $('#box-profit').removeClass('bg-aqua');
+        $('#box-profit').addClass('bg-red');
+      }
+    });
+    
+  });
 </script>
 {{/extend}}
