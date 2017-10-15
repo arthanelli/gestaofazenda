@@ -16,7 +16,7 @@ const createTables = 'CREATE TABLE terreno(id SERIAL PRIMARY KEY, latidude decim
                      'CREATE TABLE comprador(id SERIAL PRIMARY KEY, razaoSocial VARCHAR(100), nomeFantasia VARCHAR(100), tipo VARCHAR(25), cadastroNacional VARCHAR(25), endereco VARCHAR(100), responsavelLegal VARCHAR(100), telefone VARCHAR(20), email VARCHAR(100));' +
                      'CREATE TABLE pedido(id SERIAL PRIMARY KEY, codigoComprador integer REFERENCES comprador (id), quantidadeLitros decimal, data VARCHAR(10), valor decimal, dataVencimento VARCHAR(10), descricao VARCHAR(200), parcelamento boolean, quantParcelamento integer);'
                      'CREATE TABLE transacoes(id SERIAL PRIMARY KEY, valor decimal, tipo VARCHAR(10), descricao VARCHAR(100), data VARCHAR(25));' +
-                     'CREATE TABLE vacinasrealizadas(id SERIAL PRIMARY KEY, codGado integer REFERENCES gado (brinco), codVacina integer REFERENCES estoqueVacinas (id), nomeGado VARCHAR(200), dataDeVacina VARCHAR(10));';
+                     'CREATE TABLE vacinasrealizadas(id SERIAL PRIMARY KEY, codGado integer REFERENCES gado (brinco), codVacina integer REFERENCES estoqueVacinas (id), nomeGado VARCHAR(200), nomeVacina VARCHAR(200), dataDeVacina VARCHAR(10));';
 
 const client = new pg.Client(acessos.config);
 
