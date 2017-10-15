@@ -1,0 +1,70 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+	<a data-path="../deletarInsumoVacina" id="button-deletar" class="button danger">Deletar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarInsumoVacina" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="id" class="form-label">ID *</label>
+			<input type="text" class="form-text" id="id" name="id" value="{{id}}">
+		</div>
+		<div class="forms-campo">
+			<label for="nome" class="form-label">Nome *</label>
+			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
+		</div>
+		<div class="forms-campo">
+			<label for="preco" class="form-label">Valor da unidade*</label> 
+			<input type="text" class="form-text" id="preco" name="preco" value="{{preco}}">
+		</div>
+		<div class="forms-campo">
+			<label for="fornecedor" class="form-label">Fornecedor *</label>
+			<input type="text" class="form-text" id="fornecedor" name="fornecedor" value="{{fornecedor}}">
+		</div>
+		<div class="forms-campo">
+			<label for="descricao" class="form-label">Descricao *</label>
+			<input type="text" class="form-text" id="descricao" name="descricao" value="{{descricao}}">
+		</div>
+        <div class="forms-campo">
+			<label for="quantidade" class="form-label">Quantidade *</label>
+			<input type="number" class="form-text" id="quantidade" name="quantidade" value="{{quantidade}}">
+		</div>
+        <div class="forms-campo">
+			<label for="dataDeValidade" class="form-label">Data de validade *</label>
+			<input type="text" class="form-text" id="dataDeValidade" name="dataDeValidade" value="{{datadevalidade}}">
+		</div>
+		<div class="forms-campo">
+			<label for="indicacao" class="form-label">Indicação *</label>
+			<input type="text" class="form-text" id="indicacao" name="indicacao" value="{{indicacao}}">
+		</div>
+		<div class="forms-campo">
+			<label for="prescricao" class="form-label">Prescrição *</label>
+			<input type="text" class="form-text" id="prescricao" name="prescricao" value="{{prescricao}}">
+		</div>
+		<div class="forms-campo">
+			<label for="diasDeCarencia">Dias de carencia *</label> 
+			<input type="number" class="form-text" id="diasDeCarencia" name="diasDeCarencia" value="{{diasdecarencia}}">
+		</div>
+		<div class="forms-campo">
+			<label for="unidadeMedida">Unidade de medida *</label>
+			<input type="text" class="form-text" id="unidadeMedida" name="unidadeMedida" value="{{unidademedida}}">
+		</div>
+		<div class="forms-campo">
+			<label for="modoDeUso">Modo de uso *</label>
+			<input type="text" class="form-text" id="modoDeUso" name="modoDeUso" value="{{mododeuso}}">
+		</div>
+		<hr>
+		<input type="submit" value="Cadastrar" class="button sucess">
+	</form>
+</div>
+{{/each}}
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#dataDeValidade").mask("99/99/9999");
+		});
+	</script>
+{{/extend}}

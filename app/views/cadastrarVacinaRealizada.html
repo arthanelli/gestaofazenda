@@ -1,0 +1,57 @@
+{{#each dados}}
+<div class="container-form">
+
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertVacinaGado" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="form-group">
+                <div class="forms-campo">
+                   <label for="brinco" class="form-label">Brinco do gado*</label>                   
+                   <input type="text" class="form-text campo-bloqueado" id="codgado" name="codgado" value="{{brinco}}" readonly>
+                </div>
+                <div class="forms-campo">                        
+                    <label for="nome" class="form-label">Nome do Gado*</label> 
+                    <input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nome}}">
+                </div>
+                <div class="forms-campo">                            
+					<label for="nomevacina" class="form-label">Vacina*</label>
+					<select class="form-control" name="nomevacina" id="select-vacina"></select>
+                </div>
+				<label for="datadevacina" class="form-label">Data de vacinação*</label>					
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datadevacina" name="datadevacina" required>
+				</div>
+			</div>
+			<hr>
+			<input type="submit" name="Cadastrar" class="button sucess">
+		</div>
+	</form>
+</div>
+{{/each}}
+{{#extend "js"}}
+<script>
+		$(document).ready(function () {
+				$("#datadevacina").mask("99/99/9999");
+		});
+
+		$(document).ready(function () {
+			$.get("/dadosVacina", data => {
+				let option = [];
+				let option2 = [];
+				data.forEach(vacina => {
+					option.push(`<option name="nomevacina" value="${vacina.nome}">${vacina.nome}</option>"`);
+					option2.push(`<input type="text" name="codvacina" id="codvacina" value="${codvacina}"`); 
+				});
+				$("#select-vacina").append(option);
+				$("#codvacina").append(option2);
+			});
+			const select = document.querySelector("#select-vacina");
+			select.addEventListener('click', (e) => {
+
+			});
+		});
+</script>
+{{/extend}}

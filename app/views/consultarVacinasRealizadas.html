@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Brinco</th>
+        <th>Nome do Gado</th>
+        <th>Nome da Vacina</th>
+        <th>Data de vacinação</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each dados}}
+      <tr data-id="/alterarVacina/{{id}}" class="item-edit">
+        <td>{{brinco}}</td>
+        <td>{{nomegado}}</td>
+        <td>{{nomevacina}}</td>
+        <td>{{datadevacina}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
