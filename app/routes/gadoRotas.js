@@ -139,12 +139,17 @@ module.exports = [
 	//ROTAS DE VACINA NO GADO
 	{
 		method: 'GET',
-			path: '/vacinarGado',
+			path: '/vacinarGado/{brinco}',
 			handler: function(request, reply) {
-				var data = {
-						title: 'Vacina gado',
-				};
-				return reply.view('cadastrarVacinaRealizada', data);
+				crudGado.returnChange(request.params.brinco, function(array){
+					var data = {
+						pageName : 'cadastrarVacina',
+						titlePage: 'Cadastrar dados de Vacina',
+						title: 'Cadastrar vacina',
+						dados: array
+					};
+					return reply.view('cadastrarVacinaRealizada', data);
+				});
 			}
 	},
 	{
@@ -165,6 +170,7 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
+				console.log(request.payload);
 				vacina.insert(request.payload);
 				reply.redirect('cadastrarVacinaRealizada');
 			}

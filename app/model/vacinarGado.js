@@ -5,15 +5,24 @@ const acessos = require('../database/acessos.js')
 const config = acessos.config;
 
 module.exports = {
-  insert: arrayData => {
+    insert : function(arrayData) {
+        var results = [];
+        // Grab data from http request
+        var data = {
+            codgado: arrayData.codgado,
+            nomegado: arrayData.nomegado,
+            codvacina: arrayData.codvacina,
+            nomevacina: arrayData.nomevacina,
+            datadevacina: arrayData.datadevacina
+        };
     pg.connect(config, (err, client, done) => {
       if(err) {
         done();
         console.log(err);
       }
-      client.query('INSERT INTO vacinasrealizadas(brinco, nomegado, nomevacina, datadevacinacao,) values($1, $2, $3, $4)',
-      [arrayData.brinco, arrayData.nomegado, arrayData.vacina, arrayData.datadevacinacao]);
-
+      client.query('INSERT INTO vacinasrealizadas(codgado, nomegado, codvacina, nomevacina, datadevacina) VALUES($1, $2, $3, $4, $5)',
+      [data.codgado, data.nomegado, data.codvacina, data.nomevacina, data.datadevacina]);
+     
       query.on('end', () => {
           done();
       });

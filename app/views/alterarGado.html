@@ -99,7 +99,8 @@
 
 	   $("#button-vacinar").click( function(event) {
 			var pathEdit = $(this).attr('data-path');
-			location.href = pathEdit;
+			var id = $('#brinco').val();
+			location.href = pathEdit+'/'+id;
 	   });
 	</script>
 {{/extend}}
