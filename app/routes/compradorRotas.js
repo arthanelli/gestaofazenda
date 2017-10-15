@@ -49,4 +49,46 @@ module.exports = [
 			});
 		}
 	},
+	{
+		method: 'GET',
+		path: '/alterarComprador/{id}',
+		handler: function (request, reply) {
+				crudComprador.returnChange(request.params.id, function(array){
+					var data = {
+						pageName : 'alterarComprador',
+						titlePage: 'Alterar dados do Comprador',
+						title: 'Alterar Comprador',
+						dados: array
+					};
+					return reply.view('alterarComprador', data);
+				});			
+		}
+	},
+	{
+		method: 'POST',
+		path: '/alterarDadosComprador',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				console.log(request.payload);
+				crudComprador.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('alterarComprador/' + request.payload.id);
+					}
+				});
+			}
+		}
+	},
+	{
+		method: 'GET',
+		path: '/deletarComprador/{id}',
+		handler: function(request, reply){
+			console.log(request.params.id);
+			crudComprador.del(request.params.id);
+			reply.redirect('../consultarComprador');
+		}
+	},
 ];

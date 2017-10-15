@@ -1,7 +1,7 @@
 const acessos = require('./acessos.js')
 const pg = require('pg');
 
-const dropTables = 'drop table ordenha; drop table pedido; drop table transacoes; drop table comprador; drop table terreno; drop table financas; drop table analiseLeite; drop table usuarios; drop table insumos; drop table vacinacao; drop table gado'
+const dropTables = 'drop table terreno; drop table financas; drop table analiseLeite; drop table usuarios; drop table insumos; drop table vacinacao; drop table gado; drop table ordenha; drop table comprador; drop table transacoes; drop table pedido'
 
 
 const createTables = 'CREATE TABLE terreno(id SERIAL PRIMARY KEY, latidude decimal, longitude decimal, nome VARCHAR(200), area decimal, perimetro decimal, tipo VARCHAR(100));' +  

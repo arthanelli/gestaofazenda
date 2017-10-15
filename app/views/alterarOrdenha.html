@@ -1,0 +1,51 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+    <a data-path="../deletarOrdenha" id="button-deletar-ordenha" class="button danger">Deletar</a>
+	<a id="button-alterar" class="button info">Alterar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosOrdenha" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="id" class="form-label">Id *</label>
+			<input type="text" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" required readonly>
+		</div>
+		<div class="forms-campo">
+			<label for="brinco" class="form-label">Brinco *</label>
+			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
+		</div>
+		<div class="forms-campo">
+			<label for="litrosLeite" class="form-label">Litros de leite produzido *</label> 
+			<input type="text" class="form-text" id="litrosleite" name="litrosleite" value="{{litrosleite}}" required>
+		</div>
+        <div class="forms-campo">
+			<label for="data" class="form-label">Data de ordenha *</label>
+			<input type="text" class="form-text" id="data" name="data" value="{{data}}" required>
+		</div>
+        {{/each}}
+		<hr>
+		<input type="submit" value="Salvar" class="button sucess">
+		<a class="button danger">Cancelar</a>
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+				$("#data").mask("99/99/9999");
+		});
+
+		$("#button-deletar-ordenha").click( function(event) {
+			var apagar = confirm('Deseja realmente excluir este registro?');
+			if (apagar){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#brinco').val();
+				location.href = pathEdit+'/'+id;
+			}else{
+				event.preventDefault();
+			}	
+	   });
+	</script>
+{{/extend}}

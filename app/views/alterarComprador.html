@@ -1,0 +1,78 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+    <a data-path="../deletarComprador" id="button-deletar-comprador" class="button danger">Deletar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosComprador" method="POST" class="form-style">
+
+		<div class="forms-campo">
+			<label for="id" class="form-label">Id *</label>
+			<input type="text" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" required readonly>
+		</div>
+
+		<div class="forms-campo">
+			<label for="razaoSocial" class="form-label">Razão social *</label>
+			<input type="text" class="form-text campo-bloqueado" id="razaosocial" name="razaoSocial" value="{{razaoSocial}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="nomeFantasia" class="form-label">Nome fantasia *</label> 
+			<input type="text" class="form-text" id="nomeFantasia" name="nomeFantasia" value="{{nomeFantasia}}" required>
+		</div>
+        <div class="form-group">
+				<div class="radio">
+					<label>
+						<input type="radio" id="tipo" name="tipo" value="Pessoa Jurídica" checked>
+						Pessoa Jurídica
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" id="tipo" name="tipo" value="Pessoa Física">
+						Pessoa Física
+					</label>
+				</div>
+			</div>
+		<div class="forms-campo">
+			<label for="cadastroNacional" class="form-label">CNPJ / CPF * *</label>
+			<input type="text" class="form-text" id="cadastronacional" name="cadastroNacional" value="{{cadastroNacional}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="endereco" class="form-label">Endereço *</label>
+			<input type="text" class="form-text" id="endereco" name="endereco" value="{{endereco}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="responsavelLegal" class="form-label">Responsável Legal *</label>
+			<input type="text" class="form-text" id="responsavellegal" name="responsavelLegal" value="{{responsavelLegal}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="telefone" class="form-label">Telefone *</label>
+			<input type="text" class="form-text" id="telefone" name="telefone" value="{{telefone}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="email" class="form-label">E-mail *</label>
+			<input type="email" class="form-text" id="email" name="email" value="{{email}}" required>
+		</div>
+        {{/each}}
+		<hr>
+		<input type="submit" value="Salvar" class="button sucess">
+		<a class="button danger">Cancelar</a>
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$("#button-deletar-comprador").click( function(event) {
+			var apagar = confirm('Deseja realmente excluir este registro?');
+			if (apagar){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#id').val();
+				location.href = pathEdit+'/'+id;
+			}else{
+				event.preventDefault();
+			}	
+	   });
+	</script>
+{{/extend}}

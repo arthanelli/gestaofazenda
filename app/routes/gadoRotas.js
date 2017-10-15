@@ -163,7 +163,7 @@ module.exports = [
 	},
 	{
 		method: 'POST',
-		path: '/insertVacinaGado',
+		path: '/alterarDadosOrdenha',
 		config: {
 			payload: {
 				output: 'data',
