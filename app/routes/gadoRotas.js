@@ -102,7 +102,7 @@ module.exports = [
 		path: '/deletarGado/{id}',
 		handler: function(request, reply){
 			crudGado.del(request.params.id);
-			reply.redirect('../consultarGado');
+			reply.redirect('../gadoAll');
 		}
 	},
 

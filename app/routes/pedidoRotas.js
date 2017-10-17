@@ -1,4 +1,4 @@
-const pedido = require('../model/ordemPedido.js');	
+const ordemPedido = require('../model/ordemPedido.js');	
 
 module.exports = [
 	//ROTAS QUE CHAMAM AS TELAS
@@ -60,7 +60,7 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
-				pedido.insert(request.payload);
+				ordemPedido.insert(request.payload);
 				reply.redirect('cadastrarPedido');
 			}
 		}
@@ -86,7 +86,6 @@ module.exports = [
 		method: 'GET',
 		path: '/deletarPedido/{id}',
 		handler: function(request, reply){
-			console.log(request.params.id);
 			ordemPedido.del(request.params.id);
 			reply.redirect('../consultarPedido');
 		}
