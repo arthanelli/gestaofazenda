@@ -2,27 +2,7 @@ const pg = require('pg');
 const path = require('path');
 const acessos = require('../database/acessos.js')
 const config = acessos.config;
-
-// const gado = [
-//   {
-//     id: 1,
-//     nome: 'mimosa',
-//     status: 'gravida',
-//     dataNascimento: '10/12/2014',
-//     dataCiclo: '10/03/2017',
-//   },
-//   {
-//     id: 2,
-//     nome: 'super',
-//     status: 'bezzero',
-//     dataNascimento: '10/01/2015',
-//     dataCiclo: '',
-//   }
-// ]
-
-function setNotification(msg) {
-  console.log(msg);
-}
+const notification = require('./notification.js')
 
 function getToday (flag = false) {
   const d = new Date();
@@ -73,7 +53,6 @@ function setCiclo(ciclo, brinco) {
   });    
   // INSERT ID CICLO E DATA DO CICLO (TODAY())
 };
-console.log(getToday())
 
 const rules = {
   gravida: 2,
@@ -83,7 +62,9 @@ const rules = {
 const today = getToday();
 // module.exports = () => {
 //   console.log('oi')
+
 	pg.connect(config, (err, client, done) => {
+
 		if(err) {
       done();
       console.log(err);
@@ -97,16 +78,16 @@ const today = getToday();
 
 		  if (age.year >= rules.gravida && elem.status !== 'PODE-GRAVIDA') {
 		    setCiclo('PODE-GRAVIDA', elem.brinco);
-		    setNotification(`${elem.nome} precisa ficar Grávida`);
+		    notification.setNotification(`${elem.nome} precisa ficar Grávida`);
 		  } else if (elem.status === 'GRAVIDA' && dateCycle.month > 7) {
-		    setCiclo('PRODUCAO', elem.brinco);
-		    setNotification(`${elem.nome} PODE ENTRAR EM PRODUÇÃO`);
+		    setCiclo('ENTRA NO PERIODO SECO', elem.brinco);
+		    notification.setNotification(`${elem.nome} PODE ENTRAR EM ENTRA NO PERIODO SECO`);
 		  } else if (elem.status === 'PRODUCAO' && dateCycle.month > 1) {
 		    setCiclo('PARTO', elem.brinco);
-		    setNotification(`${elem.nome} Está perto de nascer novo bezzero`);
+		    notification.setNotification(`${elem.nome} Está perto de nascer novo bezzero`);
 		  } else if (elem.status === 'PARTO' && dateCycle.month > 2) {
-		    setCiclo('RECEM-PARTO', elem.brinco);
-        setNot
+		    setCiclo('GRAVIDA', elem.brinco);
+        notification.setNotification(`${elem.nome} Pode ser inseminada`);        
       }
     });
   });
