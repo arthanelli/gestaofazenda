@@ -1,6 +1,7 @@
 <table class="table">
     <thead>
       <tr>
+        <th>Id da vacina</th>
         <th>Brinco</th>
         <th>Nome do Gado</th>
         <th>Nome da Vacina</th>
@@ -9,8 +10,9 @@
     </thead>
     <tbody>
       {{#each dados}}
-      <tr data-id="/alterarVacina/{{id}}" class="item-edit">
-        <td>{{brinco}}</td>
+      <tr data-id="/alterarVacinaRealizada/{{id}}" class="item-edit">
+        <td>{{id}}</td>
+        <td>{{codgado}}</td>
         <td>{{nomegado}}</td>
         <td>{{nomevacina}}</td>
         <td>{{datadevacina}}</td>

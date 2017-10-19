@@ -68,7 +68,7 @@ module.exports = [
 			handler: function(request, reply){
 				crudInsumoVacina.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('detalheInsumoVacina/' + request.payload.id);
+						reply.redirect('consultarInsumoVacina');
 					}
 				});
 			}

@@ -137,7 +137,7 @@ module.exports = {
             }
             // SQL Query > Update Data
             client.query('UPDATE estoquevacinas SET nome=($1), preco=($2), fornecedor=($3), descricao=($4), quantidade=($5), dataDeValidade=($6), indicacao=($7), prescricao=($8), diasDeCarencia=($9), unidadeMedida=($10), modoDeUso=($11) WHERE id=($12)',
-            [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.id]);
+            [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.indicacao, data.prescricao, data.diasDeCarencia, data.unidadeMedida, data.modoDeUso, data.id]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM estoquevacinas ORDER BY id ASC");
             // Stream results back one row at a time

@@ -33,7 +33,7 @@ module.exports = {
             client.query('INSERT INTO gado(brinco, nome, raca, sexo, dataNascimento, vacinas, peso, pai, mae, loteanimal, status, observacoes) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
             [data.brinco, data.nome, data.raca, data.sexo, data.dataNascimento, data.vacinas, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes ]);
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM gado ORDER BY id ASC');
+            var query = client.query('SELECT * FROM gado ORDER BY brinco ASC');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);

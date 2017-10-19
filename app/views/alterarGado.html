@@ -1,8 +1,9 @@
 <div class="detail-top">
 	<h1>{{titleAlterar}} {{#each dados}}#{{brinco}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-    <a data-path="../deletarGado" id="button-deletar-gado" class="button danger">Deletar</a>
-	<a data-path="../vacinarGado" id="button-vacinar" class="button info">Vacinar</a>
+    <a data-path="/deletarGado" id="button-deletar-gado" class="button danger">Deletar</a>
+	<a data-path="/vacinarGado" id="button-vacinar" class="button info">Vacinar</a>
+	<a data-path="#" id="button-alimentacao" class="button warning">Alimentação</a>
 </div>
 
 
@@ -94,6 +95,12 @@
 	   });
 
 	   $("#button-vacinar").click( function(event) {
+			var pathEdit = $(this).attr('data-path');
+			var id = $('#brinco').val();
+			location.href = pathEdit+'/'+id;
+	   });
+
+	   $("#button-alimentacao").click( function(event) {
 			var pathEdit = $(this).attr('data-path');
 			var id = $('#brinco').val();
 			location.href = pathEdit+'/'+id;
