@@ -55,6 +55,15 @@ module.exports = [
 	},
 	{
 		method: 'GET',
+		path: '/readOrdenha',		
+		handler: function(request, reply) {
+			ordenha.read(function(array){
+				return reply(array);
+			});
+		}
+	},
+	{
+		method: 'GET',
 			path: '/cadastrarOrdenha',
 			handler: function(request, reply) {
 				var data = {
@@ -75,7 +84,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudGado.insert(request.payload);
-				reply.redirect('cadastroGado');
+				reply.redirect('consultarGado');
 			}
 		}
 	},
@@ -102,7 +111,7 @@ module.exports = [
 		path: '/deletarGado/{id}',
 		handler: function(request, reply){
 			crudGado.del(request.params.id);
-			reply.redirect('../consultarGado');
+			reply.redirect('../gadoAll');
 		}
 	},
 
