@@ -1,38 +1,88 @@
 <div class="detail-top">
-	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<h1>{{#each dados}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="../deletarVacina" id="button-deletar" class="button danger">Deletar</a>
+	<a class="button danger" id="buttonDeletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
 </div>
 
-<div class="container-form">
+<div class="container-form" style="margin-top: 2%;">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
-	<form action="/vacinarGado" method="POST" class="form-style">
+	<form action="/alterarDadosVacina" method="POST" class="form-style">
+		<div class="forms-campo" style="margin: 0px;">
+			<input type="hidden" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" readonly>
+		</div>
 		<div class="forms-campo">
 			<label for="brinco" class="form-label">Brinco do gado *</label>
-			<input type="text" class="form-text" id="brinco" name="brinco" value="{{brinco}}">
+			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{codgado}}" readonly>
 		</div>
 		<div class="forms-campo">
-			<label for="nome" class="form-label">Nome*</label> 
-			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
+			<label for="nomegado" class="form-label">Nome*</label> 
+			<input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nomegado}}" readonly>
         </div>
-		<div class="forms-campo">
-			<label for="vacina" class="form-label">Vacina*</label> 
-			<input type="text" class="form-text" id="vacina" name="vacina" value="{{vacina}}">
-        </div>
+		<div class="forms-campo">                            
+			<label for="codvacina" class="form-label">Vacina*</label>
+			<select class="form-control" name="codvacina" id="select-vacina">
+				<option name="codvacina" id="codvacina" value="{{codvacina}}">{{nomevacina}}</option>
+			</select>
+		</div>
         <div class="forms-campo">
-			<label for="dataDeVacina" class="form-label">Data de vacina *</label>
-			<input type="text" class="form-text" id="dataDeVacina" name="dataDeVacina" value="{{dataDeVacina}}">
+			<label for="datadevacina" class="form-label">Data de vacina *</label>
+			<input type="text" class="form-text" id="datadevacina" name="datadevacina" value="{{datadevacina}}">
 		</div>
 		<hr>
-		<input type="submit" value="Cadastrar" class="button sucess">
+		<input type="submit" value="Salvar" class="button sucess">
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="modalDeletar">DELETAR VACINA</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					Ei, deseja realmente deletar o cadastramento desta vacina?
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarVacina">Deletar</button>
+					</div>
+				</div>
+			</div>
+	</div>
 </div>
 {{/each}}
 
 {{#extend "js"}}
 	<script>
 		$(document).ready(function () {
-				$("#dataDeVacina").mask("99/99/9999");
+			$("#datadevacina").mask("99/99/9999");
+
+			$("#buttonDeletar").click(function(){
+				$("#myModal").modal();
+			});
+		});
+
+		$(document).ready(function () {
+			$.get("/dadosVacina", data => {
+				let option = [];
+				const defaultCod = $("#codvacina").val();
+				console.log(defaultCod) 
+
+				data.forEach(vacina => {
+					console.log(vacina.id)
+					if (defaultCod != vacina.id) {
+						option.push(`<option name="codvacina" value="${vacina.id}">${vacina.nome}</option>"`);	
+					}
+				});
+				$("#select-vacina").append(option);
+			});
+			const select = document.querySelector("#select-vacina");
+			select.addEventListener('click', (e) => {
+
+			});
 		});
 	</script>
 {{/extend}}

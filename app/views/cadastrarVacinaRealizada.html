@@ -1,6 +1,5 @@
 {{#each dados}}
 <div class="container-form">
-
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
 	<form action="/insertVacinaGado" method="POST" class="form-style" role="form">
 		<div class="box-body">
@@ -14,8 +13,11 @@
                     <input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nome}}">
                 </div>
                 <div class="forms-campo">                            
-					<label for="nomevacina" class="form-label">Vacina*</label>
-					<select class="form-control" name="nomevacina" id="select-vacina"></select>
+					<label for="codvacina" class="form-label">Vacina*</label>
+					<select class="form-control" name="codvacina" id="select-vacina"></select>
+				</div>
+                <div class="forms-campo" style="margin: 0px;">                            
+					<input type="hidden" class="form-text" id="nomevacina" name="nomevacina">
                 </div>
 				<label for="datadevacina" class="form-label">Data de vacinação*</label>					
 				<div class="input-group date">
@@ -25,12 +27,13 @@
 					<input type="text" class="form-control pull-right" id="datadevacina" name="datadevacina" required>
 				</div>
 			</div>
+			{{/each}}
 			<hr>
 			<input type="submit" name="Cadastrar" class="button sucess">
 		</div>
 	</form>
 </div>
-{{/each}}
+
 {{#extend "js"}}
 <script>
 		$(document).ready(function () {
@@ -40,13 +43,10 @@
 		$(document).ready(function () {
 			$.get("/dadosVacina", data => {
 				let option = [];
-				let option2 = [];
 				data.forEach(vacina => {
-					option.push(`<option name="nomevacina" value="${vacina.nome}">${vacina.nome}</option>"`);
-					option2.push(`<input type="text" name="codvacina" id="codvacina" value="${codvacina}"`); 
+					option.push(`<option name="codvacina" value="${vacina.id}">${vacina.nome}</option>"`);
 				});
 				$("#select-vacina").append(option);
-				$("#codvacina").append(option2);
 			});
 			const select = document.querySelector("#select-vacina");
 			select.addEventListener('click', (e) => {
