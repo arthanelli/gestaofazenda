@@ -27,13 +27,13 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudInsumo.insert(request.payload);
-				reply.redirect('cadastroInsumo');
+				reply.redirect('cadastrarInsumo');
 			}
 		}
 	},
 	{
 		method: 'GET',
-			path: '/cadastroInsumo',
+			path: '/cadastrarInsumo',
 			handler: function(request, reply) {
 				var data = {
 						title: 'Insumo',
@@ -50,10 +50,9 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
-				console.log(request.payload)
 				crudInsumo.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('detalheInsumos/' + request.payload.id);
+						reply.redirect('/consultarInsumo');
 					}
 				});
 			}
@@ -77,9 +76,17 @@ module.exports = [
 		method: 'GET',
 		path: '/deletarInsumos/{id}',
 		handler: function(request, reply){
-			console.log(request.params.id)
 			crudInsumo.del(request.params.id);
 			reply.redirect('../consultarInsumo');
+		}
+	},
+	{
+		method: 'GET',
+		path: '/dadosEstoque',		
+		handler: function(request, reply) {
+			crudInsumo.read(function(array){
+				return reply(array);
+			});
 		}
 	}
 ]

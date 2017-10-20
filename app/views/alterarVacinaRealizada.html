@@ -69,10 +69,8 @@
 			$.get("/dadosVacina", data => {
 				let option = [];
 				const defaultCod = $("#codvacina").val();
-				console.log(defaultCod) 
 
 				data.forEach(vacina => {
-					console.log(vacina.id)
 					if (defaultCod != vacina.id) {
 						option.push(`<option name="codvacina" value="${vacina.id}">${vacina.nome}</option>"`);	
 					}

@@ -8,7 +8,8 @@ module.exports = {
         var results = [];
         // Grab data from http request
         var data = {
-        	nome: arrayData.nome, 
+            nome: arrayData.nome, 
+            tipo: arrayData.tipo, 
         	preco: arrayData.preco, 
         	fornecedor: arrayData.fornecedor, 
         	descricao: arrayData.descricao, 
@@ -24,8 +25,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO insumos(nome, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6)',
-            [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade]);
+            client.query('INSERT INTO insumos(nome, tipo, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6, $7)',
+            [data.nome, data.tipo, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM insumos ORDER BY id ASC');
             // Stream results back one row at a time
@@ -107,7 +108,8 @@ module.exports = {
         // Grab data from http request
         var data = {
             id: arrayData.id,
-        	nome: arrayData.nome, 
+            nome: arrayData.nome,
+            tipo: arrayData.tipo, 
         	preco: arrayData.preco, 
         	fornecedor: arrayData.fornecedor, 
         	descricao: arrayData.descricao, 
@@ -126,8 +128,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE insumos SET nome=($1), preco=($2), fornecedor=($3), descricao=($4), quantidade=($5), dataDeValidade=($6) WHERE id=($7)',
-            [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.id]);
+            client.query('UPDATE insumos SET nome=($1), tipo=($2), preco=($3), fornecedor=($4), descricao=($5), quantidade=($6), dataDeValidade=($7) WHERE id=($8)',
+            [data.nome, data.tipo, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.id]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM insumos ORDER BY id ASC");
             // Stream results back one row at a time

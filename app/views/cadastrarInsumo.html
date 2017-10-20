@@ -1,40 +1,47 @@
-{{!< layout/default}}
-<div class="container-form">
+{{!< layout/default}} 
+	<div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
 	<form action="/insertInsumo" method="POST" class="form-style">
 		<div class="forms-campo">
 			<label for="nome" class="form-label">Nome *</label>
-			<input type="text" class="form-text" id="nome" name="nome" >
+			<input type="text" class="form-text" id="nome" name="nome">
 		</div>
 		<div class="forms-campo">
-			<label for="preco" class="form-label">Valor da unidade*</label> 
-			<input type="text" class="form-text" id="preco" name="preco" >
+			<label for="select-tipo" class="form-label">Tipo *</label>
+			<select class="form-control" name="tipo" id="select-tipo">
+				<option id="tipo" name="tipo" value="Alimento">Alimento</option>
+				<option id="tipo" name="tipo" value="Outros">Outros</option>
+			</select>
+		</div>
+		<div class="forms-campo">
+			<label for="preco" class="form-label">Valor da unidade*</label>
+			<input type="text" class="form-text" id="preco" name="preco">
 		</div>
 		<div class="forms-campo">
 			<label for="fornecedor" class="form-label">Fornecedor *</label>
-			<input type="text" class="form-text" id="fornecedor" name="fornecedor" >
+			<input type="text" class="form-text" id="fornecedor" name="fornecedor">
 		</div>
 		<div class="forms-campo">
 			<label for="descricao" class="form-label">Descricao *</label>
-			<input type="text" class="form-text" id="descricao" name="descricao" >
+			<input type="text" class="form-text" id="descricao" name="descricao">
 		</div>
-        <div class="forms-campo">
+		<div class="forms-campo">
 			<label for="quantidade" class="form-label">Quantidade *</label>
-			<input type="number" class="form-text" id="quantidade" name="quantidade" >
+			<input type="number" class="form-text" id="quantidade" name="quantidade">
 		</div>
-        <div class="forms-campo">
+		<div class="forms-campo">
 			<label for="dataDeValidade" class="form-label">Data de validade *</label>
-			<input type="text" class="form-text" id="dataDeValidade" name="dataDeValidade" >
+			<input type="text" class="form-text" id="dataDeValidade" name="dataDeValidade">
 		</div>
 		<hr>
 		<input type="submit" value="Cadastrar" class="button sucess">
 	</form>
-</div>
+	</div>
 
-{{#extend "js"}}
+	{{#extend "js"}}
 	<script>
 		$(document).ready(function () {
-				$("#dataDeValidade").mask("99/99/9999");
+			$("#dataDeValidade").mask("99/99/9999");
 		});
 	</script>
-{{/extend}}
+	{{/extend}}
