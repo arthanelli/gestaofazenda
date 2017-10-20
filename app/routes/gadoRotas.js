@@ -304,5 +304,21 @@ module.exports = [
 	},
 
 	//ROTAS DE ALIMENTAÇÃO NO GADO
+	{
+		method: 'GET',
+			path: '/alimentarGado/{brinco}',
+			handler: function(request, reply) {
+				const brinco = request.params.brinco;
+				crudGado.returnChange(brinco, array => {
+					const data = {
+						pageName : 'cadastrarVacina',
+						titlePage: 'Cadastrar dados de vacina',
+						title: 'Cadastrar Vacina',
+						dados: array
+					};
+					return reply.view('cadastrarAlimentacao', data);
+				});
+			}
+	},
 
 ];

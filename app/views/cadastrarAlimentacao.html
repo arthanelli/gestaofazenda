@@ -1,0 +1,66 @@
+{{#each dados}}			
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/insertVacinaGado" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="form-group">
+				<div class="forms-campo">
+					<label for="brinco" class="form-label">Brinco do gado*</label>
+					<input type="text" class="form-text campo-bloqueado" id="codgado" name="codgado" value="{{brinco}}" readonly>
+				</div>
+				<div class="forms-campo">
+					<label for="nome" class="form-label">Nome do Gado*</label>
+					<input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nome}}">
+				</div>
+				<input type="hidden" class="form-text" id="nomevacina" name="nomevacina">
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="forms-campo">
+						<label for="alimento" class="form-label">Alimentos*</label>
+						<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="alimento"
+						 id="alimento">
+							<option>asdds</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="forms-campo">
+						<label for="quantidadeAlimentacao" class="form-label">Quantidade*</label>
+						<input type="number" class="form-control" name="quantidadeAlimentacao" id="quantidadeAlimentacao">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="forms-campo">
+						<label for="suplimento" class="form-label">Suplimento*</label>
+						<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="suplimento"
+						 id="suplimento">
+							<option>asdasad</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">						
+					<div class="forms-campo">
+						<label for="quantidadeAlimentacao" class="form-label">Quantidade*</label>
+						<input type="number" class="form-control" name="quantidadeSuplimento" id="quantidadeSuplimento"></select>
+					</div>
+				</div>
+			</div>
+			{{/each}}
+			<hr>
+			<input type="submit" name="Cadastrar" class="button sucess">
+		</div>
+	</form>
+</div>
+{{#extend "js"}}
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
+<script>
+	$(function () {
+		//Initialize Select2 Elements
+		$('.select2').select2()
+	})
+
+</script>
+{{/extend}}
