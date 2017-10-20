@@ -9,7 +9,13 @@
     </div>
   </div>
   <a href="/cadastrarOrdenha"><span class="info-box-icon bg-green"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
-<table class="table">
+</div>
+ <div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>
+
+<table id="tabela" class="table table-hover">
   <thead>
     <tr>
       <th>Id</th>
@@ -34,11 +40,13 @@
 
 {{#extend "js"}}
 <script>
+
+  $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
   function htmlInsert(countLeite) {
-
     $("#countLeite").html('' + countLeite);
-
   };
+
   $(document).ready(function () {
 
     $.get("/readOrdenha", data => {
@@ -46,11 +54,19 @@
       let countLeite = 0;
 
       data.forEach(elem => {
-
         countLeite += parseFloat(elem.litrosleite);
-
       });
-      htmlInsert(countLeite);
+
+      $.get("/readPedidos", data => {
+
+        let countLeiteNegativo = 0;
+
+        data.forEach(elem => {
+          countLeiteNegativo += parseFloat(elem.quantidadelitros);
+        });
+        let valor = countLeite - countLeiteNegativo;      
+        htmlInsert(valor);
+      });
     });
   });
 

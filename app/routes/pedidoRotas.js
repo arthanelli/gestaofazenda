@@ -61,7 +61,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				ordemPedido.insert(request.payload);
-				reply.redirect('cadastrarPedido');
+				reply.redirect('consultarPedido');
 			}
 		}
 	},

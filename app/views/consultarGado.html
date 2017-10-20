@@ -26,14 +26,25 @@
       </div>
     </div>
   </div>
-  <a href="/cadastroGado"><span class="info-box-icon bg-green"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+  <div class=" col-xs-1">
+    <a href="/consultarOrdenha"><span class="info-box-icon bg-yellow"><i class="fa fa-get-pocket" aria-hidden="true"></i></span></a>
+  </div>
+  <div class="col-xs-2" >
+    <a href="/cadastroGado"><span class="info-box-icon bg-green"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+  </div>  
 </div>
+
+<div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>
+
 <h3 id="tipo">
   Todos dados
 </h3>
 <div class="row">
   <div class="col-sm-12">
-    <table class="table table-bordered table-hover dataTable">
+    <table id="tabela" class="table table-hover dataTable table-bordered">
       <thead class="sorting">
         <tr>
           <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >Brinco</th>
@@ -53,6 +64,7 @@
 </div>
 {{#extend "js"}}
 <script>
+
   function htmlInsert(countGado, activeGado, inactiveGado) {
     $("#countGado").html('' + countGado);
     $("#activeGado").html('' + activeGado);
@@ -71,7 +83,7 @@
       let table = [];
 
       data.forEach(elem => {
-    
+        
         if (elem.status === 'Ativo') activeGado += 1;
         if (elem.status === 'Inativo') inactiveGado += 1;
         table.push(`<tr data-id="" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td><a href="alterarGado/${elem.brinco}">${elem.status}</a></td></tr>`)
@@ -87,7 +99,7 @@
       $.get("/readGado", data => {
         data.forEach(elem => {
           table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
-      });
+        });
         setTable(table);
       });
     });
@@ -97,7 +109,7 @@
       $.get("/readGado", data => {
         data.forEach(elem => {
           if (elem.status === 'Ativo') table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
-      });
+        });
         setTable(table);
       });
     });
@@ -107,10 +119,11 @@
       $.get("/readGado", data => {
         data.forEach(elem => {
           if (elem.status === 'Inativo') table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.dataNascimento}</td><td>${elem.peso}</td><td>${elem.lote}</td><td>${elem.status}</td></tr>`)
-      });
+        });
         setTable(table);
       });
-    });
+    }); 
   });
+  $('input#txt_consulta').quicksearch('table#tabela tbody tr');
 </script>
 {{/extend}}

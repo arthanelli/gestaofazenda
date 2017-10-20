@@ -1,4 +1,13 @@
-<table class="table">
+<div class="row detail-top">
+<a href="cadastroAnaliseLeite" id="button-cadastrar-pedido" class="button sucess"><i class="fa fa-shopping-cart"></i>  Cadastrar nova análise</a>
+</div><br>
+
+<div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>
+
+<table id="tabela" class="table table-hover">
   <thead>
     <tr>
       <th>#</th>
@@ -24,3 +33,10 @@
     {{/each}}
   </tbody>
 </table>
+{{#extend "js"}}
+<script>
+
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
+</script>
+{{/extend}}

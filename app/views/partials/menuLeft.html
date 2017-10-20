@@ -1,5 +1,5 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
+  <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar" style="height: auto;">
     <!-- Sidebar user panel -->
     <div class="user-panel">
@@ -10,10 +10,10 @@
       <div class="input-group">
         <input type="text" name="q" class="form-control" placeholder="Procurar...">
         <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
       </div>
     </form>
     <!-- /.search form -->
@@ -48,101 +48,52 @@
         </a>
         <ul class="treeview-menu">
           <li><a href="/consultarGado"><i class="fa fa-circle-o text-aqua"></i>Animais</a></li>
-          <li><a href="/consultarOrdenha">Ordenha</a></li>         
+          <li><a href="/consultarOrdenha"><i class="fa fa-circle-o text-aqua"></i>Ordenha</a></li>         
         </ul>
       </li>
       <li class="treeview">
         <a href="#">
           <i class="fa fa-list-alt"></i>
-          <span>Estoque em geral</span>
+          <span>Insumos</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li><a href="/cadastroInsumo"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
-          <li><a href="/consultarInsumo"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
-        </ul>
-      </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-list-alt"></i>
-          <span>Estoque de vacinas</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="/cadastrarInsumoVacina"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
-          <li><a href="/consultarInsumoVacina"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
+          <li><a href="/consultarInsumo"><i class="fa fa-circle-o text-aqua"></i> Insumos Gerais</a></li>
+          <li><a href="/consultarInsumoVacina"><i class="fa fa-circle-o text-aqua"></i> Estoque de vacinas</a></li>
         </ul>
       </li>
       <li>
-          <li class="treeview">
-              <a href="#">
-                <i class="fa fa-search"></i>
-                <span>Análise de leite</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/cadastroAnaliseLeite"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
-                <li><a href="/consultarAnaliseLeite"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
-              </ul>
-            </li>
-      </li>
-      <li>
-          <li class="treeview">
-              <a href="#">
-                <i class="fa fa-eyedropper"></i>
-                <span>Vacinação</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="/cadastroVacina"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
-                <li><a href="/consultarVacina"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
-              </ul>
-          </li>
-      </li>
-      <li>
-          <li>
-              <a href="/transacoes">
-                <i class="fa fa-bar-chart"></i>
-                <span>Transações</span>
-              </a>
-          </li>
-      </li>
-      <li>
-        <li class="treeview">
-            <a href="#">
-              <i class="fa fa-bar-chart"></i>
-              <span>Comprador</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="/cadastrarComprador"><i class="fa fa-circle-o text-aqua"></i> Cadastrar</a></li>
-              <li><a href="/consultarComprador"><i class="fa fa-circle-o text-aqua"></i> Consultar</a></li>
-            </ul>
+        <li>
+          <a href="consultarAnaliseLeite">
+            <i class="fa fa-search"></i>
+            <span>Análise de leite</span>
+          </a>
         </li>
       </li>
       <li>
-        <li class="treeview">
-            <a href="#">
-              <i class="fa fa-bar-chart"></i>
-              <span>Ordem de Pedido</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="/cadastrarPedido"><i class="fa fa-circle-o text-aqua"></i> Realizar Venda</a></li>
-              <li><a href="/consultarPedido"><i class="fa fa-circle-o text-aqua"></i> Consultar Vendas</a></li>
-            </ul>
+        <li>
+          <a href="/transacoes">
+            <i class="fa fa-bar-chart"></i>
+            <span>Transações</span>
+          </a>
+        </li>
+      </li>
+      <li>
+        <li>
+          <a href="consultarComprador">
+            <i class="fa fa-bar-chart"></i>
+            <span>Comprador</span>
+          </a>
+        </li>
+      </li>
+      <li>
+        <li>
+          <a href="consultarPedido">
+            <i class="fa fa-bar-chart"></i>
+            <span>Ordem de Pedido</span>
+          </a>
         </li>
       </li>
     </ul>

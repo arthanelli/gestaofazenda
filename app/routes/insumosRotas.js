@@ -27,7 +27,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudInsumo.insert(request.payload);
-				reply.redirect('cadastroInsumo');
+				reply.redirect('consultarInsumo');
 			}
 		}
 	},

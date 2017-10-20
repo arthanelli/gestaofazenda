@@ -53,7 +53,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudAnaliseLeite.insert(request.payload);
-				reply.redirect('cadastroAnaliseLeite');
+				reply.redirect('consultarAnaliseLeite');
 			}
 		}
 	},
