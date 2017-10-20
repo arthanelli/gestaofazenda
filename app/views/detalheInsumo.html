@@ -2,22 +2,29 @@
 	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
 	<a data-path="../deletarInsumos" id="button-deletar" class="button danger">Deletar</a>
-	<a id="button-alterar" class="button info">Alterar</a>
 </div>
 
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
 	<form action="/alterarInsumos" method="POST" class="form-style">
-	<div class="forms-campo">
+		<div class="forms-campo">
 			<label for="id" class="form-label">ID *</label>
-			<input type="text" class="form-text" id="id" name="id" value="{{id}}">
+			<input type="text" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" readonly>
 		</div>
 		<div class="forms-campo">
-			<label for="nome" class="form-label">Nome *</label>
+			<label for="nome" class="form-alabel">Nome *</label>
 			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}">
 		</div>
 		<div class="forms-campo">
-			<label for="preco" class="form-label">Valor da unidade*</label> 
+			<label for="select-tipo" class="form-label">Tipo *</label>
+			<input type="hidden" id="tipoatual" value="{{tipo}}">
+			<select class="form-control" name="tipo" id="select-tipo">
+				<option id="alimento" name="tipo" value="Alimentos">Alimento</option>
+				<option id="outros" name="tipo" value="Outros">Outros</option>
+			</select>
+		</div>
+		<div class="forms-campo">
+			<label for="preco" class="form-label">Valor da unidade*</label>
 			<input type="text" class="form-text" id="preco" name="preco" value="{{preco}}">
 		</div>
 		<div class="forms-campo">
@@ -28,24 +35,33 @@
 			<label for="descricao" class="form-label">Descricao *</label>
 			<input type="text" class="form-text" id="descricao" name="descricao" value="{{descricao}}">
 		</div>
-        <div class="forms-campo">
+		<div class="forms-campo">
 			<label for="quantidade" class="form-label">Quantidade *</label>
 			<input type="number" class="form-text" id="quantidade" name="quantidade" value="{{quantidade}}">
 		</div>
-        <div class="forms-campo">
+		<div class="forms-campo">
 			<label for="dataDeValidade" class="form-label">Data de validade *</label>
 			<input type="text" class="form-text" id="dataDeValidade" name="dataDeValidade" value="{{datadevalidade}}">
 		</div>
 		<hr>
-		<input type="submit" value="Cadastrar" class="button sucess">
+		<input type="submit" value="Salvar" class="button sucess">
 	</form>
 </div>
-{{/each}}
+{{/each}} {{#extend "js"}}
+<script>
+	$(document).ready(function () {
+		$("#dataDeValidade").mask("99/99/9999");
 
-{{#extend "js"}}
-	<script>
-		$(document).ready(function () {
-				$("#dataTeste").mask("99/99/9999");
-		});
-	</script>
+		const alimento = $("#alimento").val();
+		const outros = $("#outros").val();
+		const tipoinsumo = $("#tipoatual").val();
+
+		if(tipoinsumo === alimento){
+			$("#select-tipo").val("Alimentos");
+		}
+		else if(tipoinsumo === outros){
+			$("#select-tipo").val("Outros");
+		}
+	});
+</script>
 {{/extend}}
