@@ -9,7 +9,19 @@
     </div>
   </div>
   <a href="/cadastrarOrdenha"><span class="info-box-icon bg-green"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="form-group">  
+      <div class="input-group date">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        
+        <input type="text" class="form-control pull-right" name="daterange" value="01/01/2015 - 01/31/2015" />
+      </div>  
+      </div>
+  </div>
 </div>
+
  <div class="form-group input-group">
   <span class="input-group-addon"><i class="fa fa-search"></i></span>
   <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
@@ -40,6 +52,18 @@
 
 {{#extend "js"}}
 <script>
+
+  $('input[name="daterange"]').daterangepicker(
+{
+    locale: {
+      format: 'DD-MM-YYYY'
+    },
+    startDate: '01-01-2018',
+    endDate: '30-01-2018'
+}, 
+function(start, end, label) {
+    alert("A new date range was chosen: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
+});
 
   $('input#txt_consulta').quicksearch('table#tabela tbody tr');
 
