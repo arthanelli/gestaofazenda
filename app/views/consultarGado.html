@@ -78,6 +78,7 @@
       var pathEdit = $(e.target.parentNode).attr('data-id');
 		  location.href = `alterarGado/${pathEdit}`;
     });
+    $('input#txt_consulta').quicksearch('table#tabela tbody tr');
   };
 
   $(document).ready(function () {
@@ -127,6 +128,5 @@
       });
     }); 
   });
-  $('input#txt_consulta').quicksearch('table#tabela tbody tr');
 </script>
 {{/extend}}

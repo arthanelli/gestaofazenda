@@ -85,6 +85,7 @@ $('input#txt_consulta').quicksearch('table#tabela tbody tr');
   function setTable(table) {
     $("#tableTransacoes").html('');
     $("#tableTransacoes").append(table);
+    $('input#txt_consulta').quicksearch('table#tabela tbody tr');
   };
 
   $(document).ready(function () {
@@ -96,7 +97,7 @@ $('input#txt_consulta').quicksearch('table#tabela tbody tr');
       data.forEach(elem => {
         if (elem.tipo === 'RECEITA') inputMoney += parseFloat(elem.valor);
         if (elem.tipo === 'DESPESAS') outputMoney += parseFloat(elem.valor);
-        table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+        table.push(`<tr role="row item-edit" data-id="${elem.id}" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
       }); 
       const profit = inputMoney - outputMoney;
       htmlInsert(profit, inputMoney, outputMoney);
