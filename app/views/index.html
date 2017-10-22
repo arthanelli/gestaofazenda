@@ -33,14 +33,14 @@
     <!-- small box -->
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>44</h3>
+          <h3 id="countLeite"></h3>
 
-        <p>Vacas no gado</p>
+        <p>Produto disponivel(Litros)</p>
       </div>
       <div class="icon">
         <i class="ion ion-person-add"></i>
       </div>
-      <a href="/consultarGado" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="/consultarOrdenha" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -70,7 +70,6 @@
           return elem
         };
       });
-      $('#statusGado').html(inativo.length);
     });
 
     $.get("/transactions", data => {
@@ -88,7 +87,32 @@
         $('#box-profit').addClass('bg-red');
       }
     });
-    
+
+    $.get("/readGado", data => {
+      let statusGado = 0;
+      data.forEach(elem => {
+        if (elem.status === 'Inativo') statusGado += 1;
+        $('#statusGado').html('' + statusGado);
+      });
+    });    
+
+    $.get("/readOrdenha", data => {
+      let countLeite = 0;
+      data.forEach(elem => {
+        countLeite += parseFloat(elem.litrosleite);
+      });
+
+      $.get("/readPedidos", data => {
+
+        let countLeiteNegativo = 0;
+
+        data.forEach(elem => {
+          countLeiteNegativo += parseFloat(elem.quantidadelitros);
+        });
+        let valor = countLeite - countLeiteNegativo;      
+        $('#countLeite  ').html('' + valor);
+      });
+    });
   });
 </script>
 {{/extend}}

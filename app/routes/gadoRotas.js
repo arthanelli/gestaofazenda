@@ -111,7 +111,7 @@ module.exports = [
 		path: '/deletarGado/{id}',
 		handler: function(request, reply){
 			crudGado.del(request.params.id);
-			reply.redirect('../gadoAll');
+			reply.redirect('../consultarGado');
 		}
 	},
 
@@ -126,7 +126,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				ordenha.insert(request.payload);
-				reply.redirect('home');
+				reply.redirect('consultarOrdenha');
 			}
 		}
 	},
@@ -144,59 +144,17 @@ module.exports = [
 				});
 			}
 	},
-	{
-		method: 'GET',
-		path: '/alterarOrdenha/{id}',
-		handler: function (request, reply) {
-				ordenha.returnChange(request.params.id, function(array){
-					var data = {
-						pageName : 'alterarOrdenha',
-						titlePage: 'Alterar dados da Ordenha',
-						title: 'Alterar Ordenha',
-						dados: array
-					};
-					return reply.view('alterarOrdenha', data);
-				});			
-		}
-	},
-	{
-		method: 'POST',
-		path: '/alterarDadosOrdenha',
-		config: {
-			payload: {
-				output: 'data',
-				parse: true
-			},
-			handler: function(request, reply){
-				ordenha.change(request.payload, function(erro){
-					if(!erro){
-						reply.redirect('consultarOrdenha');
-					}
-				});
-			}
-		}
-	},
-	{
-		method: 'GET',
-		path: '/deletarOrdenha/{id}',
-		handler: function(request, reply){
-			console.log(request.params.id);
-			crudGado.del(request.params.id);
-			reply.redirect('../consultarOrdenha');
-		}
-	},
 
 	//ROTAS DE VACINA NO GADO
 	{
 		method: 'GET',
 			path: '/vacinarGado/{brinco}',
 			handler: function(request, reply) {
-				const brinco = request.params.brinco;
-				crudGado.returnChange(brinco, function(array){
+				crudGado.returnChange(request.params.brinco, function(array){
 					var data = {
 						pageName : 'cadastrarVacina',
-						titlePage: 'Cadastrar dados de vacina',
-						title: 'Cadastrar Vacina',
+						titlePage: 'Cadastrar dados de Vacina',
+						title: 'Cadastrar vacina',
 						dados: array
 					};
 					return reply.view('cadastrarVacinaRealizada', data);
@@ -213,16 +171,31 @@ module.exports = [
 		}
 	},
 	{
+		method: 'POST',
+		path: '/alterarDadosOrdenha',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				console.log(request.payload);
+				vacina.insert(request.payload);
+				reply.redirect('cadastrarVacinaRealizada');
+			}
+		}
+	},
+	{
 		method: 'GET',
-			path: '/consultarVacinasRealizadas',
+			path: '/consultarVacinaRealizada',
 			handler: function(request, reply) {
-				vacina.read(function(array){
+				ordenha.read(function(array){
 					var data = {
-						titlePage: 'Consultar Vacinas Realizadas',
-						title: 'Consultar Vacinas Realizadas',
+						titlePage: 'Consultar Vacina Realizada',
+						title: 'Consultar Vacina Realizada',
 						dados: array
 					};
-					return reply.view('consultarVacinasRealizadas', data);
+					return reply.view('consultarVacinaRealizada', data);
 				});
 			}
 	},
@@ -230,48 +203,8 @@ module.exports = [
 		method: 'GET',
 		path: '/deletarVacina/{id}',
 		handler: function(request, reply){
-			vacina.del(request.params.id);
-			reply.redirect('../consultarVacinasRealizadas');
-		}
-	},
-	{
-		method: 'GET',
-		path: '/alterarVacinaRealizada/{id}',
-		handler: function (request, reply) {
-				vacina.returnChange(request.params.id, function(array){
-					var data = {
-						pageName : 'alterarVacina',
-						titlePage: 'Alterar dados de Vacina',
-						title: 'Alterar dados de Vacina',
-						dados: array
-					};
-					return reply.view('alterarVacinaRealizada', data);
-				});			
-		}
-	},
-	{
-		method: 'POST',
-		path: '/insertVacinaGado',
-		config: {
-			payload: {
-				output: 'data',
-				parse: true
-			},
-			handler: function(request, reply){
-				const id = request.payload.codvacina;
-				estoquevacina.returnChange(id, function(array){
-					var data = {
-						pageName : 'cadastrarVacina',
-						titlePage: 'Cadastrar dados de vacina',
-						title: 'Cadastrar Vacina',
-						dados: array,
-					};
-					const nomevacina = data.dados[0].nome;
-					request.payload.nomevacina = nomevacina;
-					vacina.insert(request.payload);
-					reply.redirect('consultarVacinasRealizadas');
-				});
-			}
+			vacinas.del(request.params.id);
+			reply.redirect('consultarVacinasRealizadas');
 		}
 	},
 	{
@@ -283,21 +216,10 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
-				const id = request.payload.codvacina;
-				estoquevacina.returnChange(id, function(array){
-					var data = {
-						pageName : 'alterarVacina',
-						titlePage: 'Alterar dados de vacina',
-						title: 'Alterar Vacina',
-						dados: array,
-					};
-					const nomevacina = data.dados[0].nome;
-					request.payload.nomevacina = nomevacina;
-					vacina.change(request.payload, function(erro){
-						if(!erro){
-							reply.redirect('consultarVacinasRealizadas');
-						}
-					});
+				vacinas.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('alterarVacinaRealizada/' + request.payload.brinco);
+					}
 				});
 			}
 		}

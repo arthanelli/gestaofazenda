@@ -45,12 +45,18 @@
     </div>
   </div>
 </div>
+
+<div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>
+
 <h3 id="tipo">
   Todos dados
 </h3>
 <div class="row">
   <div class="col-sm-12">
-    <table class="table table-bordered table-hover dataTable">
+    <table id="tabela" class="table table-bordered table-hover dataTable">
       <thead class="sorting">
         <tr>
           <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1" >#</th>
@@ -67,6 +73,9 @@
 </div>
 {{#extend "js"}}
 <script>
+
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
   function htmlInsert(profit, input, output) {
     $("#profit").html('R$ ' + profit);
     $("#inputMoney").html('R$ ' + input);

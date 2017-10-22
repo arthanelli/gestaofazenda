@@ -53,7 +53,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudInsumoVacina.insert(request.payload);
-				reply.redirect('cadastrarInsumoVacina');
+				reply.redirect('consultarInsumoVacina');
 			}
 		}
 	},

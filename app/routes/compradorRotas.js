@@ -36,7 +36,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudComprador.insert(request.payload);
-				reply.redirect('cadastroAnaliseLeite');
+				reply.redirect('consultarComprador');
 			}
 		}
 	},

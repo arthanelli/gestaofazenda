@@ -1,4 +1,55 @@
-<table class="table">
+<div class="row">
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-countLeite">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-asterisk" aria-hidden="true" ></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Leite Produzido</span>
+        <span class="info-box-number" id="countLeite"></span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-countLeite">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-money" aria-hidden="true"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Leite Vendido</span>
+        <span class="info-box-number" id="vendLeite"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box" id="box-countLeite">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-check" aria-hidden="true"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Leite Disponível</span>
+        <span class="info-box-number" id="qtdLeite"></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="form-group">  
+      <div class="input-group date">
+        <div class="input-group-addon">
+          <i class="fa fa-calendar"></i>
+        </div>
+        <input type="text" class="form-control pull-right" name="daterange" value="01/01/2015 - 01/31/2015" />
+      </div>  
+      </div>
+  </div>
+
+<div class="detail-top">
+<a href="cadastrarPedido" id="button-cadastrar-pedido" class="button sucess"><i class="fa fa-shopping-cart"></i>  Realizar Vendas</a>
+</div>
+</div><br>
+
+<div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>  
+
+<table id="tabela" class="table table-hover">
   <thead>
     <tr>
       <th>Id</th>
@@ -28,3 +79,51 @@
     {{/each}}
   </tbody>
 </table>
+{{#extend "js"}}
+<script>
+
+   $('input[name="daterange"]').daterangepicker(
+{
+    locale: {
+      format: 'DD-MM-YYYY'
+    },
+    startDate: '01-01-2018',
+    endDate: '30-01-2018'
+}, 
+function(start, end, label) {
+    alert("A new date range was chosen: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
+});
+
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
+function htmlInsert(countLeite, vendLeite, qtdLeite) {
+    $("#countLeite").html('' + countLeite);
+    $("#vendLeite").html('' + vendLeite);
+    $("#qtdLeite").html('' + qtdLeite);
+  };
+
+  $(document).ready(function () {
+
+    $.get("/readOrdenha", data => {
+      let countLeite = 0;
+
+      data.forEach(elem => {
+        countLeite += parseFloat(elem.litrosleite);
+      });
+
+      $.get("/readPedidos", data => {
+        let vendLeite = 0;
+        let qtdLeite = 0;
+
+        data.forEach(elem => {
+          vendLeite += parseFloat(elem.quantidadelitros);
+        });
+        qtdLeite = countLeite - vendLeite;      
+        htmlInsert(countLeite, vendLeite, qtdLeite);
+      });
+    });
+  });
+
+
+</script>
+{{/extend}}
