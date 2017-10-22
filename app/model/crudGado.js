@@ -141,7 +141,7 @@ module.exports = {
                 }
             }
             // SQL Query > Update Data
-            client.query('UPDATE gado SET nome=($1), raca=($2), sexo=($4), datanascimento=($5), vacinas=($6), peso=($7), pai=($8), mae=($9), loteanimal=($10), status=($11), observacoes=($12) WHERE brinco=($13)',
+            client.query('UPDATE gado SET nome=($1), raca=($2), sexo=($3), datanascimento=($4), vacinas=($5), peso=($6), pai=($7), mae=($8), loteanimal=($9), status=($10), observacoes=($11) WHERE brinco=($12)',
             [data.nome, data.raca, data.sexo, data.dataNascimento, data.vacinas, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes, brinco]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM gado ORDER BY brinco ASC");

@@ -15,11 +15,9 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        
-        <input type="text" class="form-control pull-right" name="daterange" value="01/01/2015 - 01/31/2015" />
-        
+        <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
       </div>  
-      </div>
+    </div>
   </div>
 </div>
 
@@ -53,18 +51,17 @@
 
 {{#extend "js"}}
 <script>
-
-  $('input[name="daterange"]').daterangepicker(
-{
-    locale: {
-      format: 'DD-MM-YYYY'
-    },
-    startDate: '01-01-2018',
-    endDate: '30-01-2018'
-}, 
-function(start, end, label) {
-    alert("A new date range was chosen: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
-});
+       $(document).ready(function(){
+          var date_input=$('input[name="date"]'); //our date input has the name "date"
+          var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+          var options={
+            dateFormat: 'dd/mm/yy',
+          container: container,
+            todayHighlight: true,
+            autoclose: true,
+          };
+          date_input.datepicker(options);
+      });
 
   $('input#txt_consulta').quicksearch('table#tabela tbody tr');
 
