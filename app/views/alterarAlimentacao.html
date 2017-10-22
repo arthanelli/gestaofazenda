@@ -77,8 +77,6 @@
 
 			data.forEach(alimento => {
 				if(codAtualAlimento != alimento.id){
-					console.log(codAtualAlimento);
-					console.log(alimento.id);
 					option.push(`<option name="codalimento" value="${alimento.id}">${alimento.nome}</option>"`);
 				}
 			});

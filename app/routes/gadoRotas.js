@@ -99,10 +99,9 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
-				console.log(request.payload);
 				crudGado.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('alterarGado/' + request.payload.brinco);
+						reply.redirect('/consultarGado');
 					}
 				});
 			}
@@ -313,9 +312,9 @@ module.exports = [
 				const brinco = request.params.brinco;
 				crudGado.returnChange(brinco, array => {
 					const data = {
-						pageName : 'cadastrarVacina',
-						titlePage: 'Cadastrar dados de vacina',
-						title: 'Cadastrar Vacina',
+						pageName : 'cadastrarAlimentacao',
+						titlePage: 'Cadastrar dados de Alimentação',
+						title: 'Cadastrar dados de Alimentação',
 						dados: array
 					};
 					return reply.view('cadastrarAlimentacao', data);

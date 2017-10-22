@@ -13,15 +13,33 @@
 		</div>
         <div class="forms-campo">
 			<label for="raca" class="form-label">Raça *</label>
-			<select type="text" class="form-text" id="raca" name="raca" required>
-				<option value="Raça 1">Raça 1</option>
-				<option value="Raça 2">Raça 2</option>
-				<option value="Raça 3">Raça 3</option>
+			<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="raca" name="raca" required>
+				<option id="holandesa" value="Holandesa">Holandesa</option>
+				<option id="girolando" value="Girolando">Girolando</option>
+				<option id="girLeiteiro" value="Gir Leiteiro">Gir Leiteiro</option>
+				<option id="jersey" value="Jersey">Jersey</option>
+				<option id="guernsey" value="Guernsey">Guernsey</option>
+				<option id="ayrshire" value="Ayrshire">Ayrshire</option>
+				<option id="caracu"  value="Caracu">Caracu</option>
+				<option id="simental" value="Simental">Simental</option>
+				<option id="pardoSuica" value="Pardo Suíça (Schwyz)">Pardo Suíça (Schwyz)</option>
+				<option id="jersolando" value="Jersolando">Jersolando</option>
+				<option id="angus" value="Angus">Angus</option>
+				<option id="redAngus" value="Red Angus">Red Angus</option>
+				<option id="aberdeenAngus" value="Aberdeen Angus">Aberdeen Angus</option>
+				<option id="hereford" value="Hereford">Hereford</option>
+				<option id="tabapua" value="Tabapuã">Tabapuã</option>
+				<option id="senepol" value="Senepol">Senepol</option>
+				<option id="brahman" value="Brahman">Brahman</option>
+				<option id="friesian" value="Friesian">Friesian</option>
+				<option id="guzera" value="Guzerá">Guzerá</option>
+				<option id="guzolando" value="Guzolando">Guzolando</option>
+				<option id="outra" value="Outra">Outra</option>
 			</select>
 		</div>
         <div class="forms-campo">
 			<label for="sexo" class="form-label">Sexo *</label>
-			<select type="text" class="form-text" id="sexo" name="sexo" required>
+			<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="sexo" name="sexo" required>
 				<option value="Macho">Macho</option>
 				<option value="Fêmea">Fêmea</option>
 			</select>
@@ -61,7 +79,7 @@
 		</div>
         <div class="forms-campo">
 			<label for="observacoes" class="form-label">Observações </label>
-			<input type="text" class="form-text" id="observacoes" name="observacoes" >
+			<textarea type="text" class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite aqui as observações sobre o gado"></textarea>
 		</div>
 		<hr>
 		<input type="submit" value="Cadastrar" class="button sucess">
@@ -69,9 +87,15 @@
 </div>
 
 {{#extend "js"}}
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
 	<script>
+		$(function () {
+		//Initialize Select2 Elements
+			$('.select2').select2();
+		});
+
 		$(document).ready(function () {
-				$("#dataNascimento").mask("99/99/9999");
+			$("#dataNascimento").mask("99/99/9999");
 		});
 	</script>
 {{/extend}}
