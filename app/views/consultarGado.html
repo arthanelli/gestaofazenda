@@ -62,6 +62,10 @@
   function setTable(table) {
     $("#tableGado").html('');
     $("#tableGado").append(table);
+    $(".item-edit").on('click', (e) => {
+      var pathEdit = $(e.target.parentNode).attr('data-id');
+		  location.href = `alterarGado/${pathEdit}`;
+    });
   };
 
   $(document).ready(function () {
@@ -71,10 +75,9 @@
       let table = [];
 
       data.forEach(elem => {
-    
         if (elem.status === 'Ativo') activeGado += 1;
         if (elem.status === 'Inativo') inactiveGado += 1;
-        table.push(`<tr data-id="" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td><a href="alterarGado/${elem.brinco}">${elem.status}</a></td></tr>`)
+        table.push(`<tr data-id="${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
       });
 
       const countGado = activeGado + inactiveGado;
