@@ -196,9 +196,9 @@ module.exports = [
 				const brinco = request.params.brinco;
 				crudGado.returnChange(brinco, function(array){
 					var data = {
-						pageName : 'cadastrarVacina',
-						titlePage: 'Cadastrar dados de vacina',
-						title: 'Cadastrar Vacina',
+						pageName : 'cadastrarVacinacao',
+						titlePage: 'Cadastrar dados de vacinacao',
+						title: 'Cadastrar dados de Vacinação',
 						dados: array
 					};
 					return reply.view('cadastrarVacinaRealizada', data);
@@ -243,8 +243,8 @@ module.exports = [
 				vacina.returnChange(request.params.id, function(array){
 					var data = {
 						pageName : 'alterarVacina',
-						titlePage: 'Alterar dados de Vacina',
-						title: 'Alterar dados de Vacina',
+						titlePage: 'Alterar dados de Vacinacao',
+						title: 'Alterar dados de Vacinação',
 						dados: array
 					};
 					return reply.view('alterarVacinaRealizada', data);
@@ -264,8 +264,8 @@ module.exports = [
 				estoquevacina.returnChange(id, function(array){
 					var data = {
 						pageName : 'cadastrarVacina',
-						titlePage: 'Cadastrar dados de vacina',
-						title: 'Cadastrar Vacina',
+						titlePage: 'Cadastrar dados de vacinacao',
+						title: 'Cadastrar dados de Vacinação',
 						dados: array,
 					};
 					const nomevacina = data.dados[0].nome;
@@ -289,8 +289,8 @@ module.exports = [
 				estoquevacina.returnChange(id, function(array){
 					var data = {
 						pageName : 'alterarVacina',
-						titlePage: 'Alterar dados de vacina',
-						title: 'Alterar Vacina',
+						titlePage: 'Alterar dados de vacinacao',
+						title: 'Alterar dados de Vacinação',
 						dados: array,
 					};
 					const nomevacina = data.dados[0].nome;

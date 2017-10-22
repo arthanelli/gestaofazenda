@@ -28,6 +28,14 @@
 			<label for="datadevacina" class="form-label">Data de vacina *</label>
 			<input type="text" class="form-text" id="datadevacina" name="datadevacina" value="{{datadevacina}}">
 		</div>
+		<div class="forms-campo">
+				<label for="nomeresponsavel" class="form-label">Responsável pela vacinação*</label>
+				<input type="text" class="form-text" id="nomeresponsavel" name="nomeresponsavel" value="{{nomeresponsavel}}" required>
+		</div>
+		<div class="forms-campo">
+				<label for="observacoes" class="form-label">Observações</label>
+				<textarea type="text" class="form-control" rows="3" id="observacoes" name="observacoes">{{observacoes}}</textarea>
+		</div>
 		<hr>
 		<input type="submit" value="Salvar" class="button sucess">
 	</form>

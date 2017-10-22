@@ -3,19 +3,19 @@
       <tr>
         <th>Id da vacina</th>
         <th>Brinco</th>
-        <th>Nome do Gado</th>
         <th>Nome da Vacina</th>
         <th>Data de vacinação</th>
+        <th>Responsável</th>
       </tr>
     </thead>
     <tbody>
       {{#each dados}}
       <tr data-id="/alterarVacinaRealizada/{{id}}" class="item-edit">
         <td>{{id}}</td>
-        <td>{{codgado}}</td>
         <td>{{nomegado}}</td>
         <td>{{nomevacina}}</td>
         <td>{{datadevacina}}</td>
+        <td>{{nomeresponsavel}}</td>
       </tr>
       {{/each}}
     </tbody>

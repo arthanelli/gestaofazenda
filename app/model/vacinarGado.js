@@ -13,15 +13,17 @@ module.exports = {
             nomegado: arrayData.nomegado,
             codvacina: arrayData.codvacina,
             nomevacina: arrayData.nomevacina,
-            datadevacina: arrayData.datadevacina
+            datadevacina: arrayData.datadevacina,
+            nomeresponsavel: arrayData.nomeresponsavel,
+            observacoes: arrayData.observacoes
         };
     pg.connect(config, (err, client, done) => {
       if(err) {
         done();
         console.log(err);
       }
-      var query = client.query('INSERT INTO vacinasrealizadas(codgado, nomegado, codvacina, nomevacina, datadevacina) VALUES($1, $2, $3, $4, $5)',
-      [data.codgado, data.nomegado, data.codvacina, data.nomevacina, data.datadevacina]);
+      var query = client.query('INSERT INTO vacinasrealizadas(codgado, nomegado, codvacina, nomevacina, datadevacina, nomeresponsavel, observacoes) VALUES($1, $2, $3, $4, $5, $6, $7)',
+      [data.codgado, data.nomegado, data.codvacina, data.nomevacina, data.datadevacina, data.nomeresponsavel, data.observacoes]);
      
       query.on('end', () => {
           done();
@@ -93,7 +95,9 @@ module.exports = {
             nomegado: arrayData.nomegado,
             codvacina: arrayData.codvacina,
             nomevacina: arrayData.nomevacina,
-            datadevacina: arrayData.datadevacina
+            datadevacina: arrayData.datadevacina,
+            nomeresponsavel: arrayData.nomeresponsavel,
+            observacoes: arrayData.observacoes
         };      
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -107,8 +111,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE vacinasrealizadas SET codvacina=($1), nomevacina=($2), datadevacina=($3) WHERE id=($4)',
-            [data.codvacina, data.nomevacina, data.datadevacina, data.id]);
+            client.query('UPDATE vacinasrealizadas SET codvacina=($1), nomevacina=($2), datadevacina=($3), nomeresponsavel=($4), observacoes=($5) WHERE id=($6)',
+            [data.codvacina, data.nomevacina, data.datadevacina, data.nomeresponsavel, data.observacoes, data.id]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM vacinasrealizadas ORDER BY id ASC");
             // Stream results back one row at a time
