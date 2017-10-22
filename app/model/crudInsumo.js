@@ -70,6 +70,84 @@ module.exports = {
             });
         });
     },
+    consultarAlimentos: function(callback) {
+        var results = [];
+        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            // SQL Query > Select Data
+            var query = client.query("SELECT * FROM public.insumos WHERE tipo='Alimento' ORDER BY id ASC;");
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
+    consultarAlimentos: function(callback) {
+        var results = [];
+        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            // SQL Query > Select Data
+            var query = client.query("SELECT * FROM public.insumos WHERE tipo='Alimento' ORDER BY id ASC;");
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
+    consultarSuplementos: function(callback) {
+        var results = [];
+        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            // SQL Query > Select Data
+            var query = client.query("SELECT * FROM public.insumos WHERE tipo='Suplemento' ORDER BY id ASC;");
+            // Stream results back one row at a time
+            query.on('row', (row) => {
+                results.push(row);
+            });
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                //console.log(results);
+                if(callback != null) {
+                    callback(results);
+                }
+            });
+        });
+    },
     returnChange : function(id, callback) {
         var results = [];
         data = {

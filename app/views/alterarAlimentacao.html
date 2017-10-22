@@ -1,0 +1,109 @@
+<div class="detail-top">
+	<h1>{{#each dados}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+	<a data-path="../deletarAlimentacao" class="button danger" id="button-deletar">Deletar</a>
+</div>
+
+<div class="container-form" style="margin-top: 2%;">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosAlimentacao" method="POST" class="form-style" role="form">
+		<div class="box-body">
+			<div class="forms-campo" style="display: none;">
+				<label for="id" class="form-label">ID *</label>
+				<input type="hidden" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" readonly>
+			</div>
+			<div class="form-group">
+				<div class="forms-campo">
+					<label for="codgado" class="form-label">Brinco do gado*</label>
+					<input type="text" class="form-text campo-bloqueado" id="codgado" name="codgado" value="{{codgado}}" readonly>
+				</div>
+				<div class="forms-campo">
+					<label for="nomegado" class="form-label">Nome do Gado*</label>
+					<input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nomegado}}" readonly>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="forms-campo">
+						<label for="alimento" class="form-label">Alimentos*</label>
+						<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codalimento"
+						 id="select-alimento">
+							<option name="codalimento" id="codalimento" value="{{codalimento}}">{{nomealimento}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="forms-campo">
+						<label for="quantidadealimento" class="form-label">Quantidade*</label>
+						<input type="text" class="form-control" name="quantidadealimento" id="quantidadealimento" value="{{quantidadealimento}}">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="forms-campo">
+						<label for="suplemento" class="form-label">Suplementos*</label>
+						<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codsuplemento"
+						 id="select-suplemento">
+						 <option name="codsuplemento" id="codsuplemento" value="{{codsuplemento}}">{{nomesuplemento}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4">						
+					<div class="forms-campo">
+						<label for="quantidadesuplemento" class="form-label">Quantidade*</label>
+						<input type="text" class="form-control" name="quantidadesuplemento" id="quantidadesuplemento" value="{{quantidadesuplemento}}">
+					</div>
+				</div>
+			</div>
+			{{/each}}
+			<hr>
+			<input type="submit" name="Salvar" class="button sucess">
+		</div>
+	</form>
+</div>
+{{#extend "js"}}
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$(function () {
+			//Initialize Select2 Elements
+			$('.select2').select2();
+		});
+
+		$.get("/dadosAlimentos", data => {
+			let option = [];
+			const codAtualAlimento = $("#codalimento").val();
+
+			data.forEach(alimento => {
+				if(codAtualAlimento != alimento.id){
+					console.log(codAtualAlimento);
+					console.log(alimento.id);
+					option.push(`<option name="codalimento" value="${alimento.id}">${alimento.nome}</option>"`);
+				}
+			});
+			$("#select-alimento").append(option);
+		});
+		const selectalimento = document.querySelector("#select-alimento");
+		selectalimento.addEventListener('click', (e) => {
+
+		});
+
+		$.get("/dadosSuplementos", data => {
+			let option = [];
+			const codAtualSuplemento = $("#codsuplemento").val();
+
+			data.forEach(suplemento => {
+				if(codAtualSuplemento != suplemento.id){
+					option.push(`<option name="codsuplemento" value="${suplemento.id}">${suplemento.nome}</option>"`);
+				}
+			});
+			$("#select-suplemento").append(option);
+		});
+		const selectsuplemento = document.querySelector("#select-suplemento");
+		selectsuplemento.addEventListener('click', (e) => {
+
+		});
+	});
+</script>
+{{/extend}}

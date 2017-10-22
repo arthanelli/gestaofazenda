@@ -1,7 +1,9 @@
 const crudGado = require('../model/crudGado.js');	
 const ordenha = require('../model/ordenha.js');
 const vacina = require('../model/vacinarGado.js');
+const alimento = require('../model/alimentarGado.js');
 const estoquevacina = require('../model/crudInsumoVacina.js');
+const estoque = require('../model/crudInsumo.js');
 
 module.exports = [
 	//ROTAS QUE CHAMAM AS TELAS
@@ -320,5 +322,134 @@ module.exports = [
 				});
 			}
 	},
-
+	{
+		method: 'GET',
+			path: '/consultarAlimentacao',
+			handler: function(request, reply) {
+				alimento.read(function(array){
+					var data = {
+						titlePage: 'Consultar Alimentação',
+						title: 'Consultar Alimentação',
+						dados: array
+					};
+					return reply.view('consultarAlimentacao', data);
+				});
+			}
+	},
+	{
+		method: 'GET',
+		path: '/dadosAlimentos',		
+		handler: function(request, reply) {
+			estoque.consultarAlimentos(function(array){
+				return reply(array);
+			});
+		}
+	},
+	{
+		method: 'GET',
+		path: '/dadosSuplementos',		
+		handler: function(request, reply) {
+			estoque.consultarSuplementos(function(array){
+				return reply(array);
+			});
+		}
+	},
+	{
+		method: 'GET',
+		path: '/deletarAlimentacao/{id}',
+		handler: function(request, reply){
+			alimento.del(request.params.id);
+			reply.redirect('../consultarAlimentacao');
+		}
+	},
+	{
+		method: 'GET',
+		path: '/alterarAlimentacao/{id}',
+		handler: function (request, reply) {
+				alimento.returnChange(request.params.id, function(array){
+					var data = {
+						pageName : 'alterarVAlimentacao',
+						titlePage: 'Alterar dados de Alimentação',
+						title: 'Alterar dados de Alimentação',
+						dados: array
+					};
+					return reply.view('alterarAlimentacao', data);
+				});			
+		}
+	},
+	{
+		method: 'POST',
+		path: '/insertAlimentacao',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				const idalimento = request.payload.codalimento;
+				const idsuplemento = request.payload.codsuplemento;
+				estoque.returnChange(idalimento, function(array){
+					var data = {
+						pageName : 'cadastrarAlimentacao',
+						titlePage: 'Cadastrar dados de alimentação',
+						title: 'Cadastrar Alimentação',
+						dados: array
+					};
+					const nomealimento = data.dados[0].nome;
+					request.payload.nomealimento = nomealimento;
+				});
+				estoque.returnChange(idsuplemento, function(array){
+					var data = {
+						pageName : 'cadastrarAlimentacao',
+						titlePage: 'Cadastrar dados de alimentação',
+						title: 'Cadastrar Alimentação',
+						dados: array,
+					};
+					const nomesuplemento = data.dados[0].nome;
+					request.payload.nomesuplemento = nomesuplemento;
+					alimento.insert(request.payload);
+					reply.redirect('consultarAlimentacao');
+				});
+			}
+		}
+	},
+	{
+		method: 'POST',
+		path: '/alterarDadosAlimentacao',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				const idalimento = request.payload.codalimento;
+				const idsuplemento = request.payload.codsuplemento;
+				estoque.returnChange(idalimento, function(array){
+					var data = {
+						pageName : 'alterarAlimentacao',
+						titlePage: 'Alterar dados de alimentação',
+						title: 'Alterar Alimentação',
+						dados: array,
+					};
+					const nomealimento = data.dados[0].nome;
+					request.payload.nomealimento = nomealimento;
+				});
+				estoque.returnChange(idsuplemento, function(array){
+					var data = {
+						pageName : 'alterarAlimentacao',
+						titlePage: 'Alterar dados de alimentação',
+						title: 'Alterar Alimentação',
+						dados: array,
+					};
+					const nomesuplemento = data.dados[0].nome;
+					request.payload.nomesuplemento = nomesuplemento;
+					alimento.change(request.payload, function(erro){
+						if(!erro){
+							reply.redirect('consultarAlimentacao');
+						}
+					});
+				});
+			}
+		}
+	},
 ];
