@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{#each dados}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a class="button danger" id="buttonDeletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
+	<a data-path="../deletarVacina" class="button danger" id="button-deletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
 </div>
 
 <div class="container-form" style="margin-top: 2%;">
@@ -20,13 +20,21 @@
         </div>
 		<div class="forms-campo">                            
 			<label for="codvacina" class="form-label">Vacina*</label>
-			<select class="form-control" name="codvacina" id="select-vacina">
+			<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codvacina" id="select-vacina">
 				<option name="codvacina" id="codvacina" value="{{codvacina}}">{{nomevacina}}</option>
 			</select>
 		</div>
         <div class="forms-campo">
 			<label for="datadevacina" class="form-label">Data de vacina *</label>
 			<input type="text" class="form-text" id="datadevacina" name="datadevacina" value="{{datadevacina}}">
+		</div>
+		<div class="forms-campo">
+				<label for="nomeresponsavel" class="form-label">Responsável pela vacinação*</label>
+				<input type="text" class="form-text" id="nomeresponsavel" name="nomeresponsavel" value="{{nomeresponsavel}}" required>
+		</div>
+		<div class="forms-campo">
+				<label for="observacoes" class="form-label">Observações</label>
+				<textarea type="text" class="form-control" rows="3" id="observacoes" name="observacoes">{{observacoes}}</textarea>
 		</div>
 		<hr>
 		<input type="submit" value="Salvar" class="button sucess">
@@ -56,7 +64,13 @@
 {{/each}}
 
 {{#extend "js"}}
-	<script>
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
+<script>
+		$(function () {
+			//Initialize Select2 Elements
+			$('.select2').select2();
+		});
+
 		$(document).ready(function () {
 			$("#datadevacina").mask("99/99/9999");
 

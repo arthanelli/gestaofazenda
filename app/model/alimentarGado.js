@@ -11,19 +11,20 @@ module.exports = {
         var data = {
             codgado: arrayData.codgado,
             nomegado: arrayData.nomegado,
-            codvacina: arrayData.codvacina,
-            nomevacina: arrayData.nomevacina,
-            datadevacina: arrayData.datadevacina,
-            nomeresponsavel: arrayData.nomeresponsavel,
-            observacoes: arrayData.observacoes
+            codalimento: arrayData.codalimento,
+            nomealimento: arrayData.nomealimento,
+            quantidadealimento: arrayData.quantidadealimento,
+            codsuplemento: arrayData.codsuplemento,
+            nomesuplemento: arrayData.nomesuplemento,
+            quantidadesuplemento: arrayData.quantidadesuplemento
         };
     pg.connect(config, (err, client, done) => {
       if(err) {
         done();
         console.log(err);
       }
-      var query = client.query('INSERT INTO vacinasrealizadas(codgado, nomegado, codvacina, nomevacina, datadevacina, nomeresponsavel, observacoes) VALUES($1, $2, $3, $4, $5, $6, $7)',
-      [data.codgado, data.nomegado, data.codvacina, data.nomevacina, data.datadevacina, data.nomeresponsavel, data.observacoes]);
+      var query = client.query('INSERT INTO alimentacao(codgado, nomegado, codalimento, nomealimento, quantidadealimento, codsuplemento, nomesuplemento, quantidadesuplemento) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
+      [data.codgado, data.nomegado, data.codalimento, data.nomealimento, data.quantidadealimento, data.codsuplemento, data.nomesuplemento, data.quantidadesuplemento]);
      
       query.on('end', () => {
           done();
@@ -38,7 +39,7 @@ module.exports = {
             console.log(err);
         }
 
-        var query = client.query('Select * from vacinasrealizadas ORDER BY id ASC;');
+        var query = client.query('Select * from alimentacao ORDER BY id ASC;');
         query.on('row', (row) => {
             results.push(row);
         });
@@ -68,7 +69,7 @@ module.exports = {
         }
         
         // SQL Query > Select Data
-        var query = client.query('SELECT * FROM vacinasrealizadas WHERE id = $1', [data.id]);
+        var query = client.query('SELECT * FROM alimentacao WHERE id = $1', [data.id]);
         
         // Stream results back one row at a time
         query.on('row', (row) => {
@@ -91,13 +92,14 @@ module.exports = {
         // Grab data from http request
         var data = {
             id: arrayData.id,
-            brinco: arrayData.codgado,
+            codgado: arrayData.codgado,
             nomegado: arrayData.nomegado,
-            codvacina: arrayData.codvacina,
-            nomevacina: arrayData.nomevacina,
-            datadevacina: arrayData.datadevacina,
-            nomeresponsavel: arrayData.nomeresponsavel,
-            observacoes: arrayData.observacoes
+            codalimento: arrayData.codalimento,
+            nomealimento: arrayData.nomealimento,
+            quantidadealimento: arrayData.quantidadealimento,
+            codsuplemento: arrayData.codsuplemento,
+            nomesuplemento: arrayData.nomesuplemento,
+            quantidadesuplemento: arrayData.quantidadesuplemento
         };      
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
@@ -111,10 +113,10 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE vacinasrealizadas SET codvacina=($1), nomevacina=($2), datadevacina=($3), nomeresponsavel=($4), observacoes=($5) WHERE id=($6)',
-            [data.codvacina, data.nomevacina, data.datadevacina, data.nomeresponsavel, data.observacoes, data.id]);
+            client.query('UPDATE alimentacao SET codalimento=($1), nomealimento=($2), quantidadealimento=($3), codsuplemento=($4), nomesuplemento=($5), quantidadesuplemento=($6) WHERE id=($7)',
+            [data.codalimento, data.nomealimento, data.quantidadealimento, data.codsuplemento, data.nomesuplemento, data.quantidadesuplemento, data.id]);
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM vacinasrealizadas ORDER BY id ASC");
+            var query = client.query("SELECT * FROM alimentacao ORDER BY id ASC");
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
@@ -142,9 +144,9 @@ module.exports = {
             // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM vacinasrealizadas WHERE id=($1)', [id]);
+            client.query('DELETE FROM alimentacao WHERE id=($1)', [id]);
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM vacinasrealizadas ORDER BY id ASC');
+            var query = client.query('SELECT * FROM alimentacao ORDER BY id ASC');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);

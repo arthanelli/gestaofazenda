@@ -1,0 +1,26 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id de alimentação</th>
+      <th>Brinco</th>
+      <th>Nome do Gado</th>
+      <th>Alimento</th>
+      <th>Quantidade</th>
+      <th>Suplemento</th>
+      <th>Quantidade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each dados}}
+    <tr data-id="/alterarAlimentacao/{{id}}" class="item-edit">
+      <td>{{id}}</td>
+      <td>{{codgado}}</td>
+      <td>{{nomegado}}</td>
+      <td>{{nomealimento}}</td>
+      <td>{{quantidadealimento}}</td>
+      <td>{{nomesuplemento}}</td>
+      <td>{{quantidadesuplemento}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

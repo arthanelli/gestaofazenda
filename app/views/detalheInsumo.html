@@ -18,8 +18,9 @@
 		<div class="forms-campo">
 			<label for="select-tipo" class="form-label">Tipo *</label>
 			<input type="hidden" id="tipoatual" value="{{tipo}}">
-			<select class="form-control" name="tipo" id="select-tipo">
-				<option id="alimento" name="tipo" value="Alimentos">Alimento</option>
+			<select type="text" class="form-control" name="tipo" id="select-tipo">
+				<option id="alimento" name="tipo" value="Alimento">Alimento</option>
+				<option id="suplemento" name="tipo" value="Suplemento">Suplemento</option>
 				<option id="outros" name="tipo" value="Outros">Outros</option>
 			</select>
 		</div>
@@ -53,11 +54,15 @@
 		$("#dataDeValidade").mask("99/99/9999");
 
 		const alimento = $("#alimento").val();
+		const suplemento = $("#suplemento").val();
 		const outros = $("#outros").val();
 		const tipoinsumo = $("#tipoatual").val();
 
 		if(tipoinsumo === alimento){
-			$("#select-tipo").val("Alimentos");
+			$("#select-tipo").val("Alimento");
+		}
+		else if(tipoinsumo === suplemento){
+			$("#select-tipo").val("Suplemento");
 		}
 		else if(tipoinsumo === outros){
 			$("#select-tipo").val("Outros");

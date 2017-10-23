@@ -10,11 +10,11 @@
 				</div>
 				<div class="forms-campo">
 					<label for="nome" class="form-label">Nome do Gado*</label>
-					<input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nome}}">
+					<input type="text" class="form-text campo-bloqueado" id="nomegado" name="nomegado" value="{{nome}}" readonly>
 				</div>
 				<div class="forms-campo">
 					<label for="codvacina" class="form-label">Vacina*</label>
-					<select class="form-control" name="codvacina" id="select-vacina"></select>
+					<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codvacina" id="select-vacina"></select>
 				</div>
 				<div class="forms-campo" style="margin: 0px;">
 					<input type="hidden" class="form-text" id="nomevacina" name="nomevacina">
@@ -26,16 +26,30 @@
 					</div>
 					<input type="text" class="form-control pull-right" id="datadevacina" name="datadevacina" required>
 				</div>
+				<div class="forms-campo">
+						<label for="nomeresponsavel" class="form-label">Responsável pela vacinação*</label>
+						<input type="text" class="form-text" id="nomeresponsavel" name="nomeresponsavel" required>
+				</div>
+				<div class="forms-campo">
+						<label for="observacoes" class="form-label">Observações</label>
+						<textarea type="text" class="form-control" id="observacoes" name="observacoes" rows="3" placeholder="Digite as observações sobre a vacina realizada"></textarea>
+				</div>
 			</div>
 			{{/each}}
 			<hr>
-			<input type="submit" name="Cadastrar" class="button sucess">
+			<button type="submit" name="Cadastrar" class="button sucess">Vacinar</button>
 		</div>
 	</form>
 </div>
 
 {{#extend "js"}}
+<script type="text/javascript" src="../js/select2.full.min.js"></script>
 <script>
+	$(function () {
+	//Initialize Select2 Elements
+		$('.select2').select2();
+	});
+
 	$(document).ready(function () {
 		$("#datadevacina").mask("99/99/9999");
 	});
@@ -53,6 +67,5 @@
 
 		});
 	});
-
 </script>
 {{/extend}}
