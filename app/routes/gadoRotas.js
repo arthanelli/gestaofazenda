@@ -144,6 +144,46 @@ module.exports = [
 					return reply.view('consultarOrdenha', data);
 				});
 			}
+	},	{
+		method: 'GET',
+		path: '/alterarOrdenha/{id}',
+		handler: function (request, reply) {
+				ordenha.returnChange(request.params.id, function(array){
+					var data = {
+						pageName : 'alterarOrdenha',
+						titlePage: 'Alterar dados da Ordenha',
+						title: 'Alterar Ordenha',
+						dados: array
+					};
+					return reply.view('alterarOrdenha', data);
+				});			
+		}
+	},
+	{
+		method: 'POST',
+		path: '/alterarDadosOrdenha',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				ordenha.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('consultarOrdenha');
+					}
+				});
+			}
+		}
+	},
+	{
+		method: 'GET',
+		path: '/deletarOrdenha/{id}',
+		handler: function(request, reply){
+			console.log(request.params.id);
+			crudGado.del(request.params.id);
+			reply.redirect('../consultarOrdenha');
+		}
 	},
 
 	//ROTAS DE VACINA NO GADO
@@ -171,21 +211,21 @@ module.exports = [
 			});
 		}
 	},
-	{
-		method: 'POST',
-		path: '/alterarDadosOrdenha',
-		config: {
-			payload: {
-				output: 'data',
-				parse: true
-			},
-			handler: function(request, reply){
-				console.log(request.payload);
-				vacina.insert(request.payload);
-				reply.redirect('cadastrarVacinaRealizada');
-			}
-		}
-	},
+	//{
+	//	method: 'POST',
+	//	path: '/alterarDadosOrdenha',
+	//	config: {
+	//		payload: {
+	//			output: 'data',
+	//			parse: true
+	//		},
+	//		handler: function(request, reply){
+	//			console.log(request.payload);
+	//			vacina.insert(request.payload);
+	//			reply.redirect('cadastrarVacinaRealizada');
+	//		}
+	//	}
+	//},
 	{
 		method: 'GET',
 			path: '/consultarVacinaRealizada',

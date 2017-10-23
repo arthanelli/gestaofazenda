@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{#each dados}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="../deletarVacina" class="button danger" id="button-deletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
+	<a data-path="../deletarVacina" class="button danger" id="buttondeletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
 </div>
 
 <div class="container-form" style="margin-top: 2%;">
@@ -74,11 +74,10 @@
 		$(document).ready(function () {
 			$("#datadevacina").mask("99/99/9999");
 
-			$("#buttonDeletar").click(function(){
+			$("#buttondeletar").click(function(){
 				$("#myModal").modal();
 			});
 		});
-
 		$(document).ready(function () {
 			$.get("/dadosVacina", data => {
 				let option = [];
@@ -93,7 +92,6 @@
 			});
 			const select = document.querySelector("#select-vacina");
 			select.addEventListener('click', (e) => {
-
 			});
 		});
 	</script>

@@ -5,7 +5,12 @@
 		<div class="box-body">
 			<div class="form-group">	
 				<label>Data *</label>					
-				<input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datepicker" name="data" required="">
+				</div>
 			</div>
 			<div class="form-group">
 				<div class="form-group">
@@ -25,17 +30,9 @@
 </div>
 {{#extend "js"}}
 <script>
-  		$(document).ready(function(){
-      		var date_input=$('input[name="date"]'); //our date input has the name "date"
-      		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      		var options={
-      			dateFormat: 'dd/mm/yy',
-    			container: container,
-        		todayHighlight: true,
-        		autoclose: true,
-      		};
-      		date_input.datepicker(options);
-    	});
+  		$(document).ready(function () {
+			$("#datepicker").mask("99/99/9999");
+		});
 		$(document).ready(function () {
 			$.get("/readGado", data => {
 				let option = []
