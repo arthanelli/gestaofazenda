@@ -4,6 +4,7 @@ const vacina = require('../model/vacinarGado.js');
 const alimento = require('../model/alimentarGado.js');
 const estoquevacina = require('../model/crudInsumoVacina.js');
 const estoque = require('../model/crudInsumo.js');
+const dieta = require('../model/dieta.js')
 
 module.exports = [
 	//ROTAS QUE CHAMAM AS TELAS
@@ -424,4 +425,19 @@ module.exports = [
 			}
 		}
 	},
+	{
+		method: 'POST',
+		path: '/dietaGado',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				dieta(request.payload.brinco, data => {
+					reply(data);
+				});
+			}
+		}
+	}
 ];

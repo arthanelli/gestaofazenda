@@ -1,3 +1,22 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="modalDeletar">DIETA</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body" id="dieta-modal">
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>					
+			</div>
+		</div>
+	</div>
+</div>
+
 {{#each dados}}			
 <div class="container-form">
 	<h2 class="title-form">Preencha todas informações abaixo:</h2>
@@ -55,10 +74,20 @@
 <script type="text/javascript" src="../js/select2.full.min.js"></script>
 <script>
 	$(document).ready(function () {
-		$(function () {
 			//Initialize Select2 Elements
-			$('.select2').select2();
-		});
+		$('.select2').select2();
+
+		$("#myModal").modal();
+
+		$.ajax({
+			method: "POST",
+			url: "/dietaGado",
+			data: {"brinco": $("#codgado").val()},
+			success: data => {
+				$("#dieta-modal").html(data);
+			}
+		})
+
 
 		$.get("/dadosAlimentos", data => {
 			let option = [];
