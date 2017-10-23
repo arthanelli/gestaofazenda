@@ -4,27 +4,27 @@
 	<form action="/insertAnaliseLeite" method="POST" class="form-style">
 		<div class="forms-campo">
 			<label for="nome" class="form-label">Nome *</label>
-			<input type="text" class="form-text" id="nome" name="nome" >
+			<input type="text" class="form-text" id="nome" name="nome" required="">
 		</div>
 		<div class="forms-campo">
 			<label for="dataTeste" class="form-label">Data do teste *</label> 
-			<input type="text" class="form-text col-small" id="dataTeste" name="dataTeste" >
+			<input type="text" class="form-text col-small" id="dataTeste" name="dataTeste" required="" >
 		</div>
 		<div class="forms-campo">
 			<label for="responsavel" class="form-label">Responsavel *</label>
-			<input type="text" class="form-text" id="responsavel" name="responsavel" >
+			<input type="text" class="form-text" id="responsavel" name="responsavel" required="">
 		</div>
 		<div class="forms-campo">
 			<label for="loteAmostra" class="form-label">Lote da amostra *</label>
-			<input type="text" class="form-text" id="loteAmostra" name="loteAmostra" >
+			<input type="text" class="form-text" id="loteAmostra" name="loteAmostra" required="">
 		</div>
         <div class="forms-campo">
 			<label for="especificacao" class="form-label">Especificacao *</label>
-			<input type="text" class="form-text" id="especificacao" name="especificacao" >
+			<input type="text" class="form-text" id="especificacao" name="especificacao" required="">
 		</div>
         <div class="forms-campo">
 			<label for="resultado" class="form-label">Resultado *</label>
-			<select type="text" class="form-text" id="resultado" name="resultado" >
+			<select type="text" class="form-text" id="resultado" name="resultado">
 				<option value="Aprovado">Aprovado</option>
 				<option value="Reprovado">Reprovado</option>
 			</select>
@@ -36,8 +36,10 @@
 
 {{#extend "js"}}
 	<script>
+
 		$(document).ready(function () {
 				$("#dataTeste").mask("99/99/9999");
 		});
+		
 	</script>
 {{/extend}}

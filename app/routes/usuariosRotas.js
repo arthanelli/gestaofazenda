@@ -53,7 +53,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				crudUsuario.insert(request.payload);
-				reply.redirect('cadastroUsuario');
+				reply.redirect('consultarUsuario');
 			}
 		}
 	},

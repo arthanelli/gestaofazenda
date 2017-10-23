@@ -15,11 +15,9 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-        
-        <input type="text" class="form-control pull-right" name="daterange" value="01/01/2015 - 01/31/2015" />
-        
+        <input name="consulta" id="txt_consultaData" placeholder="DD/MM/AAAA" type="text" class="form-control">
       </div>  
-      </div>
+    </div>
   </div>
 </div>
 
@@ -54,19 +52,13 @@
 {{#extend "js"}}
 <script>
 
-  $('input[name="daterange"]').daterangepicker(
-{
-    locale: {
-      format: 'DD-MM-YYYY'
-    },
-    startDate: '01-01-2018',
-    endDate: '30-01-2018'
-}, 
-function(start, end, label) {
-    alert("A new date range was chosen: " + start.format('DD-MM-YYYY') + ' to ' + end.format('DD-MM-YYYY'));
-});
+  $(document).ready(function () {
+    $("#txt_consultaData").mask("99/99/9999");
+  });
 
   $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
+  $('input#txt_consultaData').quicksearch('table#tabela tbody tr');
 
   function htmlInsert(countLeite) {
     $("#countLeite").html('' + countLeite);
