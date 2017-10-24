@@ -33,7 +33,7 @@
         <div class="input-group-addon">
           <i class="fa fa-calendar"></i>
         </div>
-         <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text"/>
+        <input name="consulta" id="txt_consultaData" placeholder="DD/MM/AAAA" type="text" class="form-control">
        </div>  
       </div>
   </div>
@@ -67,19 +67,13 @@
 {{#extend "js"}}
 <script>
 
-   $(document).ready(function(){
-          var date_input=$('#date'); //our date input has the name "date"
-          var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-          var options={
-            dateFormat: 'dd/mm/yy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-          };
-          date_input.datepicker(options);
-      });
+  $(document).ready(function () {
+    $("#txt_consultaData").mask("99/99/9999");
+  });
 
-$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+  $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
+  $('input#txt_consultaData').quicksearch('table#tabela tbody tr');
 
   function htmlInsert(profit, input, output) {
     $("#profit").html('R$ ' + profit);
