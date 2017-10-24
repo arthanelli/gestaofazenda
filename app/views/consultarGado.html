@@ -76,7 +76,7 @@
     $("#tableGado").append(table);
     $(".item-edit").on('click', (e) => {
       var pathEdit = $(e.target.parentNode).attr('data-id');
-		  location.href = `alterarGado/${pathEdit}`;
+		  location.href = `painelGado/${pathEdit}`;
     });
     $('input#txt_consulta').quicksearch('table#tabela tbody tr');
   };

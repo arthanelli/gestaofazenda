@@ -10,13 +10,13 @@ module.exports = [
 	//ROTAS QUE CHAMAM AS TELAS
 	{
 		method: 'GET',
-		path: '/alterarGado/{brinco}',
+		path: '/painelGado/{brinco}',
 		handler: function (request, reply) {
 				crudGado.returnChange(request.params.brinco, function(array){
 					var data = {
 						pageName : 'alterarGado',
 						titlePage: 'Alterar dados do Gado',
-						title: 'Alterar Gado',
+						title: '',
 						dados: array
 					};
 					return reply.view('alterarGado', data);
@@ -102,7 +102,7 @@ module.exports = [
 			handler: function(request, reply){
 				crudGado.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('/consultarGado');
+						reply.redirect('/painelGado/' + request.payload.brinco);
 					}
 				});
 			}

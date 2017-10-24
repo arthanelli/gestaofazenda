@@ -1,105 +1,226 @@
-<div class="detail-top">
-	<h1>{{titleAlterar}} {{#each dados}}#{{brinco}}</h1>
-	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="/deletarGado" id="button-deletar-gado" class="button danger">Deletar</a>
-	<a data-path="/vacinarGado" id="button-vacinar" class="button info">Vacinar</a>
-	<a data-path="/alimentarGado" id="button-alimentacao" class="button warning">Alimentação</a>
+<div class="box box-widget widget-user-2">
+	<div class="widget-user-header bg-aqua-active" style="text-align: right;">
+		<h1 class="widget-user-username" style="font-size: 45px;font-weight: bold;">{{#each dados}}{{nome}} #{{brinco}}</h1>
+	</div>
 </div>
 
-<div class="container-form">
-	<h2 class="title-form">Preencha todas informações abaixo:</h2>
-	<form action="/alterarDadosGado" method="POST" class="form-style">
-		<div class="forms-campo">
-			<label for="brinco" class="form-label">Brinco *</label>
-			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
-		</div>
-		<div class="forms-campo">
-			<label for="nome" class="form-label">Nome *</label>
-			<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}" required>
-		</div>
-		<div class="forms-campo">
-			<label for="raca" class="form-label">Raça *</label>
-			<input type="hidden" id="racaatual" value="{{raca}}">
-			<select class="form-control" id="select-raca" name="raca" required>
-					<option id="holandesa" value="Holandesa">Holandesa</option>
-					<option id="girolando" value="Girolando">Girolando</option>
-					<option id="girLeiteiro" value="Gir Leiteiro">Gir Leiteiro</option>
-					<option id="jersey" value="Jersey">Jersey</option>
-					<option id="guernsey" value="Guernsey">Guernsey</option>
-					<option id="ayrshire" value="Ayrshire">Ayrshire</option>
-					<option id="caracu"  value="Caracu">Caracu</option>
-					<option id="simental" value="Simental">Simental</option>
-					<option id="pardoSuica" value="Pardo Suíça (Schwyz)">Pardo Suíça (Schwyz)</option>
-					<option id="jersolando" value="Jersolando">Jersolando</option>
-					<option id="angus" value="Angus">Angus</option>
-					<option id="redAngus" value="Red Angus">Red Angus</option>
-					<option id="aberdeenAngus" value="Aberdeen Angus">Aberdeen Angus</option>
-					<option id="hereford" value="Hereford">Hereford</option>
-					<option id="tabapua" value="Tabapuã">Tabapuã</option>
-					<option id="senepol" value="Senepol">Senepol</option>
-					<option id="brahman" value="Brahman">Brahman</option>
-					<option id="friesian" value="Friesian">Friesian</option>
-					<option id="guzera" value="Guzerá">Guzerá</option>
-					<option id="guzolando" value="Guzolando">Guzolando</option>
-					<option id="outra" value="Outra">Outra</option>
-			</select>
-		</div>
-		<div class="forms-campo">
-			<label for="sexo" class="form-label">Sexo *</label>
-			<input type="hidden" id="sexoAtual" value="{{sexo}}">
-			<select type="text" class="form-control" id="select-sexo" name="sexo" required>
-				<option id="macho" value="Macho">Macho</option>
-				<option id="femea" value="Fêmea">Fêmea</option>
-			</select>
-		</div>
-		<div class="forms-campo">
-			<label for="peso" class="form-label">Peso *</label>
-			<input type="text" class="form-text" id="peso" name="peso" value="{{peso}}" required>
-		</div>
-		<div class="forms-campo">
-			<label for="dataNascimento" class="form-label">Data de nascimento *</label>
-			<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" value="{{datanascimento}}" required>
-		</div>
-		<div class="forms-campo">
-			<label for="vacinas" class="form-label">Vacinas *</label>
-			<input type="text" class="form-text" id="vacinas" name="vacinas" value="{{vacinas}}">
-		</div>
-		<div class="forms-campo">
-			<label for="paiGado" class="form-label">Pai </label>
-			<input type="text" class="form-text" id="paiGado" name="paiGado" value="{{pai}}">
-		</div>
-		<div class="forms-campo">
-			<label for="maeGado" class="form-label">Mãe </label>
-			<input type="text" class="form-text" id="maeGado" name="maeGado" value="{{mae}}">
-		</div>
-		<div class="forms-campo">
-			<label for="loteAnimal" class="form-label">Lote do animal *</label>
-			<input type="text" class="form-text" id="loteAnimal" name="loteAnimal" value="{{loteanimal}}" required>
-		</div>
-		<div class="forms-campo">
-			<label for="status" class="form-label">Status *</label>
-			<div class="radio">
-				<label><input type="radio" id="status" name="status" value="Ativo" {{#if_eq status 'Ativo'}} checked {{/if_eq}}> Ativo</label>
+<div class="row">
+	<div class="col-lg-4 col-xs-6">
+		<a id="button-alterar-gado" style="cursor:pointer">
+		<div class="small-box bg-yellow">
+			<div class="inner">
+				<h3 id="quantidadeGado">Dados</h3>
+				<p>Visualiza e modificada dados</p>
 			</div>
-			<div class="radio">
-				<label><input type="radio" id="status" name="status" value="Inativo" {{#if_eq status 'Inativo'}} checked {{/if_eq}}> Inativo</label>
+			<div class="icon">
+				<i class="fa fa-info-circle"></i>
 			</div>
+			<div class="small-box-footer">Visualizar dados <i class="fa fa-arrow-circle-right"></i></div>
 		</div>
-		<div class="forms-campo">
-			<label for="observacoes" class="form-label">Observações </label>
-			<textarea type="text" class="form-control" id="observacoes" name="observacoes" rows="3">{{observacoes}}</textarea>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<a href="/alimentarGado/{{brinco}}">
+		<div class="small-box bg-green">
+			<div class="inner">
+				<h3 id="quantidadeGado">Alimentar</h3>
+				<p>Dieta e alimentação do animal</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-paw"></i>
+			</div>
+			<div class="small-box-footer">Adicionar alimentação <i class="fa fa-arrow-circle-right"></i></div>
 		</div>
-		{{/each}}
-		<hr>
-		<input type="submit" value="Salvar" class="button sucess">
-		<a class="button danger">Cancelar</a>
-	</form>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<a href="/vacinarGado/{{brinco}}">
+		<div class="small-box bg-blue">
+			<div class="inner">
+				<h3 id="quantidadeGado">Vacinação</h3>
+				<p>Vacinações devem ser feitas</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-paw"></i>
+			</div>
+			<div class="small-box-footer">Adicionar vacinação <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<div class="small-box bg-blue">
+			<div class="inner">
+				<h3 id="quantidadeGado">Ciclo do Gado</h3>
+				<p>{{status}}</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-repeat"></i>
+			</div>
+			<div class="small-box-footer">Ciclo atual</i></div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<a href="/alimentarGado/{{brinco}}">
+		<div class="small-box bg-green">
+			<div class="inner">
+				<h4 id="quantidadeGado">Histórico alimentar</h4>
+				<p>Consulte a alimentação</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-search"></i>
+			</div>
+			<div class="small-box-footer">Consultar alimentação <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<a href="/vacinarGado/{{brinco}}">
+		<div class="small-box bg-aqua">
+			<div class="inner">
+				<h4 id="quantidadeGado">Histórico de vacinação</h4>
+				<p>Consulte vacinas aplicadas</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-search"></i>
+			</div>
+			<div class="small-box-footer">Consultar vacinação <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+	
 </div>
+<div class="row">		
+	<div class="col-lg-4 col-xs-6">
+		<a href="/deletarGado/{{brinco}}">
+		<div class="small-box bg-red">
+			<div class="inner">
+				<h3 id="quantidadeGado">Deletar</h3>
+				<p>Retira o gado da fazenda</p>
+			</div>
+			<div class="icon">
+				<i class="fa fa-trash-o"></i>
+			</div>
+			<div class="small-box-footer">Deletar gado <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+	<div class="modal-dialog" style="width: 80%;" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="modalDeletar">Alterar</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body" id="alterar-modal">
+				<div class="container-form">
+					<h2 class="title-form">Preencha todas informações abaixo:</h2>
+					<form action="/alterarDadosGado" method="POST" class="form-style">
+						<div class="forms-campo">
+							<label for="brinco" class="form-label">Brinco *</label>
+							<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
+						</div>
+						<div class="forms-campo">
+							<label for="nome" class="form-label">Nome *</label>
+							<input type="text" class="form-text" id="nome" name="nome" value="{{nome}}" required>
+						</div>
+						<div class="forms-campo">
+							<label for="raca" class="form-label">Raça *</label>
+							<input type="hidden" id="racaatual" value="{{raca}}">
+							<select class="form-control" id="select-raca" name="raca" required>
+									<option id="holandesa" value="Holandesa">Holandesa</option>
+									<option id="girolando" value="Girolando">Girolando</option>
+									<option id="girLeiteiro" value="Gir Leiteiro">Gir Leiteiro</option>
+									<option id="jersey" value="Jersey">Jersey</option>
+									<option id="guernsey" value="Guernsey">Guernsey</option>
+									<option id="ayrshire" value="Ayrshire">Ayrshire</option>
+									<option id="caracu"  value="Caracu">Caracu</option>
+									<option id="simental" value="Simental">Simental</option>
+									<option id="pardoSuica" value="Pardo Suíça (Schwyz)">Pardo Suíça (Schwyz)</option>
+									<option id="jersolando" value="Jersolando">Jersolando</option>
+									<option id="angus" value="Angus">Angus</option>
+									<option id="redAngus" value="Red Angus">Red Angus</option>
+									<option id="aberdeenAngus" value="Aberdeen Angus">Aberdeen Angus</option>
+									<option id="hereford" value="Hereford">Hereford</option>
+									<option id="tabapua" value="Tabapuã">Tabapuã</option>
+									<option id="senepol" value="Senepol">Senepol</option>
+									<option id="brahman" value="Brahman">Brahman</option>
+									<option id="friesian" value="Friesian">Friesian</option>
+									<option id="guzera" value="Guzerá">Guzerá</option>
+									<option id="guzolando" value="Guzolando">Guzolando</option>
+									<option id="outra" value="Outra">Outra</option>
+							</select>
+						</div>
+						<div class="forms-campo">
+							<label for="sexo" class="form-label">Sexo *</label>
+							<input type="hidden" id="sexoAtual" value="{{sexo}}">
+							<select type="text" class="form-control" id="select-sexo" name="sexo" required>
+								<option id="macho" value="Macho">Macho</option>
+								<option id="femea" value="Fêmea">Fêmea</option>
+							</select>
+						</div>
+						<div class="forms-campo">
+							<label for="peso" class="form-label">Peso *</label>
+							<input type="text" class="form-text" id="peso" name="peso" value="{{peso}}" required>
+						</div>
+						<div class="forms-campo">
+							<label for="dataNascimento" class="form-label">Data de nascimento *</label>
+							<input type="text" class="form-text" id="dataNascimento" name="dataNascimento" value="{{datanascimento}}" required>
+						</div>
+						<div class="forms-campo">
+							<label for="vacinas" class="form-label">Vacinas *</label>
+							<input type="text" class="form-text" id="vacinas" name="vacinas" value="{{vacinas}}">
+						</div>
+						<div class="forms-campo">
+							<label for="paiGado" class="form-label">Pai </label>
+							<input type="text" class="form-text" id="paiGado" name="paiGado" value="{{pai}}">
+						</div>
+						<div class="forms-campo">
+							<label for="maeGado" class="form-label">Mãe </label>
+							<input type="text" class="form-text" id="maeGado" name="maeGado" value="{{mae}}">
+						</div>
+						<div class="forms-campo">
+							<label for="loteAnimal" class="form-label">Lote do animal *</label>
+							<input type="text" class="form-text" id="loteAnimal" name="loteAnimal" value="{{loteanimal}}" required>
+						</div>
+						<div class="forms-campo">
+							<label for="status" class="form-label">Status *</label>
+							<div class="radio">
+								<label><input type="radio" id="status" name="status" value="Ativo" {{#if_eq status 'Ativo'}} checked {{/if_eq}}> Ativo</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" id="status" name="status" value="Inativo" {{#if_eq status 'Inativo'}} checked {{/if_eq}}> Inativo</label>
+							</div>
+						</div>
+						<div class="forms-campo">
+							<label for="observacoes" class="form-label">Observações </label>
+							<textarea type="text" class="form-control" id="observacoes" name="observacoes" rows="3">{{observacoes}}</textarea>
+						</div>
+						{{/each}}
+						<hr>
+				</div>
+			</div>
+			<div class="modal-footer">
+			<input type="submit" value="Salvar" class="button sucess">
+			<a class="button danger" data-dismiss="modal">Cancelar</a>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+
 
 {{#extend "js"}}
 <script>
 	$(document).ready(function () {
 		$("#dataNascimento").mask("99/99/9999");
+
+		$("#button-alterar-gado").on("click", () => {
+			$("#myModal").modal();
+		});
 
 		const sexoAtual = $("#sexoAtual").val();
 		const macho = $("#macho").val();
