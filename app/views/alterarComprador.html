@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-    <a data-path="../deletarComprador" id="button-deletar-comprador" class="button danger">Deletar</a>
+    <a id="button-deletar-comprador" class="button danger">Deletar</a>
 </div>
 
 <div class="container-form">
@@ -15,7 +15,7 @@
 
 		<div class="forms-campo">
 			<label for="razaoSocial" class="form-label">Razão social *</label>
-			<input type="text" class="form-text campo-bloqueado" id="razaosocial" name="razaoSocial" value="{{razaosocial}}" required>
+			<input type="text" class="form-text" id="razaosocial" name="razaoSocial" value="{{razaosocial}}" required>
 		</div>
 		<div class="forms-campo">
 			<label for="nomeFantasia" class="form-label">Nome fantasia *</label> 
@@ -60,19 +60,41 @@
 		<input type="submit" value="Salvar" class="button sucess">
 		<a class="button danger">Cancelar</a>
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="modalDeletar">DELETAR COMPRADOR</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				Ei, deseja realmente deletar o cadastro deste comprador?
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" data-path="../deletarComprador" id="confirmarDeletar">Deletar</button>
+				</div>
+			</div>
+		</div>
+</div>
 </div>
 
 {{#extend "js"}}
 	<script>
+	$(document).ready(function () {
 		$("#button-deletar-comprador").click( function(event) {
-			var apagar = confirm('Deseja realmente excluir este registro?');
-			if (apagar){
+			$("#myModal").modal();
+
+			$("#confirmarDeletar").click(function(){
 				var pathEdit = $(this).attr('data-path');
 				var id = $('#id').val();
-				location.href = pathEdit+'/'+id;
-			}else{
-				event.preventDefault();
-			}	
-	   });
+				location.href = pathEdit + '/' + id;
+			});
+		});
+	});
 	</script>
 {{/extend}}

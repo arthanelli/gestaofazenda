@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{#each dados}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="../deletarAlimentacao" class="button danger" id="button-deletar">Deletar</a>
+	<a class="button danger" id="button-deletar">Deletar</a>
 </div>
 
 <div class="container-form" style="margin-top: 2%;">
@@ -61,6 +61,27 @@
 			<input type="submit" name="Salvar" class="button sucess">
 		</div>
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="modalDeletar">DELETAR ALIMENTAÇÃO</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					Ei, deseja realmente deletar essa alimentação?
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarAlimentacao" id="confirmarDeletar">Deletar</button>
+					</div>
+				</div>
+			</div>
+	</div>
 </div>
 {{#extend "js"}}
 <script type="text/javascript" src="../js/select2.full.min.js"></script>
@@ -100,6 +121,17 @@
 		});
 		const selectsuplemento = document.querySelector("#select-suplemento");
 		selectsuplemento.addEventListener('click', (e) => {
+
+		});
+
+		$("#buttondeletar").click(function(){
+			$("#myModal").modal();
+
+			$("#confirmarDeletar").click(function(){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#id').val();
+				location.href = pathEdit + '/' + id;
+			});
 
 		});
 	});

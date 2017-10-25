@@ -1,8 +1,7 @@
 <div class="detail-top">
 	<h1>{{titleAlterar}} {{#each dados}}#{{codlancamento}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="../deletarLancamento" id="button-deletar" class="button danger">Deletar</a>
-	<a id="button-alterar" class="button info">Alterar</a>
+	<a id="buttondeletar" class="button danger">Deletar</a>
 </div>
 
 <div class="container-form">
@@ -53,6 +52,27 @@
 		<hr>
 		<input type="submit" value="Alterar" class="button sucess">
 	</form>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="modalDeletar">DELETAR LANÇAMENTO</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				Ei, deseja realmente deletar este lançamento?
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" data-path="../deletarLancamento" id="confirmarDeletar">Deletar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {{/each}}
 
@@ -60,7 +80,17 @@
 {{#extend "js"}}
 	<script>
 		$(document).ready(function () {
-				$("#dataVencimento").mask("99/99/9999");
+			$("#dataVencimento").mask("99/99/9999");
+
+			$("#buttondeletar").click(function(){
+				$("#myModal").modal();
+
+				$("#confirmarDeletar").click(function(){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#codLancamento').val();
+				location.href = pathEdit + '/' + id;
+				});
+			});
 		});
 	</script>
 {{/extend}}

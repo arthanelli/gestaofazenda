@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{#each dados}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-	<a data-path="../deletarVacina" class="button danger" id="buttondeletar" data-toggle="modal" data-target="#modalDeletar">Deletar</a>
+	<a data-path="../deletarVacina" class="button danger" id="buttondeletar" data-target="#modalDeletar">Deletar</a>
 </div>
 
 <div class="container-form" style="margin-top: 2%;">
@@ -55,7 +55,7 @@
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-danger" data-path="../deletarVacina">Deletar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarOrdenha" id="confirmarDeletar">Deletar</button>
 					</div>
 				</div>
 			</div>
@@ -76,6 +76,13 @@
 
 			$("#buttondeletar").click(function(){
 				$("#myModal").modal();
+
+				$("#confirmarDeletar").click(function(){
+					var pathEdit = $(this).attr('data-path');
+					var id = $('#id').val();
+					location.href = pathEdit + '/' + id;
+				});
+
 			});
 		});
 		$(document).ready(function () {

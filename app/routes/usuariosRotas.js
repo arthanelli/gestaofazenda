@@ -5,9 +5,9 @@ module.exports = [
 	//ROTAS QUE CHAMAM AS TELAS
 	{
 		method: 'GET',
-		path: '/alterarUsuario/{codusuario}',
+		path: '/alterarUsuario/{id}',
 		handler: function (request, reply) {
-				crudUsuario.returnChange(request.params.codusuario, function(array){
+				crudUsuario.returnChange(request.params.id, function(array){
 					var data = {
 						pageName : 'alterarUsuario',
 						titlePage: 'Alterar dados do Usuario',
@@ -68,7 +68,7 @@ module.exports = [
 			handler: function(request, reply){
 				crudUsuario.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('alterarUsuario/' + request.payload.codUsuario);
+						reply.redirect('consultarUsuario');
 					}
 				});
 			}
@@ -76,10 +76,10 @@ module.exports = [
 	},
 	{
 		method: 'GET',
-		path: '/deletarUsuario/{codUsuario}',
+		path: '/deletarUsuario/{idusuario}',
 		handler: function(request, reply){
-			crudUsuario.del(request.params.codUsuario);
-			reply.redirect('../consultarUsuario');
+			crudUsuario.del(request.params.idusuario);
+			reply.redirect('/consultarUsuario');
 		}
 	},
 ];

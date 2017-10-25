@@ -1,0 +1,38 @@
+<div class="row detail-top">
+  <a href="/vacinarGado/{{codgado}}" id="button-cadastrar-alimentacao" class="button sucess"><i class="fa fa-shopping-cart"></i>  Cadastrar Vacinação</a>
+</div><br>
+  
+<div class="form-group input-group">
+  <span class="input-group-addon"><i class="fa fa-search"></i></span>
+  <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>Id da vacina</th>
+        <th>Brinco</th>
+        <th>Nome da Vacina</th>
+        <th>Data de vacinação</th>
+        <th>Responsável</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each dados}}
+      <tr data-id="/alterarVacinaRealizada/{{id}}" class="item-edit">
+        <td>{{id}}</td>
+        <td>{{nomegado}}</td>
+        <td>{{nomevacina}}</td>
+        <td>{{datadevacina}}</td>
+        <td>{{nomeresponsavel}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{#extend "js"}}
+  <script>
+  
+  $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+  
+  </script>
+  {{/extend}}

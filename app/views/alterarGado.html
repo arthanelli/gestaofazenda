@@ -9,8 +9,8 @@
 		<a id="button-alterar-gado" style="cursor:pointer">
 		<div class="small-box bg-yellow">
 			<div class="inner">
-				<h3 id="quantidadeGado">Dados</h3>
-				<p>Visualiza e modificada dados</p>
+				<h3 class="subtitulo-painel-gado" id="dados-gado">Dados</h3>
+				<p>Visualiza e modificar dados</p>
 			</div>
 			<div class="icon">
 				<i class="fa fa-info-circle"></i>
@@ -23,7 +23,7 @@
 		<a href="/alimentarGado/{{brinco}}">
 		<div class="small-box bg-green">
 			<div class="inner">
-				<h3 id="quantidadeGado">Alimentar</h3>
+				<h3 class="subtitulo-painel-gado" id="alimentar-gado">Alimentar</h3>
 				<p>Dieta e alimentação do animal</p>
 			</div>
 			<div class="icon">
@@ -37,8 +37,8 @@
 		<a href="/vacinarGado/{{brinco}}">
 		<div class="small-box bg-blue">
 			<div class="inner">
-				<h3 id="quantidadeGado">Vacinação</h3>
-				<p>Vacinações devem ser feitas</p>
+				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Vacinação</h3>
+				<p>Cadastre a vacinação</p>
 			</div>
 			<div class="icon">
 				<i class="fa fa-paw"></i>
@@ -50,7 +50,7 @@
 	<div class="col-lg-4 col-xs-6">
 		<div class="small-box bg-blue">
 			<div class="inner">
-				<h3 id="quantidadeGado">Ciclo do Gado</h3>
+				<h3 class="subtitulo-painel-gado" id="ciclo-do-gado">Ciclo atual do Gado</h3>
 				<p>{{status}}</p>
 			</div>
 			<div class="icon">
@@ -60,10 +60,10 @@
 		</div>
 	</div>
 	<div class="col-lg-4 col-xs-6">
-		<a href="/alimentarGado/{{brinco}}">
+		<a href="/historicoAlimentacao/{{brinco}}">
 		<div class="small-box bg-green">
 			<div class="inner">
-				<h4 id="quantidadeGado">Histórico alimentar</h4>
+				<h3 class="subtitulo-painel-gado" id="historico-alimentar">Histórico alimentar</h3>
 				<p>Consulte a alimentação</p>
 			</div>
 			<div class="icon">
@@ -74,10 +74,10 @@
 		</a>
 	</div>
 	<div class="col-lg-4 col-xs-6">
-		<a href="/vacinarGado/{{brinco}}">
+		<a href="/historicoVacinacao/{{brinco}}">
 		<div class="small-box bg-aqua">
 			<div class="inner">
-				<h4 id="quantidadeGado">Histórico de vacinação</h4>
+				<h3 class="subtitulo-painel-gado" id="historico-vacinacao">Histórico de vacinação</h3>
 				<p>Consulte vacinas aplicadas</p>
 			</div>
 			<div class="icon">
@@ -91,10 +91,10 @@
 </div>
 <div class="row">		
 	<div class="col-lg-4 col-xs-6">
-		<a href="/deletarGado/{{brinco}}">
+		<a id="button-deletar-gado">
 		<div class="small-box bg-red">
 			<div class="inner">
-				<h3 id="quantidadeGado">Deletar</h3>
+				<h3 class="subtitulo-painel-gado" id="deletar-gado">Deletar</h3>
 				<p>Retira o gado da fazenda</p>
 			</div>
 			<div class="icon">
@@ -105,7 +105,30 @@
 		</a>
 	</div>
 </div>
-<!-- Modal -->
+
+<!-- Modal deletar gado -->
+	<!-- Modal -->
+	<div class="modal fade" id="deletarGadoModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="modalDeletar">DELETAR GADO</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				Ei, deseja realmente retirar este gado da fazenda?
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-danger" data-path="../deletarGado" id="confirmarDeletar">Deletar</button>
+				</div>
+			</div>
+		</div>
+</div>
+
+<!-- Modal dados do gado-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
 	<div class="modal-dialog" style="width: 80%;" role="document">
 		<div class="modal-content">
@@ -322,14 +345,13 @@
 	});
 
 	$("#button-deletar-gado").click(function (event) {
-		var apagar = confirm('Deseja realmente excluir este registro?');
-		if (apagar) {
+		$("#deletarGadoModal").modal();
+
+		$("#confirmarDeletar").click(function(){
 			var pathEdit = $(this).attr('data-path');
 			var id = $('#brinco').val();
 			location.href = pathEdit + '/' + id;
-		} else {
-			event.preventDefault();
-		}
+		});
 	});
 
 	$("#button-vacinar").click(function (event) {

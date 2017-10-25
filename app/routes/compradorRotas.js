@@ -76,7 +76,7 @@ module.exports = [
 				console.log(request.payload);
 				crudComprador.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('alterarComprador/' + request.payload.id);
+						reply.redirect('/consultarComprador');
 					}
 				});
 			}

@@ -181,8 +181,7 @@ module.exports = [
 		method: 'GET',
 		path: '/deletarOrdenha/{id}',
 		handler: function(request, reply){
-			console.log(request.params.id);
-			crudGado.del(request.params.id);
+			ordenha.del(request.params.id);
 			reply.redirect('../consultarOrdenha');
 		}
 	},
@@ -212,32 +211,17 @@ module.exports = [
 			});
 		}
 	},
-	//{
-	//	method: 'POST',
-	//	path: '/alterarDadosOrdenha',
-	//	config: {
-	//		payload: {
-	//			output: 'data',
-	//			parse: true
-	//		},
-	//		handler: function(request, reply){
-	//			console.log(request.payload);
-	//			vacina.insert(request.payload);
-	//			reply.redirect('cadastrarVacinaRealizada');
-	//		}
-	//	}
-	//},
 	{
 		method: 'GET',
 			path: '/consultarVacinaRealizada',
 			handler: function(request, reply) {
-				ordenha.read(function(array){
+				vacina.read(function(array){
 					var data = {
 						titlePage: 'Consultar Vacina Realizada',
 						title: 'Consultar Vacina Realizada',
 						dados: array
 					};
-					return reply.view('consultarVacinaRealizada', data);
+					return reply.view('consultarVacinasRealizadas', data);
 				});
 			}
 	},
@@ -246,7 +230,7 @@ module.exports = [
 		path: '/deletarVacina/{id}',
 		handler: function(request, reply){
 			vacina.del(request.params.id);
-			reply.redirect('../consultarVacinasRealizadas');
+			reply.redirect('/consultarVacinaRealizada');
 		}
 	},
 	{
@@ -284,7 +268,7 @@ module.exports = [
 					const nomevacina = data.dados[0].nome;
 					request.payload.nomevacina = nomevacina;
 					vacina.insert(request.payload);
-					reply.redirect('consultarVacinasRealizadas');
+					reply.redirect('/consultarVacinaRealizada');
 				});
 			}
 		}
@@ -315,6 +299,21 @@ module.exports = [
 					});
 				});
 			}
+		}
+	},
+	{
+		method: 'GET',
+		path: '/historicoVacinacao/{brinco}',
+		handler: function (request, reply) {
+				vacina.consultarHistoricoVacinacao(request.params.brinco, function(array){
+					var data = {
+						pageName : 'historicoVacinacao',
+						titlePage: 'Histórico de vacinação do Gado',
+						title: '',
+						dados: array
+					};
+					return reply.view('consultarVacinacaoEspecifica', data);
+				});			
 		}
 	},
 
@@ -478,6 +477,21 @@ module.exports = [
 					reply(data);
 				});
 			}
+		}
+	},
+	{
+		method: 'GET',
+		path: '/historicoAlimentacao/{brinco}',
+		handler: function (request, reply) {
+				alimento.consultarHistoricoAlimentacao(request.params.brinco, function(array){
+					var data = {
+						pageName : 'historicoAlimentacao',
+						titlePage: 'Histórico de alimentação do Gado',
+						title: '',
+						dados: array
+					};
+					return reply.view('consultarAlimentacaoEspecifica', data);
+				});			
 		}
 	}
 ];

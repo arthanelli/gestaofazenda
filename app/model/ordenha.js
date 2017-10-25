@@ -114,6 +114,7 @@ module.exports = {
         });
     },
     del : function(id) {
+        var id = id;
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool

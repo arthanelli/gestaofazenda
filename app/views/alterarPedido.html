@@ -1,7 +1,7 @@
 <div class="detail-top">
 	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
-    <a data-path="../deletarPedido" id="button-deletar-comprador" class="button danger">Deletar</a>
+    <a id="button-deletar-pedido" class="button danger">Deletar</a>
 </div>
 
 <div class="container-form">
@@ -28,7 +28,7 @@
 			<input type="text" class="form-text" id="valor" name="valor" value="{{valor}}" required>
 		</div>
 		<div class="form-group">	
-				<label>Data Vencimento*</label>					
+				<label>Data de vencimento*</label>					
 				<div class="input-group date">
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
@@ -68,6 +68,26 @@
 		<input type="submit" value="Salvar" class="button sucess">
 		<a class="button danger">Cancelar</a>
 	</form>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalDeletar" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="modalDeletar">DELETAR PEDIDO</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					Ei, deseja realmente deletar o cadastro deste Pedido?
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarPedido" id="confirmarDeletar">Deletar</button>
+					</div>
+				</div>
+			</div>
+	</div>
 </div>
 
 {{#extend "js"}}
@@ -97,11 +117,20 @@
 			});
 			$("#select-comprador").append(option)
 		});
-	})
+
+		$('.select2').select2();
+		
+		$("#button-deletar-pedido").click(function(){
+			$("#myModal").modal();
+
+			$("#confirmarDeletar").click(function(){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#id').val();
+				location.href = pathEdit + '/' + id;
+			});
+
+		});
+	});
 </script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-  })
+
 {{/extend}}
