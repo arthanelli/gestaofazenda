@@ -9,5 +9,6 @@ var usuarios = require('./usuariosRotas');
 var index = require('./paginaInicialRotas');
 var pedido = require('./pedidoRotas');
 var transacoes = require('./transacoes');
+var relatorio = require('./relatorio');
 
-module.exports = [].concat(analisaLeite, comprador, vacinas, insumos, estoquevacinas, financas, gado, usuarios, index, pedido, transacoes);
+module.exports = [].concat(analisaLeite, comprador, relatorio, vacinas, insumos, estoquevacinas, financas, gado, usuarios, index, pedido, transacoes);

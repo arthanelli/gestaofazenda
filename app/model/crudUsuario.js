@@ -56,7 +56,7 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM usuarios ORDER BY id ASC;');
+            var query = client.query('SELECT * FROM usuarios;');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
