@@ -3,22 +3,22 @@ const usuario = require('../model/crudUsuario');
 
 function getDatas(data) {
   const obj = {};
-  data.forEach(elem => {
-    console.log(elem)
-    elem[0].forEach(infos => {
-      console.log(forEach)
-    });
+  data.forEach((elem, index) => {
+    obj[index] = Object.values(elem);
   });
+  return obj;
 }
 
 module.exports = {
   method: 'GET',
   path: '/relatorio/{page}',
   handler: function(request, reply) {
+    const page = request.params.page;
     usuario.read(infos => {
-      getDatas(infos)
       const data = {
-        dados: infos
+        titlePDF: 'Relatório de Usuários do sistema',
+        header: ['ID', 'Nome', 'Idade', 'Sexo', 'Data de nascimento', 'Endereço', 'Usuário', 'Senha', 'Nível de permissão'],
+        dados: getDatas(infos),
       }
       return reply.view('relatorio', data);      
     });
