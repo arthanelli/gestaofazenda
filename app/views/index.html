@@ -59,11 +59,111 @@
   </div>
   <!-- ./col -->
 </div>
+<div class="row">
+  <div class="col-lg-6 col-xs-6">                  
+    <div class="box box-aqua">
+      <div class="box-header with-border">
+        <h3 class="box-title">Ciclo</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+      <canvas id="chart-gado" width="540" height="270" class="chartjs-render-monitor" style="display: block; width: 540px; height: 270px;">
+      </canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-xs-6">                  
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Financeiro</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+      <canvas id="chart-area" width="540" height="270" class="chartjs-render-monitor" style="display: block; width: 540px; height: 270px;">
+      </canvas>
+      </div>
+      <!-- /.box-body -->
+    </div>
+  </div>
+</div>
+<canvas id="canvas" width="1001" height="500" class="chartjs-render-monitor" style="display: block; width: 1001px; height: 500px;"></canvas>
 
 {{#extend "js"}}
 <script>
   $(document).ready(() => {
-    $.get("/readGado", data => {
+    $.get("/readGado", data => {      
+      const status = {
+        'Ativo': 0,
+        'Inativo': 0,
+        'PODEGRAVIDA': 0,
+        'GRAVIDA': 0,
+        'PRODUCAO': 0,
+        'PARTO': 0,
+      }
+      data.forEach(elem => {
+        if (elem.status === 'Ativo') {
+          status.Ativo = status.Ativo + 1; 
+        } else if (elem.status === 'Inativo') {
+          status.Inativo = status.Inativo + 1
+        } else if (elem.status === 'PODE-GRAVIDA') {
+          status.PODEGRAVIDA = status.PODEGRAVIDA + 1
+        } else if (elem.status === 'GRAVIDA') {
+          status.GRAVIDA = status.GRAVIDA + 1
+        } else if (elem.status === 'PRODUCAO') {
+          status.PRODUCAO = status.PRODUCAO + 1
+        } else if (elem.status === 'PARTO') {
+          status.PARTO = status.PARTO + 1
+        } 
+      });
+      var configGado = {
+        type: 'pie',
+        data: {
+          datasets: [{
+              data: [
+                status.Ativo,
+                status.Inativo,
+                status.PODEGRAVIDA,
+                status.GRAVIDA,
+                status.PRODUCAO,
+                status.PARTO
+              ],
+              backgroundColor: [
+                '#989a9e',
+                '#ea5a48',
+                '#57c5e0',
+                '#ffb33a',
+                '#00ca6d',
+                '#e88888',
+              ],
+              label: 'Dataset 1'
+          }],
+          labels: [
+            "Somente Ativo",
+            "Inativo",
+            "Pode engravidar",
+            "Gravida",
+            "Produzindo",
+            "Proximo ao parto"
+          ]
+        },
+        options: {
+            responsive: true
+        }
+      };
+
+      var ctx = document.getElementById("chart-gado").getContext("2d");
+      window.myPie = new Chart(ctx, configGado);
+
       $('#quantidadeGado').html(data.length);
       const inativo = data.filter(elem => {
         if (elem.status === 'inativo') {
@@ -86,6 +186,32 @@
         $('#box-profit').removeClass('bg-aqua');
         $('#box-profit').addClass('bg-red');
       }
+
+      var config = {
+        type: 'pie',
+        data: {
+          datasets: [{
+              data: [
+                inputMoney,
+                outputMoney
+              ],
+              backgroundColor: [
+                '#00ca6d',
+                '#ea5a48'
+              ],
+              label: 'Dataset 1'
+          }],
+          labels: [
+            "Entrada",
+            "Saida",
+          ]
+        },
+        options: {
+            responsive: true
+        }
+      };
+    var ctx = document.getElementById("chart-area").getContext("2d");
+    window.myPie = new Chart(ctx, config);
     });
 
     $.get("/readGado", data => {
@@ -111,6 +237,62 @@
         });
         let valor = countLeite - countLeiteNegativo;      
         $('#countLeite  ').html('' + valor);
+      });
+    });
+
+    $.get("/readOrdenha", data => {
+      const brincos = [];
+      
+      data.forEach(elem => {
+        let aux = true;
+        brincos.forEach(nmr =>{
+          if (nmr === elem.brinco)  {
+            aux = false;
+          }  
+        })
+        if (aux === true) {
+          brincos.push(elem.brinco)
+        }
+      });
+      const gados = {};
+      data.forEach((elem, index) => {
+        if (elem.brinco === brincos[index]) {
+          gados[brincos[index]] += elem.litrosleite 
+        }
+      })
+
+      console.log(gados)
+
+      var barChartData = {
+        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        datasets: [{
+          label: 'Litros de Leite',
+          backgroundColor: '#00ca6d',
+          borderWidth: 1,
+          data: [
+              2,
+              2,
+              2,
+              2,
+              2,
+              2
+          ]
+        }]
+      };
+      var ctx = document.getElementById("canvas").getContext("2d");
+      window.myBar = new Chart(ctx, {
+        type: 'bar',
+        data: barChartData,
+        options: {
+          responsive: true,
+          legend: {
+              position: 'top',
+          },
+          title: {
+              display: true,
+              text: 'Top Vacas fazenda'
+          }
+        }
       });
     });
   });
