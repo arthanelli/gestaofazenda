@@ -28,7 +28,7 @@ module.exports = {
             client.query('INSERT INTO usuarios(codUsuario , nome, idade, sexo, dataNascimento, endereco, usuario, senha, nivelPermissao) values($1, $2, $3, $4, $5, $6, $7, $8, $9)',
             [data.codUsuario , data.nome, data.idade, data.sexo, data.dataNascimento, data.endereco, data.usuario, data.senha, data.nivelPermissao]);
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM insumos ORDER BY id ASC');
+            var query = client.query('SELECT * FROM usuarios ORDER BY id ASC');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);

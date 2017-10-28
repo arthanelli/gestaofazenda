@@ -1,0 +1,51 @@
+  <div class="wrapperLogin">
+
+    <form class="form-signin">      
+
+      <h2 class="form-signin-heading">Please login</h2>
+
+      <input type="text" class="form-control" id="usuario" name="username" placeholder="Email Address" required="" autofocus="" />
+
+      <input type="password" class="form-control" id="senha" name="password" placeholder="Password" required=""/>     
+
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" id="btnSalvar" type="submit">Login</button>   
+    </form>
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Login ou senha inválidos</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechr</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  {{#extend "js"}}
+<script>
+
+  $('#btnSalvar').on('click', () =>{
+  	let usuario = $('#usuario').val();
+  	let senha = $('#senha').val();
+
+    $.get("/readUsuario", data => {
+      data.forEach(elem => {
+        	if (usuario !== elem.usuario || senha !== elem.senha ) {
+        		$('#myModal').modal('show');
+        		console.log('teste');
+        		}
+           });  
+    	});
+  	});
+
+</script>
+{{/extend}}
