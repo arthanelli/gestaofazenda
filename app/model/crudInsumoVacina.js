@@ -31,6 +31,22 @@ module.exports = {
             // SQL Query > Insert Data
             client.query('INSERT INTO estoquevacinas(nome, preco, fornecedor, descricao, quantidade, dataDeValidade, indicacao, prescricao, diasDeCarencia, unidadeMedida, modoDeUso) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
             [data.nome, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade, data.indicacao, data.prescricao, data.diasDeCarencia, data.unidadeMedida, data.modoDeUso]);
+
+            const valorUnidade = data.preco;
+            const quantidade = data.quantidade;
+            let valorTotal = valorUnidade * quantidade;
+            valorTotal = valorTotal.toFixed(2);
+
+            let dateString = "";
+            let dataLancamento = new Date();
+            //Vamos pegar dia, mê e ano.
+            dateString += dataLancamento.getDate() + "/";
+            dateString += (dataLancamento.getMonth() + 1) + "/";
+            dateString += dataLancamento.getFullYear();
+
+            client.query('INSERT INTO transacoes(valor, tipo, descricao, data) values($1, $2, $3, $4)',
+            [valorTotal, 'DESPESAS', 'Compra de Vacina - ' + data.nome, dateString])
+
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM estoquevacinas ORDER BY id ASC');
             // Stream results back one row at a time

@@ -98,7 +98,7 @@
         table.push(`<tr role="row item-edit" data-id="${elem.id}" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
       }); 
       const profit = inputMoney - outputMoney;
-      htmlInsert(profit, inputMoney, outputMoney);
+      htmlInsert(profit.toFixed(2), inputMoney.toFixed(2), outputMoney.toFixed(2));
       setTable(table);
     });
     
