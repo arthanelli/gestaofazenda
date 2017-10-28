@@ -1,5 +1,6 @@
-const vacinas = require('../model/vacinarGado');
-const usuario = require('../model/crudUsuario');
+const i = require('../model/crudInsumo');
+const t = require('../model/transacoes');
+const o = require('../model/ordenha');
 
 function getDatas(data) {
   const obj = {};
@@ -14,21 +15,33 @@ module.exports = {
   path: '/relatorio/{page}',
   handler: function(request, reply) {
     const page = request.params.page;
-    usuario.read(infos => {
-      const data = {
-        titlePDF: 'Relatório de Usuários do sistema',
-        header: ['ID', 'Nome', 'Idade', 'Sexo', 'Data de nascimento', 'Endereço', 'Usuário', 'Senha', 'Nível de permissão'],
-        dados: getDatas(infos),
-      }
-      return reply.view('relatorio', data);      
-    });
-    // crudInsumoVacina.read(function(array){
-    //   var data = {
-    //     titlePage: 'Consultar estoque de vacinas',
-    //     title: 'Vacinas',
-    //     dados: array
-    //   };
-    //   return reply.view('consultarInsumoVacina', data);
-    // });
+    if (page === "transacoes") {
+      t.read(infos => {
+        const data = {
+          titlePDF: 'Relatório do financeiro no sistema',
+          header: ['Id', 'Valor', 'Tipo', 'Descrição', 'Data'],
+          dados: getDatas(infos),
+        }
+        return reply.view('relatorio', data);      
+      });
+    } else if (page === "ordenha") {
+      o.read(infos => {
+        const data = {
+          titlePDF: 'Relatório do ordenha no sistema',
+          header: ['Id', 'Brinco', 'Nome', 'Litros de leite', 'Data'],
+          dados: getDatas(infos),
+        }
+        return reply.view('relatorio', data);      
+      });
+    } else if (page === "estoque") {
+      i.read(infos => {
+        const data = {
+          titlePDF: 'Relatório do ordenha no sistema',
+          header: ['Id', 'Nome', 'Preço', 'Fornecedor', 'Descrição', 'Quantidade', 'Data de validade', 'Tipo'],
+          dados: getDatas(infos),
+        }
+        return reply.view('relatorio', data);      
+      });
+    }
   }
 }

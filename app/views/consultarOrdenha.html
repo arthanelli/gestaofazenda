@@ -10,13 +10,12 @@
   </div>
   <a href="/cadastrarOrdenha"><span class="info-box-icon bg-green"><i class="fa fa-plus" aria-hidden="true"></i></span></a>
   <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="form-group">  
-      <div class="input-group date">
-        <div class="input-group-addon">
-          <i class="fa fa-calendar"></i>
-        </div>
-        <input name="consulta" id="txt_consultaData" placeholder="DD/MM/AAAA" type="text" class="form-control">
-      </div>  
+    <div class="info-box" id="gerar-relatorio">
+      <span class="info-box-icon bg-orange"><i class="fa fa-shopping-cart"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Relatório</span>
+        <span class="info-box-number" id="outputMoney">Ordenha</span>
+      </div>
     </div>
   </div>
 </div>
@@ -84,6 +83,9 @@
         let valor = countLeite - countLeiteNegativo;      
         htmlInsert(valor);
       });
+    });
+    $('#gerar-relatorio').on('click', () =>{
+      location.href = '/relatorio/transacoes'
     });
   });
 
