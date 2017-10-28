@@ -27,6 +27,22 @@ module.exports = {
             // SQL Query > Insert Data
             client.query('INSERT INTO insumos(nome, tipo, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6, $7)',
             [data.nome, data.tipo, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade]);
+
+            const valorUnidade = data.preco;
+            const quantidade = data.quantidade;
+            let valorTotal = valorUnidade * quantidade;
+            valorTotal = valorTotal.toFixed(2);
+
+            let dateString = "";
+            let dataLancamento = new Date();
+            //Vamos pegar dia, mê e ano.
+            dateString += dataLancamento.getDate() + "/";
+            dateString += (dataLancamento.getMonth() + 1) + "/";
+            dateString += dataLancamento.getFullYear();
+
+            client.query('INSERT INTO transacoes(valor, tipo, descricao, data) values($1, $2, $3, $4)',
+            [valorTotal, 'DESPESAS', 'Compra de Insumo - ' + data.nome, dateString])
+
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM insumos ORDER BY id ASC');
             // Stream results back one row at a time
