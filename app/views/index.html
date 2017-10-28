@@ -96,7 +96,7 @@
     </div>
   </div>
 </div>
-<canvas id="canvas" width="1001" height="500" class="chartjs-render-monitor" style="display: block; width: 1001px; height: 500px;"></canvas>
+<!-- <canvas id="canvas" width="1001" height="500" class="chartjs-render-monitor" style="display: block; width: 1001px; height: 500px;"></canvas> -->
 
 {{#extend "js"}}
 <script>
@@ -261,39 +261,39 @@
         }
       })
 
-      console.log(gados)
+    //   console.log(gados)
 
-      var barChartData = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [{
-          label: 'Litros de Leite',
-          backgroundColor: '#00ca6d',
-          borderWidth: 1,
-          data: [
-              2,
-              2,
-              2,
-              2,
-              2,
-              2
-          ]
-        }]
-      };
-      var ctx = document.getElementById("canvas").getContext("2d");
-      window.myBar = new Chart(ctx, {
-        type: 'bar',
-        data: barChartData,
-        options: {
-          responsive: true,
-          legend: {
-              position: 'top',
-          },
-          title: {
-              display: true,
-              text: 'Top Vacas fazenda'
-          }
-        }
-      });
+    //   var barChartData = {
+    //     labels: ["January", "February", "March", "April", "May", "June", "July"],
+    //     datasets: [{
+    //       label: 'Litros de Leite',
+    //       backgroundColor: '#00ca6d',
+    //       borderWidth: 1,
+    //       data: [
+    //           2,
+    //           2,
+    //           2,
+    //           2,
+    //           2,
+    //           2
+    //       ]
+    //     }]
+    //   };
+    //   var ctx = document.getElementById("canvas").getContext("2d");
+    //   window.myBar = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: barChartData,
+    //     options: {
+    //       responsive: true,
+    //       legend: {
+    //           position: 'top',
+    //       },
+    //       title: {
+    //           display: true,
+    //           text: 'Top Vacas fazenda'
+    //       }
+    //     }
+    //   });
     });
   });
 </script>
