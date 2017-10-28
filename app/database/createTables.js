@@ -17,7 +17,8 @@ const createTables = 'CREATE TABLE terreno(id SERIAL PRIMARY KEY, latidude decim
                      'CREATE TABLE pedido(id SERIAL PRIMARY KEY, codigoComprador integer REFERENCES comprador (id), quantidadeLitros decimal, data VARCHAR(10), valor decimal, dataVencimento VARCHAR(10), descricao VARCHAR(200), parcelamento boolean, quantParcelamento integer);' +
                      'CREATE TABLE transacoes(id SERIAL PRIMARY KEY, valor decimal, tipo VARCHAR(10), descricao VARCHAR(100), data VARCHAR(25));' +
                      'CREATE TABLE vacinasrealizadas(id SERIAL PRIMARY KEY, codGado integer REFERENCES gado (brinco), codVacina integer REFERENCES estoqueVacinas (id), nomeGado VARCHAR(200), nomeVacina VARCHAR(200), dataDeVacina VARCHAR(10), nomeresponsavel VARCHAR(200), observacoes VARCHAR(400));' +
-                     'CREATE TABLE alimentacao(id SERIAL PRIMARY KEY, codGado integer REFERENCES gado (brinco), codAlimento integer REFERENCES insumos (id), codSuplemento integer REFERENCES insumos (id), nomeGado VARCHAR(200), nomeAlimento VARCHAR(200), quantidadeAlimento VARCHAR(200), nomeSuplemento VARCHAR(200), quantidadeSuplemento VARCHAR(200));';
+                     'CREATE TABLE alimentacao(id SERIAL PRIMARY KEY, codGado integer REFERENCES gado (brinco), codAlimento integer REFERENCES insumos (id), codSuplemento integer REFERENCES insumos (id), nomeGado VARCHAR(200), nomeAlimento VARCHAR(200), quantidadeAlimento VARCHAR(200), nomeSuplemento VARCHAR(200), quantidadeSuplemento VARCHAR(200));' +
+                     'CREATE TABLE reproducao(id SERIAL PRIMARY KEY, brinco integer REFERENCES gado (brinco), dataCil VARCHAR(10), tipoReproducao VARCHAR(30), brincoBoi VARCHAR(30), numArtificial VARCHAR(30), qtdTentaiva VARCHAR(30), observacao VARCHAR(100));';
 
 const client = new pg.Client(acessos.config);
 

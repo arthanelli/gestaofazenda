@@ -2,6 +2,7 @@ const crudGado = require('../model/crudGado.js');
 const ordenha = require('../model/ordenha.js');
 const vacina = require('../model/vacinarGado.js');
 const alimento = require('../model/alimentarGado.js');
+const reproducao = require('../model/reproducao.js');
 const estoquevacina = require('../model/crudInsumoVacina.js');
 const estoque = require('../model/crudInsumo.js');
 
@@ -181,8 +182,97 @@ module.exports = [
 		path: '/deletarOrdenha/{id}',
 		handler: function(request, reply){
 			console.log(request.params.id);
-			crudGado.del(request.params.id);
+			ordenha.del(request.params.id);
 			reply.redirect('../consultarOrdenha');
+		}
+	},
+
+		//ROTAS DA REPRODUCAO
+		{
+		method: 'GET',
+		path: '/readReproducao',		
+		handler: function(request, reply) {
+			reproducao.read(function(array){
+				return reply(array);
+			});
+		}
+	},
+	{
+		method: 'GET',
+			path: '/cadastrarReproducao',
+			handler: function(request, reply) {
+				var data = {
+						title: 'Ordenha Gado',
+				};
+				return reply.view('cadastrarReproducao', data);
+			}
+	},
+	{
+		method: 'POST',
+		path: '/insertReproducao',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				reproducao.insert(request.payload);
+				reply.redirect('consultarReproducao');
+			}
+		}
+	},
+	{
+		method: 'GET',
+			path: '/consultarReproducao',
+			handler: function(request, reply) {
+				reproducao.read(function(array){
+					var data = {
+						titlePage: 'Consultar Reproducao',
+						title: 'Consultar Reproducao',
+						dados: array
+					};
+					return reply.view('consultarReproducao', data);
+				});
+			}
+	},	{
+		method: 'GET',
+		path: '/alterarReproducao/{id}',
+		handler: function (request, reply) {
+				reproducao.returnChange(request.params.id, function(array){
+					var data = {
+						pageName : 'alterarReproducao',
+						titlePage: 'Alterar dados da Reproducao',
+						title: 'Alterar Reproducao',
+						dados: array
+					};
+					return reply.view('alterarReproducao', data);
+				});			
+		}
+	},
+	{
+		method: 'POST',
+		path: '/alterarDadosReproducao',
+		config: {
+			payload: {
+				output: 'data',
+				parse: true
+			},
+			handler: function(request, reply){
+				reproducao.change(request.payload, function(erro){
+					if(!erro){
+						reply.redirect('consultarReproducao');
+					}
+				});
+			}
+		}
+	},
+	{
+		method: 'GET',
+		path: '/deletarReproducao/{id}',
+		handler: function(request, reply){
+			console.log(request.params.id);
+			reproducao.del(request.params.id);
+			reply.redirect('../consultarReproducao');
 		}
 	},
 
