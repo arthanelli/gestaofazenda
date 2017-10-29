@@ -2,7 +2,6 @@
 	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
 	<a id="button-alterar" class="button basic">Voltar</a>
     <a data-path="../deletarReproducao" id="button-deletar-reproducao" class="button danger">Deletar</a>
-	<a id="button-alterar" class="button info">Alterar</a>
 </div>
 
 <div class="container-form">
@@ -17,20 +16,21 @@
 			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
 		</div>
 		<div class="forms-campo">
-			<label for="datacil" class="form-label">Data do ultimo cil *</label> 
-			<input type="text" class="form-text" id="datacil" name="datacil" value="{{datacil}}" required>
+			<label for="datacio" class="form-label">Data do ultimo cio *</label> 
+			<input type="text" class="form-text" id="datacio" name="datacio" value="{{datacio}}" required>
 		</div>
 		<div class="form-group">
+				<input type="hidden" name="tipoReproducaoAtual" id="tipoReproducaoAtual" value="{{tiporeproducao}}">
 				<label>Tipo de reprodução *</label>
 				<div class="radio">
 					<label>
-						<input type="radio" name="tipoReproducao" id="tiporepOption" value="Inseminacao" checked="">
+						<input type="radio" name="tiporeproducao" id="tiporepOptionIns" value="Inseminação" checked="">
 						Inseminação Artificial
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" class="tipoOptionTrue" name="tipoReproducao" id="tiporepOption" value="Montada">
+						<input type="radio" class="tipoOptionTrue" name="tiporeproducao" id="tiporepOptionMon" value="Montada">
 						Montada
 					</label>
 				</div>
@@ -50,13 +50,8 @@
 
 			<div class="form-group">
 				<label for="observacao" class="form-label">Observação *</label>
-				<input type="text" class="form-text" id="observacao" name="observacao" value="{{observacao}}">
+				<textarea type="text" class="form-text" id="observacao" name="observacao">{{observacao}}</textarea>
 			</div>
-
-        <div class="forms-campo">
-			<label for="data" class="form-label">Data de ordenha *</label>
-			<input type="text" class="form-text" id="data" name="data" value="{{data}}" required>
-		</div>
         {{/each}}
 		<hr>
 		<input type="submit" value="Salvar" class="button sucess">
@@ -66,8 +61,23 @@
 
 {{#extend "js"}}
 	<script>
+		$(document).ready(function () {
+			const tipoReproducao = $("#tipoReproducaoAtual").val();
+			console.log(tipoReproducao);
+			if(tipoReproducao == 'Montada'){
+				document.getElementById("tiporepOptionMon").checked = true;
+				$("#montada").css('display', 'block');
+				$("#inseminacao").css('display', 'none');
+				$("#inseminacao1").css('display', 'none');
+			}
+			else if(tipoReproducao == 'Inseminação'){
+				document.getElementById("tiporepOptionIns").checked = true;
+				$("#montada").css('display', 'none');
+				$("#inseminacao").css('display', 'block');
+				$("#inseminacao1").css('display', 'block');
+			}
 
-		$('input[type="radio"]').click(function(){
+			$('input[type="radio"]').click(function(){
 			if ($(this).val() === 'Montada'){
 				$("#montada").css('display', 'block');
 				$("#inseminacao").css('display', 'none');
@@ -80,16 +90,15 @@
 				$("#inseminacao1").css('display', 'block');
 			}
 		});
-
-		$(document).ready(function () {
-				$("#data").mask("99/99/9999");
+			
+			$("#datacio").mask("99/99/9999");
 		});
 
-		$("#button-deletar-ordenha").click( function(event) {
+		$("#button-deletar-reproducao").click( function(event) {
 			var apagar = confirm('Deseja realmente excluir este registro?');
 			if (apagar){
 				var pathEdit = $(this).attr('data-path');
-				var id = $('#brinco').val();
+				var id = $('#id').val();
 				location.href = pathEdit+'/'+id;
 			}else{
 				event.preventDefault();

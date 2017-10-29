@@ -6,13 +6,14 @@ const config = acessos.config;
 
 module.exports = {
   insert: arrayData => {
+
     pg.connect(config, (err, client, done) => {
       if(err) {
         done();
         console.log(err);
       }
-      const query = client.query('INSERT INTO reproducao(brinco, dataCil, tipoReproducao, brincoBoi, numArtificial, qtdTentaiva, observacao) values($1, $2, $3, $4, $5, $6, $7)',
-      [arrayData.brinco, arrayData.dataCil, arrayData.tipoReproducao, arrayData.brincoBoi, arrayData.numArtificial, arrayData.qtdTentaiva, arrayData.observacao]);
+      const query = client.query('INSERT INTO reproducao(brinco, datacio, tiporeproducao, brincoboi, numartificial, qtdtentativa, observacao) values($1, $2, $3, $4, $5, $6, $7)',
+      [arrayData.brinco, arrayData.datacio, arrayData.tiporeproducao, arrayData.brincoboi, arrayData.numartificial, arrayData.qtdtentativa, arrayData.observacao]);
 
       query.on('end', () => {
           done();
@@ -26,7 +27,7 @@ module.exports = {
             done();
             console.log(err);
         }
-        var query = client.query('Select rep.id, rep.brinco, gad.nome, rep.dataCil, rep.tipoReproducao, rep.brincoBoi, rep.numArtificial, rep.qtdTentaiva, rep.observacao from reproducao rep join gado gad on rep.brinco = gad.brinco;');
+        var query = client.query('Select rep.id, rep.brinco, gad.nome, rep.dataCio, rep.tipoReproducao, rep.brincoBoi, rep.numArtificial, rep.qtdTentativa, rep.observacao from reproducao rep join gado gad on rep.brinco = gad.brinco;');
         query.on('row', (row) => {
             results.push(row);
         });
@@ -79,11 +80,11 @@ module.exports = {
         var data = {
           id: arrayData.id,
           brinco: arrayData.brinco,
-          dataCil: arrayData.dataCil, 
-          tipoReproducao: arrayData.tipoReproducao,
-          brincoBoi: arrayData.brincoBoi,
-          numArtificial: arrayData.numArtificial,
-          qtdTentaiva: arrayData.qtdTentaiva, 
+          datacio: arrayData.datacio, 
+          tiporeproducao: arrayData.tiporeproducao,
+          brincoboi: arrayData.brincoboi,
+          numartificial: arrayData.numartificial,
+          qtdtentativa: arrayData.qtdtentativa, 
           observacao: arrayData.observacao
         };        
         pg.connect(config, (err, client, done) => {
@@ -98,8 +99,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE reproducao SET brinco=($1), dataCil=($2), tipoReproducao=($3), brincoBoi=($4), numArtificial=($5), qtdTentaiva=($6), observacao=($7) WHERE id=($8)',
-            [data.brinco, data.dataCil, data.tipoReproducao, data.brincoBoi, data.numArtificial, data.qtdTentaiva, data.observacao, data.id]);
+            client.query('UPDATE reproducao SET brinco=($1), datacio=($2), tiporeproducao=($3), brincoboi=($4), numartificial=($5), qtdtentativa=($6), observacao=($7) WHERE id=($8)',
+            [data.brinco, data.datacio, data.tiporeproducao, data.brincoboi, data.numartificial, data.qtdtentativa, data.observacao, data.id]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM reproducao ORDER BY id ASC");
             // Stream results back one row at a time

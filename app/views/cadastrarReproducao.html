@@ -16,7 +16,7 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<input type="text" class="form-control pull-right" id="datepicker" name="dataCil" required="">
+					<input type="text" class="form-control pull-right" id="datepicker" name="datacio" required="">
 				</div>
 			</div>
 
@@ -24,33 +24,32 @@
 				<label>Tipo de reprodução *</label>
 				<div class="radio">
 					<label>
-						<input type="radio" name="tipoReproducao" id="tiporepOption" value="Inseminacao">
+						<input type="radio" name="tiporeproducao" id="tiporepOption" value="Inseminação">
 						Inseminação Artificial
 					</label>
 				</div>
 				<div class="radio">
 					<label>
-						<input type="radio" class="tipoOptionTrue" name="tipoReproducao" id="tiporepOption" value="Montada">
+						<input type="radio" class="tipoOptionTrue" name="tiporeproducao" id="tiporepOption" value="Montada">
 						Montada
 					</label>
 				</div>
 			</div>
 			<div class="form-group" id="montada" style="display:none">
 				<label>Brinco do boi *</label>
-				<input type="text" class="form-control" name="brincoBoi">
+				<input type="text" class="form-control" name="brincoboi">
 			</div>
 			<div class="form-group" id="inseminacao" style="display:none;">
 				<label>Numero da inseminação artificial *</label>
-				<input type="text" class="form-control" name="numArtificial" >
+				<input type="number" class="form-control" name="numartificial" >
 			</div>
 			<div class="form-group" id="inseminacao1" style="display:none">
 				<label>Numero de tentativas de inseminação *</label>
-				<input type="text" class="form-control" name="qtdTentaiva" >
+				<input type="number" class="form-control" name="qtdtentativa" >
 			</div>
-
 			<div class="form-group">
 				<label>Observação *</label>
-				<input type="text" class="form-control" name="observacao">
+				<textarea type="text" class="form-control" name="observacao" rows="3"></textarea>
 			</div>
 			<hr>
 			<input type="submit" name="Cadastrar" class="button sucess">
@@ -82,7 +81,7 @@
 			$.get("/readGado", data => {
 				let option = []
 				data.forEach(gado => {
-					option.push(`<option name="binco" value="${gado.brinco}">${gado.brinco} - ${gado.nome}</option>"`)
+					option.push(`<option name="brinco" value="${gado.brinco}">${gado.brinco} - ${gado.nome}</option>"`)
 				});
 				$("#select-animal").append(option)
 				console.log(option)
