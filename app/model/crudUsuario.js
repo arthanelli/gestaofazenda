@@ -8,7 +8,7 @@ module.exports = {
         var results = [];
         // Grab data from http request
         var data = {
-        	codUsuario: arrayData.codUsuario,
+        	idusuario: arrayData.idusuario,
             nome: arrayData.nome,
         	idade: arrayData.idade, 
             sexo: arrayData.sexo,
@@ -16,7 +16,6 @@ module.exports = {
         	endereco: arrayData.endereco, 
             nivelPermissao: arrayData.nivelPermissao
         };
-        // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
             if(err) {
@@ -25,8 +24,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO usuarios(codUsuario , nome, idade, sexo, dataNascimento, endereco, usuario, senha, nivelPermissao) values($1, $2, $3, $4, $5, $6, $7, $8, $9)',
-            [data.codUsuario , data.nome, data.idade, data.sexo, data.dataNascimento, data.endereco, data.usuario, data.senha, data.nivelPermissao]);
+            client.query('INSERT INTO usuarios(nome, idade, sexo, dataNascimento, endereco, usuario, senha, nivelPermissao) values($1, $2, $3, $4, $5, $6, $7, $8)',
+            [data.nome, data.idade, data.sexo, data.dataNascimento, data.endereco, data.usuario, data.senha, data.nivelPermissao]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM usuarios ORDER BY id ASC');
             // Stream results back one row at a time
@@ -55,11 +54,12 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM usuarios ORDER BY codUsuario ASC;');
+            var query = client.query('SELECT * FROM usuarios ORDER BY id ASC;');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
             });
+        // Get a Postgres client from the connecti
             // After all data is returned, close connection and return results
             query.on('end', () => {
                 done();
@@ -70,10 +70,10 @@ module.exports = {
             });
         });
     },
-    returnChange : function(codUsuario, callback) {
+    returnChange : function(idusuario, callback) {
         var results = [];
         data = {
-            codUsuario : codUsuario
+            idusuario : idusuario
         }
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
@@ -85,7 +85,7 @@ module.exports = {
             }
             
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM usuarios WHERE codusuario = $1', [data.codUsuario]);
+            var query = client.query('SELECT * FROM usuarios WHERE id = $1', [data.idusuario]);
             
             // Stream results back one row at a time
             query.on('row', (row) => {
@@ -106,12 +106,12 @@ module.exports = {
         var results = [];
 
         // Grab data from the URL parameters
-        var codUsuario = arrayData.codUsuario;
+        var idusuario = arrayData.idusuario;
         var erro = false;
 
         // Grab data from the URL parameters
         var data = {
-        	codUsuario: arrayData.codUsuario,
+        	idusuario: arrayData.usuario,
             nome: arrayData.nome,
         	idade: arrayData.idade,
             sexo: arrayData.sexo,
@@ -133,10 +133,10 @@ module.exports = {
                 }
             }
             // SQL Query > Update Data
-            client.query('UPDATE usuarios SET nome=($1), idade=($2), sexo=($3), datanascimento=($4), endereco=($5), usuario=($6), senha=($7), nivelPermissao=($8) WHERE codUsuario=($9)',
-            [data.nome, data.idade, data.sexo, data.dataNascimento, data.endereco, data.usuario, data.senha, data.nivelPermissao, codUsuario]);
+            client.query('UPDATE usuarios SET nome=($1), idade=($2), sexo=($3), datanascimento=($4), endereco=($5), usuario=($6), senha=($7), nivelPermissao=($8) WHERE id=($9)',
+            [data.nome, data.idade, data.sexo, data.dataNascimento, data.endereco, data.usuario, data.senha, data.nivelPermissao, idusuario]);
             // SQL Query > Select Data
-            var query = client.query("SELECT * FROM usuarios ORDER BY codUsuario ASC");
+            var query = client.query("SELECT * FROM usuarios ORDER BY id ASC");
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
@@ -152,7 +152,7 @@ module.exports = {
             });
         });
     },
-    del : function(codUsuario) {
+    del : function(idusuario) {
         var results = [];
         // Grab data from the URL parameters
         // Get a Postgres client from the connection pool
@@ -164,9 +164,9 @@ module.exports = {
                // return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Delete Data
-            client.query('DELETE FROM usuarios WHERE codUsuario=($1)', [codUsuario]);
+            client.query('DELETE FROM usuarios WHERE id=($1)', [idusuario]);
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM usuarios ORDER BY codUsuario ASC');
+            var query = client.query('SELECT * FROM usuarios ORDER BY id ASC');
             // Stream results back one row at a time
             query.on('row', (row) => {
                 results.push(row);
@@ -177,5 +177,5 @@ module.exports = {
                 //return res.json(results);
             });
         });
-    }
+    },
 }

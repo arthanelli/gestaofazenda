@@ -2,14 +2,14 @@
 
     <form class="form-signin">      
 
-      <h2 class="form-signin-heading">Please login</h2>
+      <h2 class="form-signin-heading">Login</h2>
 
-      <input type="text" class="form-control" id="usuario" name="username" placeholder="Email Address" required="" autofocus="" />
+      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required autofocus />
 
-      <input type="password" class="form-control" id="senha" name="password" placeholder="Password" required=""/>     
+      <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required/>     
 
       <label class="checkbox">
-        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Lembrar-me
       </label>
       <button class="btn btn-lg btn-primary btn-block" id="btnSalvar" type="submit">Login</button>   
     </form>
@@ -24,7 +24,7 @@
         <h4 class="modal-title">Login ou senha inválidos</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechr</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
@@ -34,16 +34,31 @@
 <script>
 
   $('#btnSalvar').on('click', () =>{
-  	let usuario = $('#usuario').val();
-  	let senha = $('#senha').val();
 
+      let usuario = $('#usuario').val();
+      console.log(usuario);
+      let senha = $('#senha').val();
+      console.log(senha);
+
+      $.get("/readUsuario", data => {
+        data.forEach(elem => {
+            if(elem.usuario === usuario) {
+              if (elem.senha === senha) {
+                alert('TA DENTRO MLK');
+                window.location.replace('/home');
+              }
+            }
+            else{
+                $('#myModal').modal('show');
+            }
+        });  
+      });
+    });
+    
     $.get("/readUsuario", data => {
       data.forEach(elem => {
-        	if (usuario !== elem.usuario || senha !== elem.senha ) {
-        		$('#myModal').modal('show');
-        		console.log('teste');
-        		}
-           });  
+
+
     	});
   	});
 
