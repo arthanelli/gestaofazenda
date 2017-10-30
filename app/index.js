@@ -58,6 +58,16 @@ server.register([require('vision'), Inert], (err) => {
 		}
 	});
 
+	server.route({  
+		method: 'GET',
+		path: '/icons/{file*}',
+		handler: {
+			directory: { 
+				path: './icons/'
+			}
+		}
+	});
+
 	server.views({  
 		engines: {
         html: extend(handlebars)
