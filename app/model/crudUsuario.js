@@ -8,6 +8,7 @@ module.exports = {
         var results = [];
         // Grab data from http request
         var data = {
+        	idusuario: arrayData.idusuario,
             nome: arrayData.nome,
         	idade: arrayData.idade, 
             sexo: arrayData.sexo,
@@ -17,7 +18,6 @@ module.exports = {
             senha: arrayData.senha,
             nivelPermissao: arrayData.nivelPermissao
         };
-        // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
             // Handle connection errors
             if(err) {
@@ -61,6 +61,7 @@ module.exports = {
             query.on('row', (row) => {
                 results.push(row);
             });
+        // Get a Postgres client from the connecti
             // After all data is returned, close connection and return results
             query.on('end', () => {
                 done();
@@ -71,10 +72,10 @@ module.exports = {
             });
         });
     },
-    returnChange : function(id, callback) {
+    returnChange : function(idusuario, callback) {
         var results = [];
         data = {
-            id : id
+            idusuario : idusuario
         }
         // Get a Postgres client from the connection pool
         pg.connect(config, (err, client, done) => {
@@ -86,7 +87,7 @@ module.exports = {
             }
             
             // SQL Query > Select Data
-            var query = client.query('SELECT * FROM usuarios WHERE id = $1', [data.id]);
+            var query = client.query('SELECT * FROM usuarios WHERE id = $1', [data.idusuario]);
             
             // Stream results back one row at a time
             query.on('row', (row) => {
@@ -112,6 +113,7 @@ module.exports = {
 
         // Grab data from the URL parameters
         var data = {
+        	idusuario: arrayData.usuario,
             nome: arrayData.nome,
         	idade: arrayData.idade,
             sexo: arrayData.sexo,
@@ -177,5 +179,5 @@ module.exports = {
                 //return res.json(results);
             });
         });
-    }
+    },
 }

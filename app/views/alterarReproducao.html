@@ -1,0 +1,108 @@
+<div class="detail-top">
+	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
+	<a id="button-alterar" class="button basic">Voltar</a>
+    <a data-path="../deletarReproducao" id="button-deletar-reproducao" class="button danger">Deletar</a>
+</div>
+
+<div class="container-form">
+	<h2 class="title-form">Preencha todas informações abaixo:</h2>
+	<form action="/alterarDadosReproducao" method="POST" class="form-style">
+		<div class="forms-campo">
+			<label for="id" class="form-label">Id *</label>
+			<input type="text" class="form-text campo-bloqueado" id="id" name="id" value="{{id}}" required readonly>
+		</div>
+		<div class="forms-campo">
+			<label for="brinco" class="form-label">Brinco *</label>
+			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
+		</div>
+		<div class="forms-campo">
+			<label for="datacio" class="form-label">Data do ultimo cio *</label> 
+			<input type="text" class="form-text" id="datacio" name="datacio" value="{{datacio}}" required>
+		</div>
+		<div class="form-group">
+				<input type="hidden" name="tipoReproducaoAtual" id="tipoReproducaoAtual" value="{{tiporeproducao}}">
+				<label>Tipo de reprodução *</label>
+				<div class="radio">
+					<label>
+						<input type="radio" name="tiporeproducao" id="tiporepOptionIns" value="Inseminação" checked="">
+						Inseminação Artificial
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" class="tipoOptionTrue" name="tiporeproducao" id="tiporepOptionMon" value="Montada">
+						Montada
+					</label>
+				</div>
+			</div>
+			<div class="form-group" id="montada" style="display:none">
+				<label for="brincoboi" class="form-label">Brinco do boi *</label>
+				<input type="text" class="form-text" id="brincoboi" name="brincoboi" value="{{brincoboi}}">
+			</div>
+			<div class="form-group" id="inseminacao" style="display:none;">
+				<label for="numartificial" class="form-label">Numero da inseminação artificial *</label>
+				<input type="text" class="form-text" id="numartificial" name="numartificial" value="{{numartificial}}" >
+			</div>
+			<div class="form-group" id="inseminacao1" style="display:none;">
+				<label for="qtdtentativa" class="form-label">Numero de tentativas de inseminação *</label>
+				<input type="text" class="form-text" id="qtdtentativa" name="qtdtentativa" value="{{qtdtentativa}}" >
+			</div>
+
+			<div class="form-group">
+				<label for="observacao" class="form-label">Observação *</label>
+				<textarea type="text" class="form-text" id="observacao" name="observacao">{{observacao}}</textarea>
+			</div>
+        {{/each}}
+		<hr>
+		<input type="submit" value="Salvar" class="button sucess">
+		<a class="button danger">Cancelar</a>
+	</form>
+</div>
+
+{{#extend "js"}}
+	<script>
+		$(document).ready(function () {
+			const tipoReproducao = $("#tipoReproducaoAtual").val();
+			console.log(tipoReproducao);
+			if(tipoReproducao == 'Montada'){
+				document.getElementById("tiporepOptionMon").checked = true;
+				$("#montada").css('display', 'block');
+				$("#inseminacao").css('display', 'none');
+				$("#inseminacao1").css('display', 'none');
+			}
+			else if(tipoReproducao == 'Inseminação'){
+				document.getElementById("tiporepOptionIns").checked = true;
+				$("#montada").css('display', 'none');
+				$("#inseminacao").css('display', 'block');
+				$("#inseminacao1").css('display', 'block');
+			}
+
+			$('input[type="radio"]').click(function(){
+			if ($(this).val() === 'Montada'){
+				$("#montada").css('display', 'block');
+				$("#inseminacao").css('display', 'none');
+				$("#inseminacao1").css('display', 'none');
+
+			}
+			else {
+				$("#montada").css('display', 'none');
+				$("#inseminacao").css('display', 'block');
+				$("#inseminacao1").css('display', 'block');
+			}
+		});
+			
+			$("#datacio").mask("99/99/9999");
+		});
+
+		$("#button-deletar-reproducao").click( function(event) {
+			var apagar = confirm('Deseja realmente excluir este registro?');
+			if (apagar){
+				var pathEdit = $(this).attr('data-path');
+				var id = $('#id').val();
+				location.href = pathEdit+'/'+id;
+			}else{
+				event.preventDefault();
+			}	
+	   });
+	</script>
+{{/extend}}

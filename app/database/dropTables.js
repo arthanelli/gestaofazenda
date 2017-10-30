@@ -1,7 +1,7 @@
 const acessos = require('./acessos.js')
 const pg = require('pg');
 
-const dropTables = 'DROP SCHEMA gestaofazenda CASCADE; CREATE SCHEMA gestaofazenda;'
+const dropTables = 'DROP table reproducao;'
 
 const client = new pg.Client(acessos.config);
 

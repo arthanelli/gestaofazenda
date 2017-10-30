@@ -10,11 +10,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu tree" data-widget="tree">
       <li class="header">Menu de navegação</li>
-      <li class="treeview menu-open">
-        <a href="/">
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-        </a>
-      </li>
+      
       <li>
         <a href="/consultarUsuario">
           <i class="fa fa-user-o"></i>
@@ -25,7 +21,12 @@
         <a href="/consultarGado">
           <i class="fa fa-github-alt"></i>
           <span>Gado</span>
-        </a>
+        </a>  
+        <ul class="treeview-menu">
+          <li><a href="/consultarGado"><i class="fa fa-circle-o text-aqua"></i>Animais</a></li>
+          <li><a href="/consultarOrdenha"><i class="fa fa-circle-o text-aqua"></i>Ordenha</a></li>
+          <li><a href="/consultarReproducao"><i class="fa fa-circle-o text-aqua"></i>Reproducao</a></li>         
+        </ul>
       </li>
       <li class="treeview">
         <a href="#">
