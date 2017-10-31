@@ -26,11 +26,13 @@ module.exports = [
 	{
 		method: 'GET',
 			path: '/cadastroGado',
-			handler: function(request, reply) {
-				var data = {
-						title: 'Cadastrar Gado',
-				};
-				return reply.view('cadastrarGado', data);
+			config: {
+				handler: function(request, reply) {
+					var data = {
+							title: 'Cadastrar Gado',
+					};
+					return reply.view('cadastrarGado', data);
+				}	
 			}
 	},
 	{

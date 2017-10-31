@@ -177,5 +177,42 @@ module.exports = {
                 //return res.json(results);
             });
         });
+    },
+    validate: (dados, callback) => {
+        // Get a Postgres client from the connection pool
+        pg.connect(config, (err, client, done) => {
+            const results = [];
+            // Handle connection errors
+            if(err) {
+                done();
+                console.log(err);
+                //return res.status(500).json({success: false, data: err});
+            }
+            
+            const query = client.query('SELECT * FROM "usuarios" WHERE "usuario" = $1', [dados.usuario]);        
+            query.on('row', (row) => {
+                results.push(row);
+            });
+
+            // After all data is returned, close connection and return results
+            query.on('end', () => {
+                done();
+                let senha = '';
+                
+                console.log(results[0])
+                
+                if(results.length > 0) {
+                    senha = results[0]['senha'];
+                }
+                //console.log(results);
+                if(callback != null) {
+                    if (senha === dados.senha) {
+                        callback({id: results[0]['id'], password: results[0]['senha'], name: results[0]['nome'], nivel: results[0]['nivelpermissao'] });
+                    } else {
+                        callback(false);
+                    }
+                }
+            });
+        });
     }
 }
