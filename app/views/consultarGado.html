@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-countGado">
-      <span class="info-box-icon bg-aqua"><img src="icons/gado.png"></span>
+      <span class="info-box-icon bg-aqua"><img src="icons/gado.png" id="img-cards-gado"></span>
       <div class="info-box-content">
         <span class="info-box-text">CABECAS DE GADO</span>
         <span class="info-box-number" id="countGado"></span>
@@ -10,7 +10,7 @@
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-activeGado">
-      <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></span>
+      <span class="info-box-icon bg-green"><img src="icons/gado.png" id="img-cards-gado"></span>
       <div class="info-box-content">
         <span class="info-box-text">GADO ATIVO</span>
         <span class="info-box-number" id="activeGado"></span>
@@ -19,18 +19,20 @@
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-inactiveGado">
-      <span class="info-box-icon bg-red"><i class="fa fa-hand-o-down" aria-hidden="true"></i></span>
+      <span class="info-box-icon bg-red"><img src="icons/gado-inativo.png" id="img-cards-gado"></span>
       <div class="info-box-content">
         <span class="info-box-text">GADO INATIVO</span>
         <span class="info-box-number" id="inactiveGado"></span>
       </div>
     </div>
   </div>
-  
-    <a href="/consultarOrdenha"><span class="info-box-icon bg-yellow"><i class="fa fa-get-pocket" aria-hidden="true"></i></span></a>
-  
-  <div class=" col-xs-1">
-    <a href="/consultarReproducao"><span class="info-box-icon bg-purple"><i class="fa fa-get-pocket" aria-hidden="true"></i></span></a>
+ 
+  <div class="col-xs-1">
+    <a href="/consultarOrdenha"><span class="info-box-icon bg-yellow"><img src="icons/ordenha-icon.png" id="img-cards-gado" title="Cadastrar Ordenha"></span></a>
+  </div>
+
+  <div class="col-xs-1">
+    <a href="/consultarReproducao"><span class="info-box-icon bg-purple"><img src="icons/reproducao-icon.png" id="img-cards-gado" title="Cadastrar Reprodução"></span></a>
   </div>    
 </div>
 
@@ -105,7 +107,7 @@
       let table = [];
       $.get("/readGado", data => {
         data.forEach(elem => {
-          table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
+          table.push(`<tr data-id="${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
         });
         setTable(table);
       });
@@ -115,7 +117,7 @@
       let table = [];
       $.get("/readGado", data => {
         data.forEach(elem => {
-          if (elem.status === 'Ativo') table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
+          if (elem.status === 'Ativo') table.push(`<tr data-id="${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
         });
         setTable(table);
       });
@@ -125,7 +127,7 @@
       let table = [];
       $.get("/readGado", data => {
         data.forEach(elem => {
-          if (elem.status === 'Inativo') table.push(`<tr data-id="/alterarGado/${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.dataNascimento}</td><td>${elem.peso}</td><td>${elem.lote}</td><td>${elem.status}</td></tr>`)
+          if (elem.status === 'Inativo') table.push(`<tr data-id="${elem.brinco}" class="item-edit odd" role="row"><td>${elem.brinco}</td><td>${elem.nome}</td><td>${elem.raca}</td><td>${elem.sexo}</td><td>${elem.datanascimento}</td><td>${elem.peso}</td><td>${elem.loteanimal}</td><td>${elem.status}</td></tr>`)
         });
         setTable(table);
       });

@@ -328,6 +328,13 @@ th {
 	margin: 3px 5px ;
 }
 
+#img-cards-gado {
+	opacity: 0.3;
+    width: 88%;
+    vertical-align: baseline;
+    padding-top: 4%;
+}
+
 .col-10 {
 	width: 10% !important;
 }

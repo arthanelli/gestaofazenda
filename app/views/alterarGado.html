@@ -7,15 +7,29 @@
 <div class="row">
 	<div class="col-lg-4 col-xs-6">
 		<a id="button-alterar-gado" style="cursor:pointer">
-		<div class="small-box bg-yellow">
+		<div class="small-box bg-orange">
 			<div class="inner">
 				<h3 class="subtitulo-painel-gado" id="dados-gado">Dados</h3>
 				<p>Visualiza e modificar dados</p>
 			</div>
 			<div class="icon">
-				<i class="fa fa-info-circle"></i>
+				<img src="/icons/dados-gado.png" />
 			</div>
 			<div class="small-box-footer">Visualizar dados <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
+		<a href="/vacinarGado/{{brinco}}">
+		<div class="small-box bg-blue">
+			<div class="inner">
+				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Vacinação</h3>
+				<p>Cadastre a vacinação</p>
+			</div>
+			<div class="icon">
+				<img src="/icons/vacinacao-icon.png" />
+			</div>
+			<div class="small-box-footer">Adicionar vacinação <i class="fa fa-arrow-circle-right"></i></div>
 		</div>
 		</a>
 	</div>
@@ -34,49 +48,7 @@
 		</a>
 	</div>
 	<div class="col-lg-4 col-xs-6">
-		<a href="/vacinarGado/{{brinco}}">
-		<div class="small-box bg-blue">
-			<div class="inner">
-				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Vacinação</h3>
-				<p>Cadastre a vacinação</p>
-			</div>
-			<div class="icon">
-				<img src="/icons/vacinacao-icon.png" />
-			</div>
-			<div class="small-box-footer">Adicionar vacinação <i class="fa fa-arrow-circle-right"></i></div>
-		</div>
-		</a>
-	</div>
-		<div class="col-lg-4 col-xs-6">
-		<a href="/cadastrarOrdenha">
-		<div class="small-box bg-aqua">
-			<div class="inner">
-				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Ordenha</h3>
-				<p>Realizar Ordenha</p>
-			</div>
-			<div class="icon">
-				<i class="fa fa-paw"></i>
-			</div>
-			<div class="small-box-footer">Adicionar ordenha <i class="fa fa-arrow-circle-right"></i></div>
-		</div>
-		</a>
-	</div>
-		<div class="col-lg-4 col-xs-6">
-		<a href="/cadastrarReproducao">
 		<div class="small-box bg-orange">
-			<div class="inner">
-				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Reproducao</h3>
-				<p>Cadastrar reprodução</p>
-			</div>
-			<div class="icon">
-				<i class="fa fa-paw"></i>
-			</div>
-			<div class="small-box-footer">Adicionar reproducao<i class="fa fa-arrow-circle-right"></i></div>
-		</div>
-		</a>
-	</div>
-	<div class="col-lg-4 col-xs-6">
-		<div class="small-box bg-black">
 			<div class="inner">
 				<h3 class="subtitulo-painel-gado" id="ciclo-do-gado">Ciclo atual do Gado</h3>
 				<p>{{status}}</p>
@@ -88,8 +60,22 @@
 		</div>
 	</div>
 	<div class="col-lg-4 col-xs-6">
+		<a href="/historicoVacinacao/{{brinco}}">
+		<div class="small-box bg-blue">
+			<div class="inner">
+				<h3 class="subtitulo-painel-gado" id="historico-vacinacao">Histórico de vacinação</h3>
+				<p>Consulte vacinas aplicadas</p>
+			</div>
+			<div class="icon">
+				<img src="/icons/historico-vacinacao-icon.png" />
+			</div>
+			<div class="small-box-footer">Consultar histórico <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
+	<div class="col-lg-4 col-xs-6">
 		<a href="/historicoAlimentacao/{{brinco}}">
-		<div class="small-box bg-purple">
+		<div class="small-box bg-green">
 			<div class="inner">
 				<h3 class="subtitulo-painel-gado" id="historico-alimentar">Histórico alimentar</h3>
 				<p>Consulte a alimentação</p>
@@ -102,20 +88,33 @@
 		</a>
 	</div>
 	<div class="col-lg-4 col-xs-6">
-		<a href="/historicoVacinacao/{{brinco}}">
-		<div class="small-box bg-gray">
+		<a href="/cadastrarReproducao">
+		<div class="small-box bg-orange">
 			<div class="inner">
-				<h3 class="subtitulo-painel-gado" id="historico-vacinacao">Histórico de vacinação</h3>
-				<p>Consulte vacinas aplicadas</p>
+				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Reprodução</h3>
+				<p>Cadastrar reprodução</p>
 			</div>
 			<div class="icon">
-				<img src="/icons/historico-vacinacao-icon.png" />
+				<img src="/icons/reproducao-icon.png" />
 			</div>
-			<div class="small-box-footer">Consultar histórico <i class="fa fa-arrow-circle-right"></i></div>
+			<div class="small-box-footer">Adicionar reproducao <i class="fa fa-arrow-circle-right"></i></div>
 		</div>
 		</a>
 	</div>
-		
+	<div class="col-lg-4 col-xs-6">
+		<a href="/cadastrarOrdenha">
+		<div class="small-box bg-aqua">
+			<div class="inner">
+				<h3 class="subtitulo-painel-gado" id="vacinar-gado">Ordenha</h3>
+				<p>Realizar Ordenha</p>
+			</div>
+			<div class="icon">
+				<img src="/icons/alimentar-icon.png" />
+			</div>
+			<div class="small-box-footer">Adicionar ordenha <i class="fa fa-arrow-circle-right"></i></div>
+		</div>
+		</a>
+	</div>
 	<div class="col-lg-4 col-xs-6">
 		<a id="button-deletar-gado">
 		<div class="small-box bg-red">
@@ -124,7 +123,7 @@
 				<p>Retira o gado da fazenda</p>
 			</div>
 			<div class="icon">
-				<i class="fa fa-trash-o"></i>
+				<img src="/icons/deletar-icon.png" />
 			</div>
 			<div class="small-box-footer">Deletar gado <i class="fa fa-arrow-circle-right"></i></div>
 		</div>

@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-profit">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
+      <span class="info-box-icon bg-aqua"><img src="icons/dinheiro-icon.png" id="img-cards-gado" /></span>
       <div class="info-box-content">
         <span class="info-box-text">LUCRO</span>
         <span class="info-box-number" id="profit"></span>
@@ -11,7 +11,7 @@
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-inputMoney">
-      <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
+      <span class="info-box-icon bg-green"><i class="fa fa-plus"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">RECEITAS</span>
         <span class="info-box-number" id="inputMoney"></span>
@@ -20,7 +20,7 @@
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="box-outputMoney">
-      <span class="info-box-icon bg-red"><i class="fa fa-shopping-cart"></i></span>
+      <span class="info-box-icon bg-red"><i class="fa fa-minus"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">DESPESAS</span>
         <span class="info-box-number" id="outputMoney"></span>
@@ -29,7 +29,7 @@
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box" id="gerar-relatorio">
-      <span class="info-box-icon bg-orange"><i class="fa fa-shopping-cart"></i></span>
+      <span class="info-box-icon bg-orange"><i class="fa fa-file-pdf-o"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">Relatório</span>
         <span class="info-box-number" id="outputMoney">Transações</span>
@@ -127,7 +127,7 @@
       let table = [];
       $.get("/transactions", data => {
         data.forEach(elem => {
-          if (elem.tipo === 'DESPESA') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+          if (elem.tipo === 'DESPESAS') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
         });
         setTable(table);
       });
