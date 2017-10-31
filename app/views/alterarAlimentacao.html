@@ -73,11 +73,11 @@
 					</button>
 					</div>
 					<div class="modal-body">
-					Ei, deseja realmente deletar essa alimentação?
+					Ei, deseja realmente deletar o cadastramento deste alimento?
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-danger" data-path="../deletarAlimentacao" id="confirmarDeletar">Deletar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarOrdenha" id="confirmarDeletar">Deletar</button>
 					</div>
 				</div>
 			</div>
@@ -124,16 +124,22 @@
 
 		});
 
+<<<<<<< HEAD
 		$("#button-deletar-alimentacao").click(function(){
 			$("#myModal").modal();
+=======
+		$(document).ready(function () {
+>>>>>>> 117cc59f089cd5a954a4a6aef435bf9fa70159cf
 
-			$("#confirmarDeletar").click(function(){
-				var pathEdit = $(this).attr('data-path');
-				var id = $('#id').val();
-				location.href = pathEdit + '/' + id;
+		$("#button-deletar").click(function(){
+				$("#myModal").modal();
+
+				$("#confirmarDeletar").click(function(){
+					var pathEdit = $(this).attr('data-path');
+					var id = $('#id').val();
+					location.href = pathEdit + '/' + id;
+				});
 			});
-
-		});
 	});
 </script>
 {{/extend}}

@@ -25,7 +25,7 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO insumos(nome, tipo, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6, $7)',
+            const query = client.query('INSERT INTO insumos(nome, tipo, preco, fornecedor, descricao, quantidade, dataDeValidade) values($1, $2, $3, $4, $5, $6, $7)',
             [data.nome, data.tipo, data.preco, data.fornecedor, data.descricao, data.quantidade, data.dataDeValidade]);
 
             const valorUnidade = data.preco;
@@ -42,13 +42,6 @@ module.exports = {
 
             client.query('INSERT INTO transacoes(valor, tipo, descricao, data) values($1, $2, $3, $4)',
             [valorTotal, 'DESPESAS', 'Compra de Insumo - ' + data.nome, dateString])
-
-            // SQL Query > Select Data
-            var query = client.query('SELECT * FROM insumos ORDER BY id ASC');
-            // Stream results back one row at a time
-            query.on('row', (row) => {
-                results.push(row);
-            });
             // After all data is returned, close connection and return results
             query.on('end', () => {
                 done();

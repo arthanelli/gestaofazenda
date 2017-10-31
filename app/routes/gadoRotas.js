@@ -418,6 +418,7 @@ module.exports = [
 						pageName : 'cadastrarAlimentacao',
 						titlePage: 'Cadastrar dados de Alimentação',
 						title: 'Cadastrar dados de Alimentação',
+						brinco: array.brinco,
 						dados: array
 					};
 					return reply.view('cadastrarAlimentacao', data);
@@ -565,6 +566,7 @@ module.exports = [
 			},
 			handler: function(request, reply){
 				dieta(request.payload.brinco, data => {
+					console.log(data)
 					reply(data);
 				});
 			}
@@ -578,7 +580,7 @@ module.exports = [
 					var data = {
 						pageName : 'historicoAlimentacao',
 						titlePage: 'Histórico de alimentação do Gado',
-						title: '',
+						title: 'Histórico de alimentação do Gado',
 						dados: array
 					};
 					return reply.view('consultarAlimentacaoEspecifica', data);

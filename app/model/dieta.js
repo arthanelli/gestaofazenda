@@ -65,7 +65,7 @@ module.exports = (brinco, cb) => {
         const daysMonth = birth.month * 30; 
         return birth.day + daysYear + daysMonth;
       }
-      const birthCiclo = getAge(results[0]['dataciclo']);      
+      const birthCiclo = getAge(results[0]['datanascimento']);      
 
       const daysCiclo = () => {
         const daysYear = birthCiclo.year * 365;
