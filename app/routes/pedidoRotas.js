@@ -5,12 +5,14 @@ module.exports = [
 	{
 		method: 'GET',
 			path: '/cadastrarPedido',
-			handler: function(request, reply) {
-				var data = {
-						title: 'Realizar Pedido',
-				};
-				return reply.view('cadastrarPedido', data);
-			}
+			config: {
+				handler: function(request, reply) {
+					var data = {
+							title: 'Realizar Pedido',
+					};
+					return reply.view('cadastrarPedido', data);
+				}
+			},
 	},
 	{
 		method: 'GET',

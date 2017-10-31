@@ -1,66 +1,16 @@
-  <div class="wrapperLogin">
+<form action="/login" method="POST">
+  <div class="container">
+    <h1><b>Milma</b></h1>
+    <sup>Milk Management</sup></br>
+    <br>
 
-    <form class="form-signin">      
 
-      <h2 class="form-signin-heading">Login</h2>
+    <label><b>Usuário</b></label>
+    <input type="text" placeholder="Entre Usuário" name="usuario" required>
 
-      <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required autofocus />
-
-      <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required/>     
-
-      <label class="checkbox">
-        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Lembrar-me
-      </label>
-      <button class="btn btn-lg btn-primary btn-block" id="btnSalvar" type="submit">Login</button>   
-    </form>
+    <label><b>Senha</b></label>
+    <input type="password" placeholder="Entre Senha" name="senha" required>
+        
+    <button type="submit">Login</button>
   </div>
-
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Login ou senha inválidos</h4>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-  {{#extend "js"}}
-<script>
-
-  $('#btnSalvar').on('click', () =>{
-
-      let usuario = $('#usuario').val();
-      console.log(usuario);
-      let senha = $('#senha').val();
-      console.log(senha);
-
-      $.get("/readUsuario", data => {
-        data.forEach(elem => {
-            if(elem.usuario === usuario) {
-              if (elem.senha === senha) {
-                alert('TA DENTRO MLK');
-                window.location.replace('/home');
-              }
-            }
-            else{
-                $('#myModal').modal('show');
-            }
-        });  
-      });
-    });
-    
-    $.get("/readUsuario", data => {
-      data.forEach(elem => {
-
-
-    	});
-  	});
-
-</script>
-{{/extend}}
+</form>
