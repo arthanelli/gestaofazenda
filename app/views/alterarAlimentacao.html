@@ -1,7 +1,6 @@
 <div class="detail-top">
 	<h1>{{#each dados}}</h1>
-	<a id="button-alterar" class="button basic">Voltar</a>
-	<a class="button danger" id="button-deletar">Deletar</a>
+	<a data-path="../deletarAlimentacao" class="button danger" id="button-deletar" data-target="#modalDeletar">Deletar</a>
 </div>
 
 <div class="container-form" style="margin-top: 2%;">
@@ -73,11 +72,11 @@
 					</button>
 					</div>
 					<div class="modal-body">
-					Ei, deseja realmente deletar essa alimentação?
+					Ei, deseja realmente deletar o cadastramento deste alimento?
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-danger" data-path="../deletarAlimentacao" id="confirmarDeletar">Deletar</button>
+					<button type="button" class="btn btn-danger" data-path="../deletarOrdenha" id="confirmarDeletar">Deletar</button>
 					</div>
 				</div>
 			</div>
@@ -124,16 +123,17 @@
 
 		});
 
-		$("#buttondeletar").click(function(){
-			$("#myModal").modal();
+		$(document).ready(function () {
 
-			$("#confirmarDeletar").click(function(){
-				var pathEdit = $(this).attr('data-path');
-				var id = $('#id').val();
-				location.href = pathEdit + '/' + id;
+		$("#button-deletar").click(function(){
+				$("#myModal").modal();
+
+				$("#confirmarDeletar").click(function(){
+					var pathEdit = $(this).attr('data-path');
+					var id = $('#id').val();
+					location.href = pathEdit + '/' + id;
+				});
 			});
-
-		});
 	});
 </script>
 {{/extend}}

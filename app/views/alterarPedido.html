@@ -1,6 +1,5 @@
 <div class="detail-top">
 	<h1>{{titleAlterar}} {{#each dados}}#{{id}}</h1>
-	<a id="button-alterar" class="button basic">Voltar</a>
     <a id="button-deletar-pedido" class="button danger">Deletar</a>
 </div>
 
@@ -33,7 +32,7 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<input type="text" class="form-control pull-right" id="datepicker" name="dataVencimento">
+					<input type="text" class="form-control pull-right" id="datepicker1" name="dataVencimento">
 				</div>
 		</div>
 		<div class="forms-campo">
@@ -93,6 +92,10 @@
 {{#extend "js"}}
 <script type="text/javascript" src="../js/select2.full.min.js"></script>
 <script>
+$(document).ready(function () {
+			$("#datepicker").mask("99/99/9999");
+			$("#datepicker1").mask("99/99/9999");
+		});
 	$(document).ready(function () {
 		if ($("#quantparcelamento").is(':checked')){
 			$("#quantparcelamento").css('display', 'block')

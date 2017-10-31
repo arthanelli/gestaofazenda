@@ -32,7 +32,7 @@
       <span class="info-box-icon bg-orange"><i class="fa fa-shopping-cart"></i></span>
       <div class="info-box-content">
         <span class="info-box-text">Relatório</span>
-        <span class="info-box-number" id="outputMoney">Transações</span>
+        <span class="info-box-number" >Transações</span>
       </div>
     </div>
   </div>
@@ -127,7 +127,7 @@
       let table = [];
       $.get("/transactions", data => {
         data.forEach(elem => {
-          if (elem.tipo === 'DESPESA') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
+          if (elem.tipo === 'DESPESAS') table.push(`<tr role="row" class="odd"><td>${elem.id}</td><td>${elem.valor}</td><td>${elem.tipo}</td><td>${elem.descricao}</td><td>${elem.data}</td></tr>`)
         });
         setTable(table);
       });

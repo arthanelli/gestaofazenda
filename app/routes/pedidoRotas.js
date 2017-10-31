@@ -76,7 +76,8 @@ module.exports = [
 			handler: function(request, reply){
 				ordemPedido.change(request.payload, function(erro){
 					if(!erro){
-						reply.redirect('alterarPedido/' + request.payload.id);
+
+						reply.redirect('/consultarPedido');
 					}
 				});
 		}
