@@ -461,7 +461,8 @@ module.exports = [
 		path: '/deletarAlimentacao/{id}',
 		handler: function(request, reply){
 			alimento.del(request.params.id);
-			reply.redirect('../consultarAlimentacao');
+			console.log(request.params);
+			reply.redirect('../painelGado/' + request.params.codgado);
 		}
 	},
 	{

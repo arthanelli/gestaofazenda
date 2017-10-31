@@ -1,8 +1,8 @@
 <div class="row detail-top">
-    <a href="/alimentarGado/{{brinco}}" id="button-cadastrar-alimentacao" class="button sucess"><i class="fa fa-shopping-cart"></i>  Cadastrar Alimentação</a>
-</div><br>
+    <a href="javascript:history.back(1);" id="button-voltar" class="button info"><i class="fa fa-chevron-left"></i> Voltar ao Painel</a>
+</div>
     
-<div class="form-group input-group">
+<div class="form-group input-group" style="margin-top: 2%;">
     <span class="input-group-addon"><i class="fa fa-search"></i></span>
     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
 </div>
@@ -33,6 +33,7 @@
       {{/each}}
     </tbody>
   </table>
+
   {{#extend "js"}}
   <script>
   
