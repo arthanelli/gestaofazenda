@@ -16,8 +16,12 @@
 			<input type="text" class="form-text campo-bloqueado" id="brinco" name="brinco" value="{{brinco}}" required readonly>
 		</div>
 		<div class="forms-campo">
-			<label for="datacio" class="form-label">Data do ultimo cio *</label> 
+			<label for="datacio" class="form-label">Data do cio atual*</label> 
 			<input type="text" class="form-text" id="datacio" name="datacio" value="{{datacio}}" required>
+		</div>
+		<div class="forms-campo">
+			<label for="dataultimocio" class="form-label">Data do ultimo cio *</label> 
+			<input type="text" class="form-text" id="dataultimocio" name="dataultimocio" value="{{dataultimocio}}" required>
 		</div>
 		<div class="form-group">
 				<input type="hidden" name="tipoReproducaoAtual" id="tipoReproducaoAtual" value="{{tiporeproducao}}">
@@ -92,6 +96,7 @@
 		});
 			
 			$("#datacio").mask("99/99/9999");
+			$("#dataultimocio").mask("99/99/9999");
 		});
 
 		$("#button-deletar-reproducao").click( function(event) {

@@ -19,6 +19,15 @@
 					<input type="text" class="form-control pull-right" id="datepicker" name="datacio" required="">
 				</div>
 			</div>
+			<div class="form-group">	
+				<label>Data do ultimo cio*</label>					
+				<div class="input-group date">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<input type="text" class="form-control pull-right" id="datepicker1" name="dataultimocio" required="">
+				</div>
+			</div>
 
 			<div class="form-group">
 				<label>Tipo de reprodução *</label>
@@ -75,6 +84,7 @@
 
   		$(document).ready(function () {
 			$("#datepicker").mask("99/99/9999");
+			$("#datepicker1").mask("99/99/9999");
 		});
 
 		$(document).ready(function () {
