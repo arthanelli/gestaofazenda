@@ -204,7 +204,7 @@ module.exports = [
 			path: '/cadastrarReproducao',
 			handler: function(request, reply) {
 				var data = {
-						title: 'Ordenha Gado',
+						title: 'Cadastrar Reprodução',
 				};
 				return reply.view('cadastrarReproducao', data);
 			}

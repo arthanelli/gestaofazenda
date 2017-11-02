@@ -14,7 +14,6 @@ module.exports = {
             sexo: arrayData.sexo,
             peso: arrayData.peso,
             dataNascimento: arrayData.dataNascimento,
-            vacinas: arrayData.vacinas,
             pai: arrayData.paiGado,
             mae: arrayData.maeGado,
             loteanimal: arrayData.loteAnimal,
@@ -30,8 +29,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Insert Data
-            client.query('INSERT INTO gado(brinco, nome, raca, sexo, dataNascimento, vacinas, peso, pai, mae, loteanimal, status, observacoes) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
-            [data.brinco, data.nome, data.raca, data.sexo, data.dataNascimento, data.vacinas, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes ]);
+            client.query('INSERT INTO gado(brinco, nome, raca, sexo, dataNascimento, peso, pai, mae, loteanimal, status, observacoes) values($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)',
+            [data.brinco, data.nome, data.raca, data.sexo, data.dataNascimento, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes ]);
             // SQL Query > Select Data
             var query = client.query('SELECT * FROM gado ORDER BY brinco ASC');
             // Stream results back one row at a time
@@ -122,9 +121,8 @@ module.exports = {
             sexo: arrayData.sexo,
             peso: arrayData.peso,
             dataNascimento: arrayData.dataNascimento,
-            vacinas: arrayData.vacinas,
             pai: arrayData.paiGado,
-            mae: arrayData.maeGado,
+            mae: arrayData.maeGado,     
             loteanimal: arrayData.loteAnimal,
         	status: arrayData.status, 
             observacoes: arrayData.observacoes
@@ -141,8 +139,8 @@ module.exports = {
                 }
             }
             // SQL Query > Update Data
-            client.query('UPDATE gado SET nome=($1), raca=($2), sexo=($3), datanascimento=($4), vacinas=($5), peso=($6), pai=($7), mae=($8), loteanimal=($9), status=($10), observacoes=($11) WHERE brinco=($12)',
-            [data.nome, data.raca, data.sexo, data.dataNascimento, data.vacinas, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes, brinco]);
+            client.query('UPDATE gado SET nome=($1), raca=($2), sexo=($3), datanascimento=($4), peso=($5), pai=($6), mae=($7), loteanimal=($8), status=($9), observacoes=($10) WHERE brinco=($11)',
+            [data.nome, data.raca, data.sexo, data.dataNascimento, data.peso, data.pai, data.mae, data.loteanimal, data.status, data.observacoes, brinco]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM gado ORDER BY brinco ASC");
             // Stream results back one row at a time

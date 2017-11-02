@@ -18,9 +18,7 @@ module.exports = [
 					return reply.view('login', null, { layout: 'sem_layout' });					
 				}
 				if (request.method === 'post') {
-					console.log(	'oi')
 					user.validate(request.payload, account => {
-						console.log(account)
 						if(account) {
 							const sid = String(++uuid);
 							const account = {
@@ -47,21 +45,19 @@ module.exports = [
 		method: 'GET',
 		path: '/',
 		config: {
-			// validate: {
-			// 	payload: {
-			// 		email: Joi.string().email().required(),
-			// 		password: Joi.string().min(2).max(200).required()
-			// 	}
-			// },
 			handler: function(request, reply) {
-				// getValidatedUser(request.payload.email, request.payload.password)
-				// .then(function(user){
 				reply.view('index')
-				// })
-				// .catch(function(err){
-				// 	return reply(Boom.badImplementation());
-				// });
 			}
 		}
-  }
+	},
+	{
+		method: 'GET',
+		path: '/logout',
+		config: {
+			handler: function(request, reply) {
+				request.cookieAuth.clear();
+				return reply.redirect('/login');
+			}
+		}
+	}
 ]
