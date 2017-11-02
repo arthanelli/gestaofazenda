@@ -21,9 +21,11 @@
     "vision": "^4.1.1"
   },
   "devDependencies": {
+    "bcrypt": "^1.0.3",
     "browser-sync": "^2.18.13",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
+    "hapi-auth-basic": "^4.2.0",
     "hapi-auth-cookie": "^7.0.0"
   }
 }
