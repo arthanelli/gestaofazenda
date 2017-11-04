@@ -1,8 +1,8 @@
 module.exports = {		
     config : {		
         user: 'postgres', //env var: PGUSER 		
-        database: 'gestaofazenda1', //env var: PGDATABASE 		
-        password: '1mudar123',
+        database: 'gestaofazenda', //env var: PGDATABASE 		
+        password: 'igor200696',
         host: 'localhost', // Server hosting the postgres database 		
         port: 5432, //  env var: PGPORT 		
         max: 10, // max number of clients in the pool 		

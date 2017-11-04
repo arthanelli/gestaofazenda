@@ -49,7 +49,7 @@
     <div class="small-box bg-aqua" id="box-profit">
       <div class="inner">
         <h3 id="outputMoney"></h3>
-        <p>Lucro em caixa</p>
+        <p>Saldo em caixa</p>
       </div>
       <div class="icon">
         <i class="fa fa-money"></i>
@@ -181,7 +181,7 @@
         if (elem.tipo === 'DESPESAS') outputMoney += parseFloat(elem.valor);
       });
       const profit = inputMoney - outputMoney;
-      $("#outputMoney").html('R$ ' + profit);
+      $("#outputMoney").html('R$ ' + profit.toFixed(2));
       if (profit < 0) {
         $('#box-profit').removeClass('bg-aqua');
         $('#box-profit').addClass('bg-red');
@@ -192,8 +192,8 @@
         data: {
           datasets: [{
               data: [
-                inputMoney,
-                outputMoney
+                inputMoney.toFixed(2),
+                outputMoney.toFixed(2)
               ],
               backgroundColor: [
                 '#00ca6d',

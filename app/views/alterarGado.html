@@ -109,7 +109,7 @@
 				<p>Realizar Ordenha</p>
 			</div>
 			<div class="icon">
-				<img src="/icons/alimentar-icon.png" />
+				<img src="/icons/ordenha-icon.png" />
 			</div>
 			<div class="small-box-footer">Adicionar ordenha <i class="fa fa-arrow-circle-right"></i></div>
 		</div>
@@ -142,7 +142,8 @@
 				</button>
 				</div>
 				<div class="modal-body">
-				Ei, deseja realmente retirar este gado da fazenda?
+				Ei, deseja realmente retirar este gado da fazenda?</br>
+				<sub> Para deletar um gado verifique se ele não tem informações atreladas a ela no sitemas, como alimentações ou vacinas.</sub>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -364,7 +365,7 @@
 		}
 	});
 
-	$("#button-deletar-gado").click(function (event) {
+	$("#button-deletar-gado").click(function () {
 		$("#deletarGadoModal").modal();
 
 		$("#confirmarDeletar").click(function(){

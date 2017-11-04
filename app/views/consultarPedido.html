@@ -53,28 +53,24 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Nome Comprador</th>
+      <th>Código do comprador</th>
       <th>Quantidade de litros de Leite</th>
       <th>Data</th>
       <th>Valor</th>
       <th>Data Vencimento</th>
       <th>Descricao</th>
-      <th>Parcelamento</th>
-      <th>Quant. Parcelamento</th>
     </tr>
   </thead>
   <tbody>
     {{#each dados}}
     <tr data-id="/alterarPedido/{{id}}" class="item-edit">
       <td>{{id}}</td>
-      <td>{{responsavellegal}}</td>
+      <td>{{codigocomprador}}</td>
       <td>{{quantidadelitros}}</td>
       <td>{{data}}</td>
       <td>{{valor}}</td>
       <td>{{datavencimento}}</td>
       <td>{{descricao}}</td>
-      <td>{{parcelamento}}</td>
-      <td>{{quantparcelamento}}</td>
     </tr>
     {{/each}}
   </tbody>

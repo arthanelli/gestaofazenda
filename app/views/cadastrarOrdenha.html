@@ -21,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				<label>Litros de leite *</label>
-				<input type="text" class="form-control" name="litrosleite" required="">
+				<input type="number" class="form-control" name="litrosleite" required="">
 			</div>
 			<hr>
 			<input type="submit" name="Cadastrar" class="button sucess">
@@ -37,7 +37,7 @@
 			$.get("/readGado", data => {
 				let option = []
 				data.forEach(gado => {
-					option.push(`<option name="binco" value="${gado.brinco}">${gado.brinco} - ${gado.nome}</option>"`)
+					option.push(`<option name="brinco" value="${gado.brinco}">${gado.brinco} - ${gado.nome}</option>"`)
 				});
 				$("#select-animal").append(option)
 				console.log(option)

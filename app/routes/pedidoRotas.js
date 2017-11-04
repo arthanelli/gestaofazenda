@@ -76,6 +76,7 @@ module.exports = [
 				parse: true
 			},
 			handler: function(request, reply){
+				console.log(request.payload);
 				ordemPedido.change(request.payload, function(erro){
 					if(!erro){
 

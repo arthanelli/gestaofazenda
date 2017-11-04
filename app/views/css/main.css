@@ -335,6 +335,10 @@ th {
     padding-top: 4%;
 }
 
+#login-campos {
+	color: #5cb85c;
+}
+
 .col-10 {
 	width: 10% !important;
 }

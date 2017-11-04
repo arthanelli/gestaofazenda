@@ -14,16 +14,16 @@
 			</div>
 			<div class="form-group">
 				<label>Comprador</label>
-				<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codigoComprador" id="select-comprador">
+				<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="codigocomprador" id="select-comprador">
 				</select>
 			</div>
 			<div class="form-group">
 				<label>Quantidade de litros de leite *</label>
-				<input type="text" class="form-control" name="quantidadeLitros" required="">
+				<input type="number" class="form-control" name="quantidadelitros" required="">
 			</div>
 			<div class="form-group">
 				<label>Valor *</label>
-				<input type="text" class="form-control" name="valor" required="">
+				<input type="text" class="form-control" name="valor" placeholder="Digite o valor. Obs: para os centavos utilizar ponto ( . )" required="">
 			</div>
 			<div class="form-group">	
 				<label>Data Vencimento*</label>					
@@ -31,12 +31,12 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<input type="text" class="form-control pull-right" id="datepicker1" name="dataVencimento">
+					<input type="text" class="form-control pull-right" id="datepicker1" name="datavencimento">
 				</div>
 			</div>
 			<div class="form-group">
 				<label>Descrição</label>
-				<textarea class="form-control" rows="3" placeholder="Escreva ..." name="descricao"></textarea>
+				<textarea class="form-control" rows="3" placeholder="Escreva a descrição do pedido..." name="descricao"></textarea>
 			</div>
 			<div class="form-group">
 				<label>Parcelamento</label>
@@ -58,7 +58,10 @@
 				<select class="form-control" name="quantparcelamento">
 					<option name="quantparcelamento" value="1">1x</option>
 					<option name="quantparcelamento" value="2">2x</option>
-					<option name="quantparcelamento" value="3">3x</option>					
+					<option name="quantparcelamento" value="3">3x</option>	
+					<option name="quantparcelamento" value="4">4x</option>	
+					<option name="quantparcelamento" value="5">5x</option>	
+					<option name="quantparcelamento" value="6">6x</option>					
 				</select>
 			</div>
 			<hr>
@@ -93,7 +96,7 @@
 		$.get("/readComprador", data => {
 			let option = []
 			data.forEach(comprador => {
-				option.push(`<option name="codigoComprador" value="${comprador.id}">${comprador.responsavellegal} - ${comprador.id}</option>"`)
+				option.push(`<option name="codigocomprador" value="${comprador.id}">${comprador.responsavellegal} - ${comprador.id}</option>"`)
 			});
 			$("#select-comprador").append(option)
 		});

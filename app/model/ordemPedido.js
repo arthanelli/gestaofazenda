@@ -10,8 +10,8 @@ module.exports = {
         done();
         console.log(err);
       }
-      const query = client.query('INSERT INTO pedido(codigoComprador, quantidadeLitros, data, valor, dataVencimento, descricao, parcelamento, quantparcelamento) values($1, $2, $3, $4, $5, $6, $7, $8)',
-      [data.codigoComprador, data.quantidadeLitros, data.data, data.valor, data.dataVencimento, data.descricao, data.parcelamento, data.quantparcelamento]);
+      const query = client.query('INSERT INTO pedido(codigocomprador, quantidadelitros, data, valor, datavencimento, descricao, parcelamento, quantparcelamento) values($1, $2, $3, $4, $5, $6, $7, $8)',
+      [data.codigocomprador, data.quantidadelitros, data.data, data.valor, data.datavencimento, data.descricao, data.parcelamento, data.quantparcelamento]);
     
       client.query('INSERT INTO transacoes(valor, tipo, descricao, data) values($1, $2, $3, $4)',
       [data.valor, 'RECEITA', 'Venda Leite', data.data])
@@ -27,7 +27,7 @@ module.exports = {
             done();
             console.log(err);
         }
-        const query = client.query('SELECT ped.id, comp.responsavellegal, ped.quantidadeLitros, ped.data, ped.valor from pedido ped join comprador comp on ped.codigoComprador = comp.id;');
+        const query = client.query('SELECT * from pedido ORDER BY id ASC;');
         const results = [];
         query.on('row', (row) => {
             results.push(row);
@@ -78,11 +78,11 @@ module.exports = {
         // Grab data from http request
         var data = {
           id: arrayData.id, 
-          responsavelLegal: arrayData.responsavelLegal, 
-          quantidadeLitros: arrayData.quantidadeLitros, 
+          codigocomprador: arrayData.codigocomprador, 
+          quantidadelitros: arrayData.quantidadelitros, 
           data: arrayData.data, 
           valor: arrayData.valor, 
-          dataVencimento: arrayData.dataVencimento,
+          datavencimento: arrayData.datavencimento,
           descricao: arrayData.descricao,
           parcelamento: arrayData.parcelamento,
           quantparcelamento: arrayData.quantparcelamento
@@ -99,8 +99,8 @@ module.exports = {
                 //return res.status(500).json({success: false, data: err});
             }
             // SQL Query > Update Data
-            client.query('UPDATE pedido SET responsavelLegal=($1), quantidadeLitros=($2), data=($3), valor=($4), dataVencimento=($5), descricao=($6), parcelamento=($7), quantparcelamento=($8)  WHERE id=($9)',
-            [data.responsavelLegal, data.quantidadeLitros, data.data, data.valor, data.dataVencimento, data.descricao, data.parcelamento, data.quantparcelamento, data.id]);
+            client.query('UPDATE pedido SET codigocomprador=($1), quantidadelitros=($2), data=($3), valor=($4), datavencimento=($5), descricao=($6), parcelamento=($7), quantparcelamento=($8)  WHERE id=($9)',
+            [data.codigocomprador, data.quantidadelitros, data.data, data.valor, data.datavencimento, data.descricao, data.parcelamento, data.quantparcelamento, data.id]);
             // SQL Query > Select Data
             var query = client.query("SELECT * FROM pedido ORDER BY id ASC");
             // Stream results back one row at a time
